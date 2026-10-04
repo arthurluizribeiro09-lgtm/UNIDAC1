@@ -1,0 +1,1190 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Dashboard — Unidac Industries</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+
+</head>
+
+<body>
+
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-mark">
+                U
+            </div>
+
+            <div>
+
+                <strong>
+                    Unidac Industries
+                </strong>
+
+                <small>
+                    Enterprise Management
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- MENU -->
+        <nav class="nav">
+
+            <a href="dashboard.html">
+
+                <i>⌂</i>
+
+                <span>
+                    Dashboard
+                </span>
+
+            </a>
+
+
+            <a href="financeiro.html">
+
+                <i>R$</i>
+
+                <span>
+                    Financeiro
+                </span>
+
+            </a>
+
+
+            <a href="compras.html">
+
+                <i>▤</i>
+
+                <span>
+                    Compras
+                </span>
+
+            </a>
+
+
+            <a href="relatorios.html">
+
+                <i>▥</i>
+
+                <span>
+                    Relatórios
+                </span>
+
+            </a>
+
+
+            <a href="notificacoes.html">
+
+                <i>●</i>
+
+                <span>
+                    Notificações
+                </span>
+
+            </a>
+
+        </nav>
+
+
+        <!-- PERFIL -->
+        <div class="profile">
+
+            <div class="profile-box">
+
+                <div class="avatar">
+                    U
+                </div>
+
+                <div>
+
+                    <strong class="user-name">
+                        Usuário
+                    </strong>
+
+                    <small class="user-role">
+                        Acesso
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <button onclick="event.preventDefault();if(!confirm('Sair do sistema?\nSua sessão será encerrada neste dispositivo.'))return;localStorage.removeItem('unidacUser');var p=location.pathname.split('/').filter(Boolean);if(p.length&&p[p.length-1].indexOf('.html')!==-1)p.pop();if(p.length&&p[p.length-1]==='pages')p.pop();if(p.length)p.pop();location.href=(p.length?'/'+p.join('/')+'/':'/')+'index.html';"  type="button" class="logout">
+
+                ↪
+
+                <span>
+                    Sair
+                </span>
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- CONTEÚDO -->
+    <main class="main">
+
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+
+            <div>
+
+                <h1>
+                    Dashboard
+                </h1>
+
+                <p id="welcome-sub">
+                    Visão central da Unidac Industries.
+                </p>
+
+            </div>
+
+
+            <div class="top-actions">
+
+                <button
+                    class="icon-btn"
+                    onclick="location.href='notificacoes.html'">
+
+                    ♢
+
+                    <b class="dot"></b>
+
+                </button>
+
+
+                <div class="avatar">
+                    U
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- PÁGINA -->
+        <section class="page">
+
+
+            <!-- HERO -->
+            <div class="hero-card">
+
+                <div>
+
+                    <span class="eyebrow">
+                        PAINEL EXECUTIVO
+                    </span>
+
+                    <h2 id="hero-title">
+                        Visão geral
+                    </h2>
+
+                    <p id="hero-text">
+                        Resumo dos principais indicadores
+                        da Unidac Industries.
+                    </p>
+
+                </div>
+
+
+                <div class="hero-mark">
+                    U
+                </div>
+
+            </div>
+
+
+            <!-- RESUMO -->
+            <div class="page-head">
+
+                <div>
+
+                    <h2>
+                        Resumo geral
+                    </h2>
+
+                    <p>
+                        Consulte rapidamente os principais dados.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="btn"
+                    data-toast="Dados atualizados com sucesso."
+                    id="btnAtualizarDashboard">
+
+                    ↻ Atualizar
+
+                </button>
+
+            </div>
+
+
+            <!-- INDICADORES -->
+            <div class="grid stats">
+
+
+                <!-- SALDO -->
+                <div class="card stat">
+
+                    <div class="icon">
+                        R$
+                    </div>
+
+                    <span class="label">
+                        SALDO
+                    </span>
+
+                    <div
+                        class="value"
+                        id="dashboardSaldo">
+
+                        R$ 16.780,00
+
+                    </div>
+
+                    <span class="trend">
+                        Disponível
+                    </span>
+
+                </div>
+
+
+                <!-- RECEITAS -->
+                <div class="card stat">
+
+                    <div class="icon">
+                        ↗
+                    </div>
+
+                    <span class="label">
+                        RECEITAS
+                    </span>
+
+                    <div
+                        class="value"
+                        id="dashboardReceitas">
+
+                        R$ 48.620,00
+
+                    </div>
+
+                    <span class="trend">
+                        ↑ 12,4%
+                    </span>
+
+                </div>
+
+
+                <!-- DESPESAS -->
+                <div class="card stat">
+
+                    <div class="icon">
+                        ↘
+                    </div>
+
+                    <span class="label">
+                        DESPESAS
+                    </span>
+
+                    <div
+                        class="value"
+                        id="dashboardDespesas">
+
+                        R$ 31.840,00
+
+                    </div>
+
+                    <span class="trend">
+                        ↑ 4,8%
+                    </span>
+
+                </div>
+
+
+                <!-- PEDIDOS -->
+                <div class="card stat">
+
+                    <div class="icon">
+                        ▤
+                    </div>
+
+                    <span class="label">
+                        PEDIDOS
+                    </span>
+
+                    <div class="value">
+                        18
+                    </div>
+
+                    <span class="trend">
+                        Este mês
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- ÁREAS -->
+            <div
+                class="grid two"
+                style="margin-top: 18px;">
+
+
+                <!-- FINANCEIRO -->
+                <div class="card">
+
+                    <div class="card-title">
+
+                        <div>
+
+                            <h3>
+                                Financeiro
+                            </h3>
+
+                            <p class="muted">
+                                Resumo financeiro
+                            </p>
+
+                        </div>
+
+                        <span class="badge ok">
+                            Atualizado
+                        </span>
+
+                    </div>
+
+
+                    <!-- SALDO DO CARD -->
+                    <div class="alert">
+
+                        <div class="badge info">
+                            R$
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Saldo disponível
+                            </strong>
+
+                            <p
+                                class="muted"
+                                id="dashboardSaldoCard">
+
+                                R$ 16.780,00
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- DESPESAS -->
+                    <div class="alert">
+
+                        <div class="badge warn">
+                            ↑
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Despesas +4,8%
+                            </strong>
+
+                            <p class="muted">
+                                Aumento identificado no período.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <a
+                        href="financeiro.html"
+                        class="btn"
+                        style="display: inline-block; margin-top: 10px;">
+
+                        Ver financeiro completo →
+
+                    </a>
+
+                </div>
+
+
+                <!-- COMPRAS -->
+                <div class="card">
+
+                    <div class="card-title">
+
+                        <div>
+
+                            <h3>
+                                Compras
+                            </h3>
+
+                            <p class="muted">
+                                Resumo dos pedidos
+                            </p>
+
+                        </div>
+
+                        <span class="badge info">
+                            18 pedidos
+                        </span>
+
+                    </div>
+
+
+                    <div class="alert">
+
+                        <div class="badge info">
+                            ▤
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Total comprado
+                            </strong>
+
+                            <p class="muted">
+                                R$ 8.420
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="alert">
+
+                        <div class="badge warn">
+                            !
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Pedido #1047
+                            </strong>
+
+                            <p class="muted">
+                                Em trânsito.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <a
+                        href="compras.html"
+                        class="btn"
+                        style="display: inline-block; margin-top: 10px;">
+
+                        Ver compras completas →
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- RELATÓRIOS E NOTIFICAÇÕES -->
+            <div
+                class="grid two"
+                style="margin-top: 18px;">
+
+
+                <!-- RELATÓRIOS -->
+                <div class="card">
+
+                    <div class="card-title">
+
+                        <div>
+
+                            <h3>
+                                Relatórios
+                            </h3>
+
+                            <p class="muted">
+                                Análises da empresa
+                            </p>
+
+                        </div>
+
+                        <span class="badge info">
+                            Disponível
+                        </span>
+
+                    </div>
+
+
+                    <p class="muted">
+
+                        Consulte os relatórios financeiros,
+                        indicadores e análises da operação.
+
+                    </p>
+
+
+                    <a
+                        href="relatorios.html"
+                        class="btn"
+                        style="display: inline-block; margin-top: 15px;">
+
+                        Ver relatórios →
+
+                    </a>
+
+                </div>
+
+
+                <!-- NOTIFICAÇÕES -->
+                <div class="card">
+
+                    <div class="card-title">
+
+                        <div>
+
+                            <h3>
+                                Notificações
+                            </h3>
+
+                            <p class="muted">
+                                Alertas recentes
+                            </p>
+
+                        </div>
+
+                        <span class="badge warn">
+                            6 novas
+                        </span>
+
+                    </div>
+
+
+                    <div class="alert">
+
+                        <div class="badge warn">
+                            !
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Atenção financeira
+                            </strong>
+
+                            <p class="muted">
+                                Despesas aumentaram 4,8%.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <a
+                        href="notificacoes.html"
+                        class="btn"
+                        style="display: inline-block; margin-top: 10px;">
+
+                        Ver notificações →
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+
+    <!-- MODAL -->
+    <div
+        class="modal-bg"
+        id="modal-bg">
+
+        <div class="modal">
+
+            <h3 id="modal-title"></h3>
+
+            <p id="modal-text"></p>
+
+
+            <div class="modal-actions">
+
+                <button
+                    class="btn secondary"
+                    id="modal-no">
+
+                    Não
+
+                </button>
+
+
+                <button
+                    class="btn danger"
+                    id="modal-yes">
+
+                    Sim
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- TOAST -->
+    <div
+        id="toast"
+        class="toast">
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="../js/data.js"></script>
+
+    
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore-compat.js"></script>
+<script src="../../js/firebase-config.js"></script>
+<script src="../../js/firebase-live.js"></script>
+<script src="../../js/firebase-actions.js"></script>
+<script src="../../js/firebase-pdf.js"></script>
+
+<script src="../js/app.js"></script>
+
+
+    <!-- ATUALIZAÇÃO FINANCEIRA DO DASHBOARD -->
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            () => {
+
+                /*
+                 * VALORES BASE
+                 *
+                 * São os mesmos utilizados
+                 * na página Financeiro.
+                 */
+
+                const RECEITAS_BASE = 48620;
+
+                const DESPESAS_BASE = 31840;
+
+
+                /*
+                 * FORMATA VALORES EM REAL
+                 */
+
+                function formatarMoeda(valor) {
+
+                    return valor.toLocaleString(
+                        "pt-BR",
+                        {
+                            style: "currency",
+                            currency: "BRL"
+                        }
+                    );
+
+                }
+
+
+                /*
+                 * CARREGA AS MOVIMENTAÇÕES
+                 * SALVAS PELO FINANCEIRO
+                 */
+
+                function carregarMovimentacoes() {
+
+                    try {
+
+                        const dados =
+                            localStorage.getItem(
+                                "unidacMovimentacoes"
+                            );
+
+
+                        if (!dados) {
+
+                            return [];
+
+                        }
+
+
+                        const movimentacoes =
+                            JSON.parse(dados);
+
+
+                        if (!Array.isArray(movimentacoes)) {
+
+                            return [];
+
+                        }
+
+
+                        return movimentacoes;
+
+                    } catch (erro) {
+
+                        console.error(
+                            "Erro ao carregar movimentações:",
+                            erro
+                        );
+
+                        return [];
+
+                    }
+
+                }
+
+
+                /*
+                 * ATUALIZA OS VALORES
+                 * DO DASHBOARD
+                 */
+
+                function atualizarDashboardFinanceiro() {
+
+                    const movimentacoes =
+                        carregarMovimentacoes();
+
+
+                    let receitas =
+                        RECEITAS_BASE;
+
+
+                    let despesas =
+                        DESPESAS_BASE;
+
+
+                    /*
+                     * SOMA AS NOVAS MOVIMENTAÇÕES
+                     */
+
+                    movimentacoes.forEach(
+                        movimentacao => {
+
+                            const valor =
+                                Number(
+                                    movimentacao.valor
+                                ) || 0;
+
+
+                            if (
+                                movimentacao.tipo ===
+                                "receita"
+                            ) {
+
+                                receitas += valor;
+
+                            }
+
+
+                            if (
+                                movimentacao.tipo ===
+                                "despesa"
+                            ) {
+
+                                despesas += valor;
+
+                            }
+
+                        }
+                    );
+
+
+                    /*
+                     * CALCULA O SALDO
+                     */
+
+                    const saldo =
+                        receitas - despesas;
+
+
+                    /*
+                     * ATUALIZA SALDO
+                     */
+
+                    const saldoElement =
+                        document.getElementById(
+                            "dashboardSaldo"
+                        );
+
+
+                    if (saldoElement) {
+
+                        saldoElement.textContent =
+                            formatarMoeda(saldo);
+
+                    }
+
+
+                    /*
+                     * ATUALIZA RECEITAS
+                     */
+
+                    const receitasElement =
+                        document.getElementById(
+                            "dashboardReceitas"
+                        );
+
+
+                    if (receitasElement) {
+
+                        receitasElement.textContent =
+                            formatarMoeda(receitas);
+
+                    }
+
+
+                    /*
+                     * ATUALIZA DESPESAS
+                     */
+
+                    const despesasElement =
+                        document.getElementById(
+                            "dashboardDespesas"
+                        );
+
+
+                    if (despesasElement) {
+
+                        despesasElement.textContent =
+                            formatarMoeda(despesas);
+
+                    }
+
+
+                    /*
+                     * ATUALIZA O SALDO
+                     * DENTRO DO CARD FINANCEIRO
+                     */
+
+                    const saldoCard =
+                        document.getElementById(
+                            "dashboardSaldoCard"
+                        );
+
+
+                    if (saldoCard) {
+
+                        saldoCard.textContent =
+                            formatarMoeda(saldo);
+
+                    }
+
+                }
+
+
+                /*
+                 * PRIMEIRA ATUALIZAÇÃO
+                 */
+
+                atualizarDashboardFinanceiro();
+
+
+                /*
+                 * BOTÃO ATUALIZAR
+                 *
+                 * Permite atualizar os valores
+                 * manualmente.
+                 */
+
+                const btnAtualizar =
+                    document.getElementById(
+                        "btnAtualizarDashboard"
+                    );
+
+
+                if (btnAtualizar) {
+
+                    btnAtualizar.addEventListener(
+                        "click",
+                        () => {
+
+                            atualizarDashboardFinanceiro();
+
+                        }
+                    );
+
+                }
+
+
+                /*
+                 * ATUALIZA QUANDO A PÁGINA
+                 * VOLTA A FICAR VISÍVEL.
+                 */
+
+                document.addEventListener(
+                    "visibilitychange",
+                    () => {
+
+                        if (
+                            document.visibilityState ===
+                            "visible"
+                        ) {
+
+                            atualizarDashboardFinanceiro();
+
+                        }
+
+                    }
+                );
+
+
+                /*
+                 * ATUALIZA CASO O LOCALSTORAGE
+                 * SEJA ALTERADO POR OUTRA ABA.
+                 */
+
+                window.addEventListener(
+                    "storage",
+                    evento => {
+
+                        if (
+                            evento.key ===
+                            "unidacMovimentacoes"
+                        ) {
+
+                            atualizarDashboardFinanceiro();
+
+                        }
+
+                    }
+                );
+
+            }
+
+        );
+
+    </script>
+
+
+    <!-- PERSONALIZAÇÃO POR PERFIL -->
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            () => {
+
+                const session =
+                    typeof getSession === "function"
+                        ? getSession()
+                        : null;
+
+
+                const configs = {
+
+                    administrador: {
+
+                        title: "Visão executiva",
+
+                        text:
+                            "Resumo dos principais indicadores " +
+                            "financeiros, compras, relatórios e alertas.",
+
+                        subtitle:
+                            "Controle geral da Unidac Industries."
+
+                    },
+
+
+                    financeiro: {
+
+                        title: "Gestão financeira",
+
+                        text:
+                            "Resumo das receitas, despesas, saldo " +
+                            "e principais alertas financeiros.",
+
+                        subtitle:
+                            "Resumo financeiro da empresa."
+
+                    },
+
+
+                    gerente: {
+
+                        title: "Visão gerencial",
+
+                        text:
+                            "Acompanhe rapidamente os principais " +
+                            "indicadores da operação.",
+
+                        subtitle:
+                            "Resumo gerencial da empresa."
+
+                    },
+
+
+                    cozinheira: {
+
+                        title: "Operação da cantina",
+
+                        text:
+                            "Consulte as principais informações " +
+                            "relacionadas à cantina.",
+
+                        subtitle:
+                            "Resumo da operação."
+
+                    },
+
+
+                    estoquista: {
+
+                        title: "Controle de estoque",
+
+                        text:
+                            "Acompanhe rapidamente as informações " +
+                            "relacionadas às compras e abastecimento.",
+
+                        subtitle:
+                            "Resumo do estoque."
+
+                    },
+
+
+                    funcionario: {
+
+                        title: "Área interna",
+
+                        text:
+                            "Consulte rapidamente os principais avisos " +
+                            "e informações disponíveis.",
+
+                        subtitle:
+                            "Informações internas."
+
+                    },
+
+
+                    professor: {
+
+                        title: "Área acadêmica",
+
+                        text:
+                            "Consulte rapidamente os comunicados " +
+                            "e informações disponíveis.",
+
+                        subtitle:
+                            "Informações acadêmicas."
+
+                    },
+
+
+                    aluno: {
+
+                        title: "Seu espaço",
+
+                        text:
+                            "Consulte rapidamente os avisos " +
+                            "e informações disponíveis.",
+
+                        subtitle:
+                            "Informações compartilhadas."
+
+                    }
+
+                };
+
+
+                if (
+                    session &&
+                    configs[session.role]
+                ) {
+
+                    const config =
+                        configs[session.role];
+
+
+                    const heroTitle =
+                        document.querySelector(
+                            "#hero-title"
+                        );
+
+
+                    const heroText =
+                        document.querySelector(
+                            "#hero-text"
+                        );
+
+
+                    const welcome =
+                        document.querySelector(
+                            "#welcome-sub"
+                        );
+
+
+                    if (heroTitle) {
+
+                        heroTitle.textContent =
+                            config.title;
+
+                    }
+
+
+                    if (heroText) {
+
+                        heroText.textContent =
+                            config.text;
+
+                    }
+
+
+                    if (welcome) {
+
+                        welcome.textContent =
+                            config.subtitle;
+
+                    }
+
+                }
+
+            }
+
+        );
+
+    </script>
+
+</body>
+
+</html>

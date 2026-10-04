@@ -1,0 +1,1466 @@
+<!doctype html>
+
+<html lang="pt-BR">
+
+<head>
+
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1">
+
+  <title>Desperdício — Área do Aluno</title>
+
+  <link
+    rel="stylesheet"
+    href="../css/style.css">
+
+  <link
+    rel="stylesheet"
+    href="../css/responsive.css">
+
+  <style>
+
+    .waste-table-wrapper {
+      width: 100%;
+      overflow-x: auto;
+      border-radius: 12px;
+    }
+
+    .waste-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 850px;
+    }
+
+    .waste-table th,
+    .waste-table td {
+      padding: 16px;
+      text-align: left;
+      border-bottom: 1px solid rgba(128,128,128,.15);
+      vertical-align: top;
+    }
+
+    .waste-table th {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+
+    .waste-table td {
+      font-size: 14px;
+    }
+
+    .waste-table .day {
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .waste-value {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .waste-description {
+      font-size: 13px;
+      opacity: .65;
+    }
+
+    .weekend {
+      opacity: .55;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .summary-item {
+      padding: 18px;
+      border-radius: 12px;
+      background: rgba(128,128,128,.08);
+    }
+
+    .summary-item strong {
+      display: block;
+      font-size: 22px;
+      margin-bottom: 5px;
+    }
+
+    .summary-item span {
+      font-size: 13px;
+      opacity: .7;
+    }
+
+    @media (max-width: 800px) {
+
+      .summary-grid {
+        grid-template-columns: 1fr;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar">
+
+  <div class="brand">
+
+    <div class="brand-mark">
+      U
+    </div>
+
+    <div>
+
+      <strong>
+        Unidac Industries
+      </strong>
+
+      <small>
+        Portal do Aluno
+      </small>
+
+    </div>
+
+  </div>
+
+
+  <nav class="nav">
+
+    <a href="dashboard.html">
+
+      <i>⌂</i>
+
+      <span>
+        Dashboard
+      </span>
+
+    </a>
+
+
+    <a href="cardapio.html">
+
+      <i>🍽</i>
+
+      <span>
+        Cardápio
+      </span>
+
+    </a>
+
+
+    <a href="ficha.html">
+
+      <i>🎫</i>
+
+      <span>
+        Ficha do Refeitório
+      </span>
+
+    </a>
+
+    <a href="notificacoes.html">
+
+      <i>●</i>
+
+      <span>
+        Notificações
+      </span>
+
+    </a>
+
+  </nav>
+
+
+  <div class="profile">
+
+    <div class="profile-box">
+
+      <div class="avatar">
+        A
+      </div>
+
+      <div>
+
+        <strong class="user-name">
+          Aluno
+        </strong>
+
+        <small class="user-role">
+          Aluno
+        </small>
+
+      </div>
+
+    </div>
+
+
+    <button onclick="event.preventDefault();if(!confirm('Sair do sistema?\nSua sessão será encerrada neste dispositivo.'))return;localStorage.removeItem('unidacUser');var p=location.pathname.split('/').filter(Boolean);if(p.length&&p[p.length-1].indexOf('.html')!==-1)p.pop();if(p.length&&p[p.length-1]==='pages')p.pop();if(p.length)p.pop();location.href=(p.length?'/'+p.join('/')+'/':'/')+'index.html';"  type="button" class="logout">
+
+      ↪
+
+      <span>
+        Sair
+      </span>
+
+    </button>
+
+  </div>
+
+</aside>
+
+
+<!-- CONTEÚDO -->
+
+<main class="main">
+
+  <header class="topbar">
+
+    <div>
+
+      <h1>
+        Desperdício
+      </h1>
+
+      <p>
+        Consulte o desperdício de alimentos registrado no mês anterior.
+      </p>
+
+    </div>
+
+
+    <div class="top-actions">
+
+      <div class="avatar">
+        A
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <section class="page">
+
+
+    <!-- HERO -->
+
+    <div class="hero-card">
+
+      <div>
+
+        <span class="eyebrow">
+          CONTROLE DE DESPERDÍCIO
+        </span>
+
+        <h2>
+          Agosto de 2026
+        </h2>
+
+        <p>
+          Confira a quantidade de alimentos desperdiçados em cada refeição
+          durante o mês anterior.
+        </p>
+
+      </div>
+
+      <div class="hero-mark">
+        🗑️
+      </div>
+
+    </div>
+
+
+    <!-- RESUMO -->
+
+    <div class="card">
+
+      <div class="card-title">
+
+        <div>
+
+          <h3>
+            Resumo do mês
+          </h3>
+
+          <p class="muted">
+            Dados registrados durante agosto de 2026.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="summary-grid">
+
+        <div class="summary-item">
+
+          <strong>
+            118,4 kg
+          </strong>
+
+          <span>
+            Desperdício total
+          </span>
+
+        </div>
+
+
+        <div class="summary-item">
+
+          <strong>
+            3,82 kg
+          </strong>
+
+          <span>
+            Média por dia
+          </span>
+
+        </div>
+
+
+        <div class="summary-item">
+
+          <strong>
+            5,7 kg
+          </strong>
+
+          <span>
+            Maior desperdício em um dia
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- TÍTULO -->
+
+    <div class="page-head">
+
+      <div>
+
+        <h2>
+          Desperdício diário
+        </h2>
+
+        <p>
+          Agosto de 2026
+        </p>
+
+      </div>
+
+      <span class="badge info">
+        Somente consulta
+      </span>
+
+    </div>
+
+
+    <!-- TABELA -->
+
+    <div class="card">
+
+      <div class="waste-table-wrapper">
+
+        <table class="waste-table">
+
+          <thead>
+
+            <tr>
+
+              <th>
+                Data
+              </th>
+
+              <th>
+                1º Recreio
+                <span class="meal-time">
+                  08:40 — 09:00
+                </span>
+              </th>
+
+              <th>
+                Almoço
+                <span class="meal-time">
+                  11:30 — 13:00
+                </span>
+              </th>
+
+              <th>
+                2º Recreio
+                <span class="meal-time">
+                  14:40 — 15:00
+                </span>
+              </th>
+
+              <th>
+                Total
+              </th>
+
+            </tr>
+
+          </thead>
+
+
+          <tbody>
+
+
+            <tr class="weekend">
+
+              <td class="day">
+                01/08
+                <span class="meal-time">
+                  Sábado
+                </span>
+              </td>
+
+              <td colspan="4">
+                <span class="waste-description">
+                  Sem atendimento
+                </span>
+              </td>
+
+            </tr>
+
+
+            <tr class="weekend">
+
+              <td class="day">
+                02/08
+                <span class="meal-time">
+                  Domingo
+                </span>
+              </td>
+
+              <td colspan="4">
+                <span class="waste-description">
+                  Sem atendimento
+                </span>
+              </td>
+
+            </tr>
+
+
+            <tr>
+
+              <td class="day">
+                03/08
+                <span class="meal-time">
+                  Segunda-feira
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  0,6 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  2,1 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  0,7 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  3,4 kg
+                </span>
+              </td>
+
+            </tr>
+
+
+            <tr>
+
+              <td class="day">
+                04/08
+                <span class="meal-time">
+                  Terça-feira
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  0,5 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  1,8 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  0,6 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  2,9 kg
+                </span>
+              </td>
+
+            </tr>
+
+
+            <tr>
+
+              <td class="day">
+                05/08
+                <span class="meal-time">
+                  Quarta-feira
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  0,8 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  2,6 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  0,7 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  4,1 kg
+                </span>
+              </td>
+
+            </tr>
+
+
+            <tr>
+
+              <td class="day">
+                06/08
+                <span class="meal-time">
+                  Quinta-feira
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  0,4 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  1,9 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  0,5 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  2,8 kg
+                </span>
+              </td>
+
+            </tr>
+
+
+            <tr>
+
+              <td class="day">
+                07/08
+                <span class="meal-time">
+                  Sexta-feira
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  0,7 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  2,4 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  0,8 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  3,9 kg
+                </span>
+              </td>
+
+            </tr>
+
+
+            <tr class="weekend">
+
+              <td class="day">
+                08/08
+                <span class="meal-time">
+                  Sábado
+                </span>
+              </td>
+
+              <td colspan="4">
+                <span class="waste-description">
+                  Sem atendimento
+                </span>
+              </td>
+
+            </tr>
+
+
+            <tr class="weekend">
+
+              <td class="day">
+                09/08
+                <span class="meal-time">
+                  Domingo
+                </span>
+              </td>
+
+              <td colspan="4">
+                <span class="waste-description">
+                  Sem atendimento
+                </span>
+              </td>
+
+            </tr>
+
+
+            <tr>
+
+              <td class="day">
+                10/08
+                <span class="meal-time">
+                  Segunda-feira
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  0,5 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  2,0 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  0,6 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  3,1 kg
+                </span>
+              </td>
+
+            </tr>
+
+
+            <tr>
+
+              <td class="day">
+                11/08
+                <span class="meal-time">
+                  Terça-feira
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  0,6 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  2,2 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  0,5 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  3,3 kg
+                </span>
+              </td>
+
+            </tr>
+
+
+            <tr>
+
+              <td class="day">
+                12/08
+                <span class="meal-time">
+                  Quarta-feira
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  0,8 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  2,7 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  0,7 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  4,2 kg
+                </span>
+              </td>
+
+            </tr>
+
+
+            <tr>
+
+              <td class="day">
+                13/08
+                <span class="meal-time">
+                  Quinta-feira
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  0,5 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  2,0 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  0,6 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  3,1 kg
+                </span>
+              </td>
+
+            </tr>
+
+
+            <tr>
+
+              <td class="day">
+                14/08
+                <span class="meal-time">
+                  Sexta-feira
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  0,7 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  2,5 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  0,8 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  4,0 kg
+                </span>
+              </td>
+
+            </tr>
+
+
+            <tr class="weekend">
+
+              <td class="day">
+                15/08
+                <span class="meal-time">
+                  Sábado
+                </span>
+              </td>
+
+              <td colspan="4">
+                <span class="waste-description">
+                  Sem atendimento
+                </span>
+              </td>
+
+            </tr>
+
+
+            <tr class="weekend">
+
+              <td class="day">
+                16/08
+                <span class="meal-time">
+                  Domingo
+                </span>
+              </td>
+
+              <td colspan="4">
+                <span class="waste-description">
+                  Sem atendimento
+                </span>
+              </td>
+
+            </tr>
+
+
+            <tr>
+
+              <td class="day">
+                17/08
+                <span class="meal-time">
+                  Segunda-feira
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  0,9 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  2,9 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  0,8 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  4,6 kg
+                </span>
+              </td>
+
+            </tr>
+
+
+            <tr>
+
+              <td class="day">
+                18/08
+                <span class="meal-time">
+                  Terça-feira
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  0,5 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  2,1 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  0,6 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  3,2 kg
+                </span>
+              </td>
+
+            </tr>
+
+
+            <tr>
+
+              <td class="day">
+                19/08
+                <span class="meal-time">
+                  Quarta-feira
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  0,7 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  2,8 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  0,7 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  4,2 kg
+                </span>
+              </td>
+
+            </tr>
+
+
+            <tr>
+
+              <td class="day">
+                20/08
+                <span class="meal-time">
+                  Quinta-feira
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  0,5 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  2,0 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  0,5 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  3,0 kg
+                </span>
+              </td>
+
+            </tr>
+
+
+            <tr>
+
+              <td class="day">
+                21/08
+                <span class="meal-time">
+                  Sexta-feira
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  0,8 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  2,6 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  0,8 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  4,2 kg
+                </span>
+              </td>
+
+            </tr>
+
+
+            <tr class="weekend">
+
+              <td class="day">
+                22/08
+                <span class="meal-time">
+                  Sábado
+                </span>
+              </td>
+
+              <td colspan="4">
+                <span class="waste-description">
+                  Sem atendimento
+                </span>
+              </td>
+
+            </tr>
+
+
+            <tr class="weekend">
+
+              <td class="day">
+                23/08
+                <span class="meal-time">
+                  Domingo
+                </span>
+              </td>
+
+              <td colspan="4">
+                <span class="waste-description">
+                  Sem atendimento
+                </span>
+              </td>
+
+            </tr>
+
+
+            <tr>
+
+              <td class="day">
+                24/08
+                <span class="meal-time">
+                  Segunda-feira
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  0,6 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  2,3 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  0,7 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  3,6 kg
+                </span>
+              </td>
+
+            </tr>
+
+
+            <tr>
+
+              <td class="day">
+                25/08
+                <span class="meal-time">
+                  Terça-feira
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  0,5 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  2,1 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  0,6 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  3,2 kg
+                </span>
+              </td>
+
+            </tr>
+
+
+            <tr>
+
+              <td class="day">
+                26/08
+                <span class="meal-time">
+                  Quarta-feira
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  0,8 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  2,7 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  0,7 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  4,2 kg
+                </span>
+              </td>
+
+            </tr>
+
+
+            <tr>
+
+              <td class="day">
+                27/08
+                <span class="meal-time">
+                  Quinta-feira
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  0,5 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  2,2 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  0,6 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  3,3 kg
+                </span>
+              </td>
+
+            </tr>
+
+
+            <tr>
+
+              <td class="day">
+                28/08
+                <span class="meal-time">
+                  Sexta-feira
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  0,9 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  3,1 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  0,8 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  4,8 kg
+                </span>
+              </td>
+
+            </tr>
+
+
+            <tr class="weekend">
+
+              <td class="day">
+                29/08
+                <span class="meal-time">
+                  Sábado
+                </span>
+              </td>
+
+              <td colspan="4">
+                <span class="waste-description">
+                  Sem atendimento
+                </span>
+              </td>
+
+            </tr>
+
+
+            <tr class="weekend">
+
+              <td class="day">
+                30/08
+                <span class="meal-time">
+                  Domingo
+                </span>
+              </td>
+
+              <td colspan="4">
+                <span class="waste-description">
+                  Sem atendimento
+                </span>
+              </td>
+
+            </tr>
+
+
+            <tr>
+
+              <td class="day">
+                31/08
+                <span class="meal-time">
+                  Segunda-feira
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  0,7 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  2,4 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  0,7 kg
+                </span>
+              </td>
+
+              <td>
+                <span class="waste-value">
+                  3,8 kg
+                </span>
+              </td>
+
+            </tr>
+
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+
+    <!-- OBSERVAÇÃO -->
+
+    <div
+      class="card"
+      style="margin-top:18px"
+    >
+
+      <div class="card-title">
+
+        <h3>
+          Informação
+        </h3>
+
+        <span class="badge info">
+          Consulta
+        </span>
+
+      </div>
+
+      <p class="muted">
+
+        Os valores apresentados representam a quantidade de alimentos
+        desperdiçados após cada refeição. Os dados são utilizados para
+        acompanhar e reduzir o desperdício no refeitório.
+
+      </p>
+
+    </div>
+
+
+  </section>
+
+</main>
+
+
+<!-- MODAL -->
+
+<div
+  class="modal-bg"
+  id="modal-bg"
+>
+
+  <div class="modal">
+
+    <h3 id="modal-title"></h3>
+
+    <p id="modal-text"></p>
+
+    <div class="modal-actions">
+
+      <button
+        class="btn secondary"
+        id="modal-no"
+      >
+        Não
+      </button>
+
+      <button
+        class="btn danger"
+        id="modal-yes"
+      >
+        Sim
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- TOAST -->
+
+<div
+  id="toast"
+  class="toast"
+>
+</div>
+
+
+<!-- SCRIPTS -->
+
+<script src="../js/data.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore-compat.js"></script>
+<script src="../../js/firebase-config.js"></script>
+<script src="../../js/firebase-live.js"></script>
+<script src="../../js/firebase-actions.js"></script>
+<script src="../../js/firebase-pdf.js"></script>
+
+<script src="../js/app.js"></script>
+
+</body>
+
+</html>
+

@@ -1,0 +1,628 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+
+    <title>
+        Sustentabilidade — Unidac Industries
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="../css/style_adm.css"
+    >
+
+    </head>
+
+<body>
+
+    <!-- =========================================
+         SIDEBAR
+    ========================================== -->
+
+    <aside class="sidebar">
+
+        <!-- MARCA -->
+
+        <div class="brand">
+
+            <div class="brand-mark">
+                U
+            </div>
+
+            <div>
+
+                <strong>
+                    Unidac Industries
+                </strong>
+
+                <small>
+                    Cantina inteligente
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- MENU DE NAVEGAÇÃO -->
+
+        <nav class="nav">
+
+            <a href="dashboard.html">
+
+                <i>⌂</i>
+
+                <span>
+                    Dashboard
+                </span>
+
+            </a>
+
+
+            <a href="usuarios.html">
+
+                <i>♙</i>
+
+                <span>
+                    Usuários
+                </span>
+
+            </a>
+
+
+            <a href="financeiro.html">
+
+                <i>R$</i>
+
+                <span>
+                    Financeiro
+                </span>
+
+            </a>
+
+
+            <a href="estoque.html">
+
+                <i>▣</i>
+
+                <span>
+                    Estoque
+                </span>
+
+            </a>
+
+
+            <a href="cozinha.html">
+
+                <i>♨</i>
+
+                <span>
+                    Cozinha
+                </span>
+
+            </a>
+
+
+            <a href="consumo.html">
+
+                <i>◔</i>
+
+                <span>
+                    Consumo
+                </span>
+
+            </a>
+
+
+            <a href="desperdicio.html">
+
+                <i>↘</i>
+
+                <span>
+                    Desperdício
+                </span>
+
+            </a>
+
+
+            <a href="compras.html">
+
+                <i>▤</i>
+
+                <span>
+                    Compras
+                </span>
+
+            </a>
+
+
+            <a href="validades.html">
+
+                <i>◷</i>
+
+                <span>
+                    Validades
+                </span>
+
+            </a>
+
+
+            <a href="relatorios.html">
+
+                <i>▥</i>
+
+                <span>
+                    Relatórios
+                </span>
+
+            </a>
+
+
+            <a
+                href="sustentabilidade.html"
+                class="ativo"
+            >
+
+                <i>♧</i>
+
+                <span>
+                    Sustentabilidade
+                </span>
+
+            </a>
+
+
+            <a href="metas.html">
+
+                <i>◎</i>
+
+                <span>
+                    Metas
+                </span>
+
+            </a>
+
+
+            <a href="inteligente.html">
+
+                <i>✦</i>
+
+                <span>
+                    Modo Inteligente
+                </span>
+
+            </a>
+
+
+            <a href="notificacoes.html">
+
+                <i>●</i>
+
+                <span>
+                    Notificações
+                </span>
+
+            </a>
+
+        </nav>
+
+
+        <!-- =========================================
+             PERFIL DO USUÁRIO
+        ========================================== -->
+
+        <div class="profile">
+
+            <div class="profile-box">
+
+                <div class="avatar">
+                    G
+                </div>
+
+                <div>
+
+                    <strong class="user-name">
+                        Usuário
+                    </strong>
+
+                    <small class="user-role">
+                        Acesso
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <button onclick="event.preventDefault();if(!confirm('Sair do sistema?\nSua sessão será encerrada neste dispositivo.'))return;localStorage.removeItem('unidacUser');var p=location.pathname.split('/').filter(Boolean);if(p.length&&p[p.length-1].indexOf('.html')!==-1)p.pop();if(p.length&&p[p.length-1]==='pages')p.pop();if(p.length)p.pop();location.href=(p.length?'/'+p.join('/')+'/':'/')+'index.html';"  type="button" class="logout">
+
+                ↪
+
+                <span>
+                    Sair
+                </span>
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =========================================
+         CONTEÚDO PRINCIPAL
+    ========================================== -->
+
+    <main class="main">
+
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div>
+
+                <h1>
+                    Sustentabilidade
+                </h1>
+
+                <p>
+                    Impacto ambiental e economia de recursos.
+                </p>
+
+            </div>
+
+
+            <div class="top-actions">
+
+                <button
+                    class="icon-btn"
+                    onclick="location.href='notificacoes.html'"
+                >
+
+                    ♢
+
+                    <b class="dot"></b>
+
+                </button>
+
+
+                <div class="avatar">
+                    G
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- =========================================
+             PÁGINA
+        ========================================== -->
+
+        <section class="page">
+
+
+            <!-- CABEÇALHO -->
+
+            <div class="page-head">
+
+                <div>
+
+                    <h2>
+                        Sustentabilidade
+                    </h2>
+
+                    <p>
+                        Transforme eficiência operacional
+                        em impacto positivo.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================================
+                 INDICADORES
+            ========================================== -->
+
+            <div class="grid stats">
+
+
+                <!-- ALIMENTOS SALVOS -->
+
+                <div class="card stat">
+
+                    <span class="label">
+                        ALIMENTOS SALVOS
+                    </span>
+
+                    <div class="value">
+                        286 kg
+                    </div>
+
+                </div>
+
+
+                <!-- ECONOMIA ACUMULADA -->
+
+                <div class="card stat">
+
+                    <span class="label">
+                        ECONOMIA ACUMULADA
+                    </span>
+
+                    <div class="value">
+                        R$ 9.840
+                    </div>
+
+                </div>
+
+
+                <!-- REDUÇÃO DO DESPERDÍCIO -->
+
+                <div class="card stat">
+
+                    <span class="label">
+                        REDUÇÃO DO DESPERDÍCIO
+                    </span>
+
+                    <div class="value">
+                        23%
+                    </div>
+
+                </div>
+
+
+                <!-- REFEIÇÕES EQUIVALENTES -->
+
+                <div class="card stat">
+
+                    <span class="label">
+                        REFEIÇÕES EQUIVALENTES
+                    </span>
+
+                    <div class="value">
+                        714
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================================
+                 IMPACTO AMBIENTAL
+            ========================================== -->
+
+            <div
+                class="card smart"
+                style="margin-top: 18px;"
+            >
+
+                <div class="eyebrow">
+                    Impacto ambiental
+                </div>
+
+
+                <div class="big-number">
+                    286 kg de alimentos preservados
+                </div>
+
+
+                <p class="muted">
+                    Cada melhoria na previsão e no consumo
+                    ajuda a evitar perdas e otimizar recursos.
+                </p>
+
+
+                <!-- INDICADORES AMBIENTAIS -->
+
+                <div
+                    class="grid three"
+                    style="margin-top: 20px;"
+                >
+
+
+                    <!-- ÁGUA -->
+
+                    <div>
+
+                        <strong>
+                            Água
+                        </strong>
+
+                        <p class="muted">
+                            Uso mais eficiente dos insumos.
+                        </p>
+
+                    </div>
+
+
+                    <!-- RESÍDUOS -->
+
+                    <div>
+
+                        <strong>
+                            Resíduos
+                        </strong>
+
+                        <p class="muted">
+                            Menos matéria orgânica descartada.
+                        </p>
+
+                    </div>
+
+
+                    <!-- ECONOMIA -->
+
+                    <div>
+
+                        <strong>
+                            Economia
+                        </strong>
+
+                        <p class="muted">
+                            Mais valor para o orçamento.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================================
+                 EVOLUÇÃO DAS AÇÕES
+            ========================================== -->
+
+            <div
+                class="card"
+                style="margin-top: 18px;"
+            >
+
+                <div class="card-title">
+
+                    <h3>
+                        Evolução das ações
+                    </h3>
+
+                    <span class="muted">
+                        Meta anual
+                    </span>
+
+                </div>
+
+
+                <!-- REDUÇÃO DO DESPERDÍCIO -->
+
+                <div class="kpi">
+
+                    <strong>
+                        Redução do desperdício
+                    </strong>
+
+                    <span>
+                        23%
+                    </span>
+
+                </div>
+
+
+                <div class="progress">
+
+                    <i data-width="77"></i>
+
+                </div>
+
+
+                <!-- ECONOMIA -->
+
+                <div class="kpi">
+
+                    <strong>
+                        Economia
+                    </strong>
+
+                    <span>
+                        82%
+                    </span>
+
+                </div>
+
+
+                <div class="progress">
+
+                    <i data-width="82"></i>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================================
+         MODAL
+    ========================================== -->
+
+    <div
+        class="modal-bg"
+        id="modal-bg"
+    >
+
+        <div class="modal">
+
+            <h3 id="modal-title"></h3>
+
+            <p id="modal-text"></p>
+
+
+            <div class="modal-actions">
+
+                <button
+                    class="btn secondary"
+                    id="modal-no"
+                >
+                    Não
+                </button>
+
+
+                <button
+                    class="btn danger"
+                    id="modal-yes"
+                >
+                    Sim
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         TOAST
+    ========================================== -->
+
+    <div
+        id="toast"
+        class="toast"
+    ></div>
+
+
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================== -->
+
+    <script src="../js/data.js"></script>
+
+    
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore-compat.js"></script>
+<script src="../../js/firebase-config.js"></script>
+<script src="../../js/firebase-live.js"></script>
+<script src="../../js/firebase-actions.js"></script>
+<script src="../../js/firebase-pdf.js"></script>
+
+<script src="../js/app.js"></script>
+
+    <script src="../js/charts.js"></script>
+
+</body>
+
+</html>

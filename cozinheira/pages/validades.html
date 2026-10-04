@@ -1,0 +1,2103 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+
+    <title>
+        Validades — Unidac Industries
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="../css/style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../css/responsive.css"
+    >
+
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <!-- MARCA -->
+
+        <div class="brand">
+
+            <div class="brand-mark">
+                U
+            </div>
+
+            <div>
+
+                <strong>
+                    Unidac Industries
+                </strong>
+
+                <small>
+                    Cantina inteligente
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- MENU -->
+
+        <nav class="nav">
+
+            <!-- DASHBOARD -->
+
+            <a href="dashboard.html">
+
+                <i>
+                    ⌂
+                </i>
+
+                <span>
+                    Dashboard
+                </span>
+
+            </a>
+
+
+            <!-- ESTOQUE -->
+
+            <a href="estoque.html">
+
+                <i>
+                    ▣
+                </i>
+
+                <span>
+                    Estoque
+                </span>
+
+            </a>
+
+
+            <!-- COZINHA -->
+
+            <a href="cozinha.html">
+
+                <i>
+                    ♨
+                </i>
+
+                <span>
+                    Cozinha
+                </span>
+
+            </a>
+
+
+            <!-- CONSUMO -->
+
+            <a href="consumo.html">
+
+                <i>
+                    ◔
+                </i>
+
+                <span>
+                    Consumo
+                </span>
+
+            </a>
+
+
+            <!-- COMPRAS -->
+
+            <a href="compras.html">
+
+                <i>
+                    ▤
+                </i>
+
+                <span>
+                    Compras
+                </span>
+
+            </a>
+
+
+            <!-- VALIDADES -->
+
+            <a href="validades.html">
+
+                <i>
+                    ◷
+                </i>
+
+                <span>
+                    Validades
+                </span>
+
+            </a>
+
+
+            <!-- NOTIFICAÇÕES -->
+
+            <a href="notificacoes.html">
+
+                <i>
+                    ●
+                </i>
+
+                <span>
+                    Notificações
+                </span>
+
+            </a>
+
+        </nav>
+
+        <!-- PERFIL -->
+
+        <div class="profile">
+
+    <div class="profile-box">
+
+        <div class="avatar">
+            G
+        </div>
+
+        <div>
+
+            <strong class="user-name">
+                Usuário
+            </strong>
+
+            <small class="user-role">
+                Administrador
+            </small>
+
+        </div>
+
+    </div>
+
+
+    <button onclick="event.preventDefault();if(!confirm('Sair do sistema?\nSua sessão será encerrada neste dispositivo.'))return;localStorage.removeItem('unidacUser');var p=location.pathname.split('/').filter(Boolean);if(p.length&&p[p.length-1].indexOf('.html')!==-1)p.pop();if(p.length&&p[p.length-1]==='pages')p.pop();if(p.length)p.pop();location.href=(p.length?'/'+p.join('/')+'/':'/')+'index.html';" 
+        class="logout"
+        type="button">
+
+        ↪
+
+        <span>
+            Sair
+        </span>
+
+    </button>
+
+</div>
+
+</aside>
+
+
+
+<!-- =====================================================
+ CONTEÚDO PRINCIPAL
+===================================================== -->
+
+<main class="main">
+
+
+<!-- TOPBAR -->
+
+<header class="topbar">
+
+    <div>
+
+        <h1>
+            Validades
+        </h1>
+
+        <p>
+            Controle de prazos e prioridades dos produtos.
+        </p>
+
+    </div>
+
+
+    <div class="top-actions">
+
+        <button
+            class="icon-btn"
+            onclick="location.href='notificacoes.html'"
+            title="Notificações">
+
+            ♢
+
+            <b class="dot"></b>
+
+        </button>
+
+
+        <div class="avatar">
+            G
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     PÁGINA
+====================================================== -->
+
+<section class="page">
+
+
+    <!-- CABEÇALHO -->
+
+    <div class="page-head">
+
+        <div>
+
+            <h2>
+                Controle de Validades
+            </h2>
+
+            <p>
+                Acompanhe os produtos próximos do vencimento
+                e priorize o consumo.
+            </p>
+
+        </div>
+
+
+        <div class="page-actions">
+
+            <button
+                class="btn secondary"
+                onclick="atualizarValidades()">
+
+                ↻ Atualizar
+
+            </button>
+
+
+            <button
+                class="btn"
+                onclick="abrirModalAdicionar()">
+
+                + Adicionar validade
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         INDICADORES
+    ====================================================== -->
+
+    <div class="grid three">
+
+
+        <div class="card stat">
+
+            <span class="eyebrow">
+                PRIORIDADE ALTA
+            </span>
+
+            <div
+                class="big-number"
+                id="total-urgente">
+
+                0
+
+            </div>
+
+            <span class="muted">
+                Ação imediata
+            </span>
+
+        </div>
+
+
+        <div class="card stat">
+
+            <span class="eyebrow">
+                PRÓXIMOS 7 DIAS
+            </span>
+
+            <div
+                class="big-number"
+                id="total-sete">
+
+                0
+
+            </div>
+
+            <span class="muted">
+                Planeje o consumo
+            </span>
+
+        </div>
+
+
+        <div class="card stat">
+
+            <span class="eyebrow">
+                PRÓXIMOS 30 DIAS
+            </span>
+
+            <div
+                class="big-number"
+                id="total-trinta">
+
+                0
+
+            </div>
+
+            <span class="muted">
+                Monitoramento
+            </span>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         ALERTA
+    ====================================================== -->
+
+    <div
+        class="card validity-alert"
+        id="validity-alert">
+
+        <div class="alert-icon">
+            ⚠
+        </div>
+
+        <div>
+
+            <strong>
+                Atenção às próximas validades
+            </strong>
+
+            <p id="alert-text">
+                Verificando produtos...
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         TABELA
+    ====================================================== -->
+
+    <div class="card table-card">
+
+
+        <div class="table-head">
+
+            <div>
+
+                <h3>
+                    Controle de validade
+                </h3>
+
+                <p>
+                    Gerencie os prazos dos produtos.
+                </p>
+
+            </div>
+
+
+            <div class="tools">
+
+
+                <input
+                    type="text"
+                    class="search"
+                    id="search-validity"
+                    placeholder="Pesquisar produto...">
+
+
+                <select
+                    class="select"
+                    id="priority-filter">
+
+                    <option value="todos">
+                        Todas as prioridades
+                    </option>
+
+                    <option value="urgente">
+                        Urgente
+                    </option>
+
+                    <option value="atencao">
+                        Atenção
+                    </option>
+
+                    <option value="normal">
+                        Normal
+                    </option>
+
+                    <option value="vencido">
+                        Vencido
+                    </option>
+
+                </select>
+
+
+            </div>
+
+        </div>
+
+
+
+        <div class="table-wrap">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Produto
+                        </th>
+
+                        <th>
+                            Quantidade
+                        </th>
+
+                        <th>
+                            Validade
+                        </th>
+
+                        <th>
+                            Dias restantes
+                        </th>
+
+                        <th>
+                            Prioridade
+                        </th>
+
+                        <th>
+                            Ações
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="stock-body">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+
+        <!-- ESTADO VAZIO -->
+
+        <div
+            id="empty-state"
+            class="empty-state">
+
+            <div>
+                📦
+            </div>
+
+            <h3>
+                Nenhum produto encontrado
+            </h3>
+
+            <p>
+                Adicione um produto ou altere os filtros.
+            </p>
+
+            <button
+                class="btn"
+                onclick="abrirModalAdicionar()">
+
+                + Adicionar produto
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         HISTÓRICO
+    ====================================================== -->
+
+    <div class="card table-card">
+
+        <div class="table-head">
+
+            <div>
+
+                <h3>
+                    Histórico recente
+                </h3>
+
+                <p>
+                    Últimas ações realizadas.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="history-list"
+            id="history-list">
+
+        </div>
+
+    </div>
+
+
+</section>
+
+</main>
+
+
+
+<!-- =====================================================
+ MODAL — ADICIONAR / EDITAR
+===================================================== -->
+
+<div
+class="modal-bg"
+id="validity-modal">
+
+
+<div class="modal">
+
+
+    <h3 id="modal-title">
+        Adicionar validade
+    </h3>
+
+
+    <p>
+        Cadastre o produto e sua data de validade.
+    </p>
+
+
+    <form id="validity-form">
+
+
+        <div class="form-grid">
+
+
+            <div class="form-group">
+
+                <label>
+                    Nome do produto
+                </label>
+
+                <input
+                    type="text"
+                    id="product-name"
+                    placeholder="Ex: Leite"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Quantidade
+                </label>
+
+                <input
+                    type="number"
+                    id="product-quantity"
+                    min="1"
+                    placeholder="Ex: 20"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Unidade
+                </label>
+
+                <select id="product-unit">
+
+                    <option value="unidades">
+                        Unidades
+                    </option>
+
+                    <option value="Kg">
+                        Kg
+                    </option>
+
+                    <option value="L">
+                        Litros
+                    </option>
+
+                    <option value="caixas">
+                        Caixas
+                    </option>
+
+                    <option value="sacos">
+                        Sacos
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Data de validade
+                </label>
+
+                <input
+                    type="date"
+                    id="product-date"
+                    required>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="modal-actions">
+
+
+            <button
+                type="button"
+                class="btn secondary"
+                onclick="fecharModal()">
+
+                Cancelar
+
+            </button>
+
+
+            <button
+                type="submit"
+                class="btn">
+
+                Salvar produto
+
+            </button>
+
+
+        </div>
+
+
+    </form>
+
+</div>
+
+</div>
+
+
+
+<!-- =====================================================
+ MODAL — EXCLUSÃO
+===================================================== -->
+
+<div
+class="modal-bg"
+id="delete-modal">
+
+
+<div class="modal modal-small">
+
+
+    <div class="delete-icon">
+        🗑️
+    </div>
+
+
+    <h3>
+        Excluir produto?
+    </h3>
+
+
+    <p id="delete-text">
+        Essa ação não poderá ser desfeita.
+    </p>
+
+
+    <div class="modal-actions">
+
+
+        <button
+            class="btn secondary"
+            onclick="fecharDeleteModal()">
+
+            Cancelar
+
+        </button>
+
+
+        <button
+            class="btn danger"
+            onclick="confirmarExclusao()">
+
+            Excluir
+
+        </button>
+
+
+    </div>
+
+</div>
+
+</div>
+
+
+
+<!-- =====================================================
+ MODAL GERAL — SAÍDA DA CONTA
+ IGUAL AO DA PÁGINA COMPRAS
+===================================================== -->
+
+<div
+class="modal-bg"
+id="modal-bg">
+
+
+<div class="modal">
+
+
+    <h3 id="modal-title-logout">
+        Sair da conta?
+    </h3>
+
+
+    <p id="modal-text">
+        Tem certeza que deseja sair do sistema?
+    </p>
+
+
+    <div class="modal-actions">
+
+
+        <button
+            class="btn secondary"
+            id="modal-no"
+            type="button">
+
+            Não
+
+        </button>
+
+
+        <button
+            class="btn danger"
+            id="modal-yes"
+            type="button">
+
+            Sim
+
+        </button>
+
+
+    </div>
+
+</div>
+
+</div>
+
+
+
+<!-- =====================================================
+ TOAST
+===================================================== -->
+
+<div
+id="toast"
+class="toast">
+</div>
+
+
+
+<!-- =====================================================
+ SCRIPTS
+===================================================== -->
+
+<script src="../js/data.js"></script>
+
+
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore-compat.js"></script>
+<script src="../../js/firebase-config.js"></script>
+<script src="../../js/firebase-live.js"></script>
+<script src="../../js/firebase-actions.js"></script>
+<script src="../../js/firebase-pdf.js"></script>
+
+<script src="../js/app.js"></script>
+
+<script src="../js/charts.js"></script>
+
+
+
+<script>
+
+/* =====================================================
+DADOS
+===================================================== */
+
+let produtos =
+JSON.parse(
+    localStorage.getItem(
+        "unidac_valididades"
+    )
+) || [
+
+    {
+        id: 1,
+        nome: "Banana",
+        quantidade: 5,
+        unidade: "Kg",
+        validade: "2026-09-05",
+        priorizado: false
+    },
+
+    {
+        id: 2,
+        nome: "Tomate",
+        quantidade: 9,
+        unidade: "Kg",
+        validade: "2026-09-08",
+        priorizado: false
+    },
+
+    {
+        id: 3,
+        nome: "Leite",
+        quantidade: 24,
+        unidade: "L",
+        validade: "2026-09-11",
+        priorizado: false
+    },
+
+    {
+        id: 4,
+        nome: "Arroz",
+        quantidade: 18,
+        unidade: "sacos",
+        validade: "2026-10-02",
+        priorizado: false
+    }
+
+];
+
+
+let editandoId = null;
+
+let excluirId = null;
+
+
+
+/* =====================================================
+SALVAR DADOS
+===================================================== */
+
+function salvarDados() {
+
+localStorage.setItem(
+    "unidac_valididades",
+    JSON.stringify(produtos)
+);
+
+}
+
+
+
+/* =====================================================
+CALCULAR DIAS
+===================================================== */
+
+function calcularDias(data) {
+
+const hoje = new Date();
+
+hoje.setHours(
+    0,
+    0,
+    0,
+    0
+);
+
+
+const validade =
+    new Date(
+        data + "T00:00:00"
+    );
+
+
+const diferenca =
+    validade.getTime() -
+    hoje.getTime();
+
+
+return Math.ceil(
+    diferenca /
+    (1000 * 60 * 60 * 24)
+);
+
+}
+
+
+
+/* =====================================================
+PRIORIDADE
+===================================================== */
+
+function obterPrioridade(dias) {
+
+if (dias < 0) {
+
+    return {
+        tipo: "vencido",
+        texto: "Vencido"
+    };
+
+}
+
+
+if (dias <= 3) {
+
+    return {
+        tipo: "urgente",
+        texto: "Urgente"
+    };
+
+}
+
+
+if (dias <= 7) {
+
+    return {
+        tipo: "atencao",
+        texto: "Atenção"
+    };
+
+}
+
+
+return {
+    tipo: "normal",
+    texto: "Normal"
+};
+
+}
+
+
+
+/* =====================================================
+FORMATAR DATA
+===================================================== */
+
+function formatarData(data) {
+
+const partes =
+    data.split("-");
+
+
+return (
+    partes[2] +
+    "/" +
+    partes[1] +
+    "/" +
+    partes[0]
+);
+
+}
+
+
+
+/* =====================================================
+RENDERIZAR PRODUTOS
+===================================================== */
+
+function renderizarProdutos() {
+
+const tbody =
+    document.getElementById(
+        "validity-body"
+    );
+
+
+const busca =
+    document.getElementById(
+        "search-validity"
+    ).value.toLowerCase();
+
+
+const filtro =
+    document.getElementById(
+        "priority-filter"
+    ).value;
+
+
+tbody.innerHTML = "";
+
+
+let quantidadeExibida = 0;
+
+
+produtos.forEach(
+    function(produto) {
+
+
+        const dias =
+            calcularDias(
+                produto.validade
+            );
+
+
+        const prioridade =
+            obterPrioridade(dias);
+
+
+        const nomeMatch =
+            produto.nome
+                .toLowerCase()
+                .includes(busca);
+
+
+        const filtroMatch =
+            filtro === "todos" ||
+            filtro === prioridade.tipo;
+
+
+        if (
+            !nomeMatch ||
+            !filtroMatch
+        ) {
+
+            return;
+
+        }
+
+
+        quantidadeExibida++;
+
+
+        const tr =
+            document.createElement(
+                "tr"
+            );
+
+
+        tr.innerHTML = `
+
+            <td>
+
+                <strong>
+                    ${produto.nome}
+                </strong>
+
+            </td>
+
+
+            <td>
+
+                ${produto.quantidade}
+                ${produto.unidade}
+
+            </td>
+
+
+            <td>
+
+                ${formatarData(
+                    produto.validade
+                )}
+
+            </td>
+
+
+            <td>
+
+                ${
+                    dias < 0
+                        ? "Vencido"
+                        : dias === 0
+                            ? "Hoje"
+                            : dias + " dias"
+                }
+
+            </td>
+
+
+            <td>
+
+                <span
+                    class="badge ${
+                        prioridade.tipo === "urgente"
+                            ? "danger-b"
+                            : prioridade.tipo === "atencao"
+                                ? "warn"
+                                : prioridade.tipo === "vencido"
+                                    ? "danger-b"
+                                    : "ok"
+                    }">
+
+                    ${prioridade.texto}
+
+                </span>
+
+            </td>
+
+
+            <td>
+
+                <div class="action-group">
+
+
+                    <button
+                        class="action"
+                        onclick="priorizarProduto(${produto.id})">
+
+                        ${
+                            produto.priorizado
+                                ? "★ Priorizado"
+                                : "☆ Priorizar"
+                        }
+
+                    </button>
+
+
+                    <button
+                        class="action"
+                        onclick="editarProduto(${produto.id})">
+
+                        Editar
+
+                    </button>
+
+
+                    <button
+                        class="action delete-action"
+                        onclick="abrirDeleteModal(${produto.id})">
+
+                        Excluir
+
+                    </button>
+
+
+                </div>
+
+            </td>
+
+        `;
+
+
+        tbody.appendChild(tr);
+
+    }
+);
+
+
+document.getElementById(
+    "empty-state"
+).style.display =
+    quantidadeExibida === 0
+        ? "flex"
+        : "none";
+
+
+atualizarIndicadores();
+
+}
+
+
+
+/* =====================================================
+INDICADORES
+===================================================== */
+
+function atualizarIndicadores() {
+
+let urgente = 0;
+
+let seteDias = 0;
+
+let trintaDias = 0;
+
+
+produtos.forEach(
+    function(produto) {
+
+        const dias =
+            calcularDias(
+                produto.validade
+            );
+
+
+        if (
+            dias >= 0 &&
+            dias <= 3
+        ) {
+
+            urgente++;
+
+        }
+
+
+        if (
+            dias >= 0 &&
+            dias <= 7
+        ) {
+
+            seteDias++;
+
+        }
+
+
+        if (
+            dias >= 0 &&
+            dias <= 30
+        ) {
+
+            trintaDias++;
+
+        }
+
+    }
+);
+
+
+document.getElementById(
+    "total-urgente"
+).textContent =
+    urgente + " itens";
+
+
+document.getElementById(
+    "total-sete"
+).textContent =
+    seteDias + " itens";
+
+
+document.getElementById(
+    "total-trinta"
+).textContent =
+    trintaDias + " itens";
+
+
+const alertText =
+    document.getElementById(
+        "alert-text"
+    );
+
+
+if (urgente > 0) {
+
+    alertText.textContent =
+        urgente +
+        " produto(s) precisam de atenção imediata.";
+
+} else {
+
+    alertText.textContent =
+        "Nenhum produto exige ação imediata.";
+
+}
+
+}
+
+
+
+/* =====================================================
+MODAL ADICIONAR
+===================================================== */
+
+function abrirModalAdicionar() {
+
+editandoId = null;
+
+
+document.getElementById(
+    "modal-title"
+).textContent =
+    "Adicionar validade";
+
+
+document.getElementById(
+    "validity-form"
+).reset();
+
+
+document.getElementById(
+    "validity-modal"
+).classList.add("show");
+
+}
+
+
+
+/* =====================================================
+EDITAR
+===================================================== */
+
+function editarProduto(id) {
+
+const produto =
+    produtos.find(
+        p => p.id === id
+    );
+
+
+if (!produto) {
+    return;
+}
+
+
+editandoId = id;
+
+
+document.getElementById(
+    "modal-title"
+).textContent =
+    "Editar validade";
+
+
+document.getElementById(
+    "product-name"
+).value =
+    produto.nome;
+
+
+document.getElementById(
+    "product-quantity"
+).value =
+    produto.quantidade;
+
+
+document.getElementById(
+    "product-unit"
+).value =
+    produto.unidade;
+
+
+document.getElementById(
+    "product-date"
+).value =
+    produto.validade;
+
+
+document.getElementById(
+    "validity-modal"
+).classList.add("show");
+
+}
+
+
+
+/* =====================================================
+FECHAR MODAL
+===================================================== */
+
+function fecharModal() {
+
+document.getElementById(
+    "validity-modal"
+).classList.remove("show");
+
+}
+
+
+
+/* =====================================================
+SALVAR FORMULÁRIO
+===================================================== */
+
+document
+.getElementById("validity-form")
+.addEventListener(
+    "submit",
+    function(event) {
+
+        event.preventDefault();
+
+
+        const nome =
+            document.getElementById(
+                "product-name"
+            ).value.trim();
+
+
+        const quantidade =
+            document.getElementById(
+                "product-quantity"
+            ).value;
+
+
+        const unidade =
+            document.getElementById(
+                "product-unit"
+            ).value;
+
+
+        const validade =
+            document.getElementById(
+                "product-date"
+            ).value;
+
+
+        if (
+            !nome ||
+            !quantidade ||
+            !validade
+        ) {
+
+            showToast(
+                "Preencha todos os campos."
+            );
+
+            return;
+
+        }
+
+
+        if (editandoId !== null) {
+
+            const produto =
+                produtos.find(
+                    p =>
+                        p.id === editandoId
+                );
+
+
+            produto.nome = nome;
+
+            produto.quantidade =
+                Number(quantidade);
+
+            produto.unidade =
+                unidade;
+
+            produto.validade =
+                validade;
+
+
+            adicionarHistorico(
+                "Produto atualizado",
+                nome
+            );
+
+
+            showToast(
+                "Produto atualizado com sucesso."
+            );
+
+        }
+
+
+        else {
+
+            const novoProduto = {
+
+                id: Date.now(),
+
+                nome: nome,
+
+                quantidade:
+                    Number(quantidade),
+
+                unidade:
+                    unidade,
+
+                validade:
+                    validade,
+
+                priorizado:
+                    false
+
+            };
+
+
+            produtos.push(
+                novoProduto
+            );
+
+
+            adicionarHistorico(
+                "Produto adicionado",
+                nome
+            );
+
+
+            showToast(
+                "Produto adicionado com sucesso."
+            );
+
+        }
+
+
+        salvarDados();
+
+        renderizarProdutos();
+
+        fecharModal();
+
+    }
+);
+
+
+
+/* =====================================================
+PRIORIZAR
+===================================================== */
+
+function priorizarProduto(id) {
+
+const produto =
+    produtos.find(
+        p => p.id === id
+    );
+
+
+if (!produto) {
+    return;
+}
+
+
+produto.priorizado =
+    !produto.priorizado;
+
+
+salvarDados();
+
+
+adicionarHistorico(
+    produto.priorizado
+        ? "Produto priorizado"
+        : "Prioridade removida",
+    produto.nome
+);
+
+
+renderizarProdutos();
+
+
+showToast(
+    produto.priorizado
+        ? produto.nome +
+            " foi priorizado."
+        : "Prioridade removida."
+);
+
+}
+
+
+
+/* =====================================================
+EXCLUSÃO
+===================================================== */
+
+function abrirDeleteModal(id) {
+
+excluirId = id;
+
+
+const produto =
+    produtos.find(
+        p => p.id === id
+    );
+
+
+if (!produto) {
+    return;
+}
+
+
+document.getElementById(
+    "delete-text"
+).textContent =
+    "Deseja realmente excluir " +
+    produto.nome +
+    "? Essa ação não poderá ser desfeita.";
+
+
+document.getElementById(
+    "delete-modal"
+).classList.add("show");
+
+}
+
+
+
+function fecharDeleteModal() {
+
+document.getElementById(
+    "delete-modal"
+).classList.remove("show");
+
+}
+
+
+
+function confirmarExclusao() {
+
+const produto =
+    produtos.find(
+        p => p.id === excluirId
+    );
+
+
+if (!produto) {
+    return;
+}
+
+
+produtos =
+    produtos.filter(
+        p => p.id !== excluirId
+    );
+
+
+salvarDados();
+
+
+adicionarHistorico(
+    "Produto excluído",
+    produto.nome
+);
+
+
+renderizarProdutos();
+
+
+fecharDeleteModal();
+
+
+showToast(
+    produto.nome +
+    " foi excluído."
+);
+
+}
+
+
+
+/* =====================================================
+HISTÓRICO
+===================================================== */
+
+function adicionarHistorico(
+acao,
+produto
+) {
+
+let historico =
+    JSON.parse(
+        localStorage.getItem(
+            "unidac_historico_valididades"
+        )
+    ) || [];
+
+
+historico.unshift({
+
+    acao: acao,
+
+    produto: produto,
+
+    data:
+        new Date().toLocaleString(
+            "pt-BR"
+        )
+
+});
+
+
+historico =
+    historico.slice(
+        0,
+        8
+    );
+
+
+localStorage.setItem(
+    "unidac_historico_valididades",
+    JSON.stringify(
+        historico
+    )
+);
+
+
+renderizarHistorico();
+
+}
+
+
+
+function renderizarHistorico() {
+
+const container =
+    document.getElementById(
+        "history-list"
+    );
+
+
+const historico =
+    JSON.parse(
+        localStorage.getItem(
+            "unidac_historico_valididades"
+        )
+    ) || [];
+
+
+if (historico.length === 0) {
+
+    container.innerHTML = `
+
+        <div class="history-empty">
+
+            Nenhuma movimentação registrada.
+
+        </div>
+
+    `;
+
+    return;
+
+}
+
+
+container.innerHTML =
+    historico.map(
+        item => `
+
+            <div class="history-item">
+
+                <div class="history-icon">
+                    ✓
+                </div>
+
+                <div class="history-content">
+
+                    <strong>
+                        ${item.acao}
+                    </strong>
+
+                    <span>
+                        ${item.produto}
+                    </span>
+
+                </div>
+
+                <small>
+                    ${item.data}
+                </small>
+
+            </div>
+
+        `
+    ).join("");
+
+}
+
+
+
+/* =====================================================
+ATUALIZAR
+===================================================== */
+
+function atualizarValidades() {
+
+renderizarProdutos();
+
+renderizarHistorico();
+
+showToast(
+    "Lista de validades atualizada."
+);
+
+}
+
+
+
+/* =====================================================
+PESQUISA
+===================================================== */
+
+document
+.getElementById(
+    "search-validity"
+)
+.addEventListener(
+    "input",
+    renderizarProdutos
+);
+
+
+
+/* =====================================================
+FILTRO
+===================================================== */
+
+document
+.getElementById(
+    "priority-filter"
+)
+.addEventListener(
+    "change",
+    renderizarProdutos
+);
+
+
+
+/* =====================================================
+MODAL DE SAÍDA
+MESMA LÓGICA DA PÁGINA COMPRAS
+===================================================== */
+
+const logoutButton =
+document.querySelector(".logout");
+
+
+const logoutModal =
+document.getElementById("modal-bg");
+
+
+const logoutNo =
+document.getElementById("modal-no");
+
+
+const logoutYes =
+document.getElementById("modal-yes");
+
+
+
+/* =====================================================
+ABRIR MODAL DE SAÍDA
+===================================================== */
+
+if (
+logoutButton &&
+logoutModal
+) {
+
+logoutButton.addEventListener(
+    "click",
+    function(event) {
+
+        event.preventDefault();
+
+        logoutModal.classList.add(
+            "show"
+        );
+
+    }
+);
+
+}
+
+
+
+/* =====================================================
+BOTÃO NÃO
+===================================================== */
+
+if (logoutNo) {
+
+logoutNo.addEventListener(
+    "click",
+    function() {
+
+        logoutModal.classList.remove(
+            "show"
+        );
+
+    }
+);
+
+}
+
+
+
+/* =====================================================
+BOTÃO SIM, SAIR
+===================================================== */
+
+if (logoutYes) {
+
+logoutYes.addEventListener(
+    "click",
+    function() {
+
+        window.location.href =
+            "../index.html";
+
+    }
+);
+
+}
+
+
+
+/* =====================================================
+CLICAR FORA DOS MODAIS
+===================================================== */
+
+window.addEventListener(
+"click",
+function(event) {
+
+    const validityModal =
+        document.getElementById(
+            "validity-modal"
+        );
+
+
+    const deleteModal =
+        document.getElementById(
+            "delete-modal"
+        );
+
+
+    const logoutModalElement =
+        document.getElementById(
+            "modal-bg"
+        );
+
+
+    if (
+        event.target ===
+        validityModal
+    ) {
+
+        fecharModal();
+
+    }
+
+
+    if (
+        event.target ===
+        deleteModal
+    ) {
+
+        fecharDeleteModal();
+
+    }
+
+
+    if (
+        event.target ===
+        logoutModalElement
+    ) {
+
+        logoutModalElement.classList.remove(
+            "show"
+        );
+
+    }
+
+}
+);
+
+
+
+/* =====================================================
+ESC FECHA TODOS OS MODAIS
+===================================================== */
+
+document.addEventListener(
+"keydown",
+function(event) {
+
+    if (
+        event.key !== "Escape"
+    ) {
+        return;
+    }
+
+
+    const validityModal =
+        document.getElementById(
+            "validity-modal"
+        );
+
+
+    const deleteModal =
+        document.getElementById(
+            "delete-modal"
+        );
+
+
+    const logoutModalElement =
+        document.getElementById(
+            "modal-bg"
+        );
+
+
+    validityModal.classList.remove(
+        "show"
+    );
+
+
+    deleteModal.classList.remove(
+        "show"
+    );
+
+
+    logoutModalElement.classList.remove(
+        "show"
+    );
+
+}
+);
+
+
+
+/* =====================================================
+INICIALIZAÇÃO
+===================================================== */
+
+renderizarProdutos();
+
+renderizarHistorico();
+
+</script>
+
+
+</body>
+
+</html>

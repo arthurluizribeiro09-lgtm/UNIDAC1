@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+
+    <title>Modo Inteligente — Unidac Industries</title>
+
+    <link
+        rel="stylesheet"
+        href="../css/style_adm.css"
+    >
+
+    </head>
+
+<body>
+
+    <!-- =========================================
+         SIDEBAR
+    ========================================== -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-mark">
+                U
+            </div>
+
+            <div>
+                <strong>
+                    Unidac Industries
+                </strong>
+
+                <small>
+                    Cantina inteligente
+                </small>
+            </div>
+
+        </div>
+
+
+        <!-- MENU -->
+
+        <nav class="nav">
+
+            <a href="dashboard.html">
+                <i>⌂</i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="usuarios.html">
+                <i>♙</i>
+                <span>Usuários</span>
+            </a>
+
+            <a href="financeiro.html">
+                <i>R$</i>
+                <span>Financeiro</span>
+            </a>
+
+            <a href="estoque.html">
+                <i>▣</i>
+                <span>Estoque</span>
+            </a>
+
+            <a href="cozinha.html">
+                <i>♨</i>
+                <span>Cozinha</span>
+            </a>
+
+            <a href="consumo.html">
+                <i>◔</i>
+                <span>Consumo</span>
+            </a>
+
+            <a href="desperdicio.html">
+                <i>↘</i>
+                <span>Desperdício</span>
+            </a>
+
+            <a href="compras.html">
+                <i>▤</i>
+                <span>Compras</span>
+            </a>
+
+            <a href="validades.html">
+                <i>◷</i>
+                <span>Validades</span>
+            </a>
+
+            <a href="relatorios.html">
+                <i>▥</i>
+                <span>Relatórios</span>
+            </a>
+
+            <a href="sustentabilidade.html">
+                <i>♧</i>
+                <span>Sustentabilidade</span>
+            </a>
+
+            <a href="metas.html">
+                <i>◎</i>
+                <span>Metas</span>
+            </a>
+
+            <a
+                href="inteligente.html"
+                class="ativo"
+            >
+                <i>✦</i>
+                <span>Modo Inteligente</span>
+            </a>
+
+            <a href="notificacoes.html">
+                <i>●</i>
+                <span>Notificações</span>
+            </a>
+
+        </nav>
+
+
+        <!-- PERFIL -->
+
+        <div class="profile">
+
+            <div class="profile-box">
+
+                <div class="avatar">
+                    G
+                </div>
+
+                <div>
+
+                    <strong class="user-name">
+                        Usuário
+                    </strong>
+
+                    <small class="user-role">
+                        Acesso
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <button onclick="event.preventDefault();if(!confirm('Sair do sistema?\nSua sessão será encerrada neste dispositivo.'))return;localStorage.removeItem('unidacUser');var p=location.pathname.split('/').filter(Boolean);if(p.length&&p[p.length-1].indexOf('.html')!==-1)p.pop();if(p.length&&p[p.length-1]==='pages')p.pop();if(p.length)p.pop();location.href=(p.length?'/'+p.join('/')+'/':'/')+'index.html';"  type="button" class="logout">
+
+                ↪
+
+                <span>
+                    Sair
+                </span>
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =========================================
+         CONTEÚDO PRINCIPAL
+    ========================================== -->
+
+    <main class="main">
+
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div>
+
+                <h1>
+                    Modo Inteligente
+                </h1>
+
+                <p>
+                    Previsões e recomendações automáticas.
+                </p>
+
+            </div>
+
+
+            <div class="top-actions">
+
+                <button
+                    class="icon-btn"
+                    onclick="location.href='notificacoes.html'"
+                >
+
+                    ♢
+
+                    <b class="dot"></b>
+
+                </button>
+
+
+                <div class="avatar">
+                    G
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- =========================================
+             PÁGINA
+        ========================================== -->
+
+        <section class="page">
+
+
+            <!-- CABEÇALHO -->
+
+            <div class="page-head">
+
+                <div>
+
+                    <h2>
+                        Modo Inteligente
+                    </h2>
+
+                    <p>
+                        Previsões e recomendações automáticas
+                        baseadas nos dados do sistema.
+                    </p>
+
+                </div>
+
+
+                <span class="badge ok">
+                    ● IA operacional ativa
+                </span>
+
+            </div>
+
+
+            <!-- =====================================
+                 PREVISÃO PRINCIPAL
+            ====================================== -->
+
+            <div class="card smart">
+
+                <div class="eyebrow">
+                    PREVISÃO PARA AMANHÃ
+                </div>
+
+
+                <div class="big-number">
+                    390 refeições
+                </div>
+
+
+                <p class="muted">
+                    Confiança estimada: 94%
+                    •
+                    Redução potencial de sobras: 9%
+                </p>
+
+
+                <div
+                    class="progress"
+                    style="margin-top: 18px;"
+                >
+
+                    <i data-width="94"></i>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================
+                 PREVISÕES POR PERÍODO
+            ====================================== -->
+
+            <div
+                class="grid three"
+                style="margin-top: 18px;"
+            >
+
+
+                <!-- MANHÃ -->
+
+                <div class="card">
+
+                    <span class="eyebrow">
+                        MANHÃ
+                    </span>
+
+                    <div class="big-number">
+                        118
+                    </div>
+
+                    <span class="muted">
+                        refeições previstas
+                    </span>
+
+                </div>
+
+
+                <!-- ALMOÇO -->
+
+                <div class="card">
+
+                    <span class="eyebrow">
+                        ALMOÇO
+                    </span>
+
+                    <div class="big-number">
+                        178
+                    </div>
+
+                    <span class="muted">
+                        refeições previstas
+                    </span>
+
+                </div>
+
+
+                <!-- TARDE -->
+
+                <div class="card">
+
+                    <span class="eyebrow">
+                        TARDE
+                    </span>
+
+                    <div class="big-number">
+                        94
+                    </div>
+
+                    <span class="muted">
+                        refeições previstas
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================
+                 RECOMENDAÇÕES
+            ====================================== -->
+
+            <div
+                class="card"
+                style="margin-top: 18px;"
+            >
+
+                <div class="card-title">
+
+                    <h3>
+                        Recomendações automáticas
+                    </h3>
+
+                    <span class="badge info">
+                        3 sugestões
+                    </span>
+
+                </div>
+
+
+                <div class="recommend">
+
+
+                    <!-- RECOMENDAÇÃO 1 -->
+
+                    <div>
+
+                        <strong>
+                            ✦ Reduzir produção de arroz em 8%
+                        </strong>
+
+                        <p class="muted">
+                            Histórico indica sobra acima do ideal.
+                        </p>
+
+                    </div>
+
+
+                    <!-- RECOMENDAÇÃO 2 -->
+
+                    <div>
+
+                        <strong>
+                            ✦ Priorizar banana no cardápio
+                        </strong>
+
+                        <p class="muted">
+                            Validade próxima detectada no estoque.
+                        </p>
+
+                    </div>
+
+
+                    <!-- RECOMENDAÇÃO 3 -->
+
+                    <div>
+
+                        <strong>
+                            ✦ Antecipar compra de feijão
+                        </strong>
+
+                        <p class="muted">
+                            Estoque atual abaixo do mínimo configurado.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BOTÃO -->
+
+                <button
+                    class="btn"
+                    style="margin-top: 18px;"
+                    data-toast="Todas as recomendações foram aplicadas."
+                >
+                    Aplicar recomendações
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================================
+         MODAL
+    ========================================== -->
+
+    <div
+        class="modal-bg"
+        id="modal-bg"
+    >
+
+        <div class="modal">
+
+            <h3 id="modal-title"></h3>
+
+            <p id="modal-text"></p>
+
+
+            <div class="modal-actions">
+
+                <button
+                    class="btn secondary"
+                    id="modal-no"
+                >
+                    Não
+                </button>
+
+
+                <button
+                    class="btn danger"
+                    id="modal-yes"
+                >
+                    Sim
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         TOAST
+    ========================================== -->
+
+    <div
+        id="toast"
+        class="toast"
+    ></div>
+
+
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================== -->
+
+    <script src="../js/data.js"></script>
+
+    
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore-compat.js"></script>
+<script src="../../js/firebase-config.js"></script>
+<script src="../../js/firebase-live.js"></script>
+<script src="../../js/firebase-actions.js"></script>
+<script src="../../js/firebase-pdf.js"></script>
+
+<script src="../js/app.js"></script>
+
+    <script src="../js/charts.js"></script>
+
+</body>
+
+</html>
+

@@ -1,0 +1,1019 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+
+    <title>
+        Dashboard — Unidac Industries
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="../css/style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../css/responsive.css"
+    >
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-mark">
+                U
+            </div>
+
+            <div>
+
+                <strong>
+                    Unidac Industries
+                </strong>
+
+                <small>
+                    Cantina inteligente
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <nav class="nav">
+
+            <a
+                href="dashboard.html"
+                class="active"
+            >
+
+                <i>
+                    ⌂
+                </i>
+
+                <span>
+                    Dashboard
+                </span>
+
+            </a>
+
+
+            <a href="estoque.html">
+
+                <i>
+                    ▣
+                </i>
+
+                <span>
+                    Estoque
+                </span>
+
+            </a>
+
+
+            <a href="cozinha.html">
+
+                <i>
+                    ♨
+                </i>
+
+                <span>
+                    Cozinha
+                </span>
+
+            </a>
+
+
+            <a href="consumo.html">
+
+                <i>
+                    ◔
+                </i>
+
+                <span>
+                    Consumo
+                </span>
+
+            </a>
+
+
+            <a href="compras.html">
+
+                <i>
+                    ▤
+                </i>
+
+                <span>
+                    Compras
+                </span>
+
+            </a>
+
+
+            <a href="validades.html">
+
+                <i>
+                    ◷
+                </i>
+
+                <span>
+                    Validades
+                </span>
+
+            </a>
+
+
+            <a href="notificacoes.html">
+
+                <i>
+                    ●
+                </i>
+
+                <span>
+                    Notificações
+                </span>
+
+            </a>
+
+        </nav>
+
+
+        <div class="profile">
+
+            <div class="profile-box">
+
+                <div class="avatar">
+                    G
+                </div>
+
+                <div>
+
+                    <strong class="user-name">
+                        Usuário
+                    </strong>
+
+                    <small class="user-role">
+                        Acesso
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <button onclick="event.preventDefault();if(!confirm('Sair do sistema?\nSua sessão será encerrada neste dispositivo.'))return;localStorage.removeItem('unidacUser');var p=location.pathname.split('/').filter(Boolean);if(p.length&&p[p.length-1].indexOf('.html')!==-1)p.pop();if(p.length&&p[p.length-1]==='pages')p.pop();if(p.length)p.pop();location.href=(p.length?'/'+p.join('/')+'/':'/')+'index.html';"  type="button" class="logout">
+
+                ↪
+
+                <span>
+                    Sair
+                </span>
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <main class="main">
+
+        <header class="topbar">
+
+            <div>
+
+                <h1>
+                    Dashboard
+                </h1>
+
+                <p>
+                    Visão geral da operação da cantina.
+                </p>
+
+            </div>
+
+
+            <div class="top-actions">
+
+                <button
+                    class="icon-btn"
+                    onclick="location.href='notificacoes.html'"
+                >
+
+                    ♢
+
+                    <b class="dot"></b>
+
+                </button>
+
+
+                <div class="avatar">
+                    G
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <section class="page">
+
+            <div class="page-head">
+
+                <div>
+
+                    <h2>
+                        Visão geral
+                    </h2>
+
+                    <p>
+                        Acompanhe os principais indicadores da Unidac Industries.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="btn"
+                    id="update-dashboard"
+                >
+
+                    ↻ Atualizar dados
+
+                </button>
+
+            </div>
+
+
+            <div class="grid stats">
+
+                <div class="card stat">
+
+                    <span class="label">
+                        REFEIÇÕES CONSUMIDAS
+                    </span>
+
+                    <div class="value">
+                        386
+                    </div>
+
+                    <span class="trend">
+                        91,9% de aproveitamento
+                    </span>
+
+                </div>
+
+
+                <div class="card stat">
+
+                    <span class="label">
+                        PRODUÇÃO PLANEJADA
+                    </span>
+
+                    <div class="value">
+                        390
+                    </div>
+
+                    <span class="trend">
+                        Sugestão para amanhã
+                    </span>
+
+                </div>
+
+
+                <div class="card stat">
+
+                    <span class="label">
+                        SOBRAS DA PRODUÇÃO
+                    </span>
+
+                    <div class="value">
+                        34 kg
+                    </div>
+
+                    <span class="trend">
+                        420 refeições produzidas
+                    </span>
+
+                </div>
+
+
+                <div class="card stat">
+
+                    <span class="label">
+                        ALERTAS IMPORTANTES
+                    </span>
+
+                    <div class="value">
+                        08
+                    </div>
+
+                    <span class="trend">
+                        Estoque e validades
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="grid two">
+
+                <div class="card">
+
+                    <div class="card-title">
+
+                        <div>
+
+                            <h3>
+                                Produção e consumo
+                            </h3>
+
+                            <p class="muted">
+                                Comparativo das refeições
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="chart">
+
+                        <canvas id="productionChart"></canvas>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-title">
+
+                        <div>
+
+                            <h3>
+                                Consumo por período
+                            </h3>
+
+                            <p class="muted">
+                                Distribuição das refeições
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="chart">
+
+                        <canvas id="consumptionChart"></canvas>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="grid two">
+
+                <div class="card">
+
+                    <div class="card-title">
+
+                        <div>
+
+                            <h3>
+                                Distribuição do consumo
+                            </h3>
+
+                            <p class="muted">
+                                Quantidade de refeições por período
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="chart">
+
+                        <canvas id="distributionChart"></canvas>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-title">
+
+                        <div>
+
+                            <h3>
+                                Indicadores operacionais
+                            </h3>
+
+                            <p class="muted">
+                                Informações atuais do sistema
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="list">
+
+                        <div class="list-item">
+
+                            <strong>
+                                Turmas atendidas
+                            </strong>
+
+                            <span>
+                                18
+                            </span>
+
+                        </div>
+
+
+                        <div class="list-item">
+
+                            <strong>
+                                Média por aluno
+                            </strong>
+
+                            <span>
+                                0,92
+                            </span>
+
+                        </div>
+
+
+                        <div class="list-item">
+
+                            <strong>
+                                Fornecedores ativos
+                            </strong>
+
+                            <span>
+                                7
+                            </span>
+
+                        </div>
+
+
+                        <div class="list-item">
+
+                            <strong>
+                                Pedidos no mês
+                            </strong>
+
+                            <span>
+                                18
+                            </span>
+
+                        </div>
+
+
+                        <div class="list-item">
+
+                            <strong>
+                                Total comprado
+                            </strong>
+
+                            <span>
+                                R$ 8.420
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="grid two">
+
+                <div class="card">
+
+                    <div class="card-title">
+
+                        <h3>
+                            Alertas recentes
+                        </h3>
+
+                        <a
+                            href="notificacoes.html"
+                            class="link"
+                        >
+                            Ver todos
+                        </a>
+
+                    </div>
+
+
+                    <div class="alert">
+
+                        <div class="badge danger-b">
+                            ⚠
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Estoque baixo
+                            </strong>
+
+                            <p class="muted">
+                                Existem produtos abaixo da quantidade mínima.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="alert">
+
+                        <div class="badge warn">
+                            ⏰
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Validades próximas
+                            </strong>
+
+                            <p class="muted">
+                                Há produtos próximos do vencimento.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="alert">
+
+                        <div class="badge info">
+                            📈
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Desperdício identificado
+                            </strong>
+
+                            <p class="muted">
+                                O turno da tarde apresentou aumento de 12%.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-title">
+
+                        <h3>
+                            Atalhos rápidos
+                        </h3>
+
+                    </div>
+
+
+                    <div class="quick-grid">
+
+                        <a
+                            class="quick"
+                            href="estoque.html"
+                        >
+
+                            <span>
+                                ▣
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Estoque
+                                </strong>
+
+                                <small>
+                                    Consultar produtos
+                                </small>
+
+                            </div>
+
+                        </a>
+
+
+                        <a
+                            class="quick"
+                            href="cozinha.html"
+                        >
+
+                            <span>
+                                ♨
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Cozinha
+                                </strong>
+
+                                <small>
+                                    Ver produção
+                                </small>
+
+                            </div>
+
+                        </a>
+
+
+                        <a
+                            class="quick"
+                            href="consumo.html"
+                        >
+
+                            <span>
+                                ◔
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Consumo
+                                </strong>
+
+                                <small>
+                                    Ver refeições
+                                </small>
+
+                            </div>
+
+                        </a>
+
+
+                        <a
+                            class="quick"
+                            href="compras.html"
+                        >
+
+                            <span>
+                                ▤
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Compras
+                                </strong>
+
+                                <small>
+                                    Consultar pedidos
+                                </small>
+
+                            </div>
+
+                        </a>
+
+
+                        <a
+                            class="quick"
+                            href="validades.html"
+                        >
+
+                            <span>
+                                ◷
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Validades
+                                </strong>
+
+                                <small>
+                                    Conferir prazos
+                                </small>
+
+                            </div>
+
+                        </a>
+
+
+                        <a
+                            class="quick"
+                            href="notificacoes.html"
+                        >
+
+                            <span>
+                                ●
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Notificações
+                                </strong>
+
+                                <small>
+                                    Ver alertas
+                                </small>
+
+                            </div>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <div
+        class="modal-bg"
+        id="modal-bg"
+    >
+
+        <div class="modal">
+
+            <h3 id="modal-title"></h3>
+
+            <p id="modal-text"></p>
+
+
+            <div class="modal-actions">
+
+                <button
+                    class="btn secondary"
+                    id="modal-no"
+                >
+                    Não
+                </button>
+
+
+                <button
+                    class="btn danger"
+                    id="modal-yes"
+                >
+                    Sim
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div
+        id="toast"
+        class="toast"
+    ></div>
+
+
+    <script src="../js/data.js"></script>
+
+    
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore-compat.js"></script>
+<script src="../../js/firebase-config.js"></script>
+<script src="../../js/firebase-live.js"></script>
+<script src="../../js/firebase-actions.js"></script>
+<script src="../../js/firebase-pdf.js"></script>
+
+<script src="../js/app.js"></script>
+
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+                const productionContext =
+                    document
+                        .getElementById("productionChart")
+                        .getContext("2d");
+
+
+                new Chart(
+                    productionContext,
+                    {
+                        type: "bar",
+
+                        data: {
+                            labels: [
+                                "Planejadas",
+                                "Produzidas",
+                                "Consumidas"
+                            ],
+
+                            datasets: [
+                                {
+                                    label: "Refeições",
+
+                                    data: [
+                                        390,
+                                        420,
+                                        386
+                                    ],
+
+                                    borderWidth: 1
+                                }
+                            ]
+                        },
+
+                        options: {
+                            responsive: true,
+
+                            maintainAspectRatio: false,
+
+                            plugins: {
+                                legend: {
+                                    display: false
+                                }
+                            },
+
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    }
+                );
+
+
+                const consumptionContext =
+                    document
+                        .getElementById("consumptionChart")
+                        .getContext("2d");
+
+
+                new Chart(
+                    consumptionContext,
+                    {
+                        type: "line",
+
+                        data: {
+                            labels: [
+                                "Manhã",
+                                "Intervalo",
+                                "Almoço",
+                                "Tarde"
+                            ],
+
+                            datasets: [
+                                {
+                                    label: "Refeições consumidas",
+
+                                    data: [
+                                        118,
+                                        64,
+                                        178,
+                                        94
+                                    ],
+
+                                    tension: 0.4,
+
+                                    fill: true,
+
+                                    borderWidth: 2
+                                }
+                            ]
+                        },
+
+                        options: {
+                            responsive: true,
+
+                            maintainAspectRatio: false,
+
+                            plugins: {
+                                legend: {
+                                    display: false
+                                }
+                            },
+
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    }
+                );
+
+
+                const distributionContext =
+                    document
+                        .getElementById("distributionChart")
+                        .getContext("2d");
+
+
+                new Chart(
+                    distributionContext,
+                    {
+                        type: "doughnut",
+
+                        data: {
+                            labels: [
+                                "Manhã",
+                                "Intervalo",
+                                "Almoço",
+                                "Tarde"
+                            ],
+
+                            datasets: [
+                                {
+                                    label: "Distribuição",
+
+                                    data: [
+                                        118,
+                                        64,
+                                        178,
+                                        94
+                                    ],
+
+                                    borderWidth: 1
+                                }
+                            ]
+                        },
+
+                        options: {
+                            responsive: true,
+
+                            maintainAspectRatio: false,
+
+                            plugins: {
+                                legend: {
+                                    position: "bottom"
+                                }
+                            }
+                        }
+                    }
+                );
+
+
+                const updateButton =
+                    document.getElementById("update-dashboard");
+
+
+                updateButton.addEventListener(
+                    "click",
+                    function () {
+
+                        if (typeof showToast === "function") {
+
+                            showToast(
+                                "Dados do dashboard atualizados."
+                            );
+
+                        }
+
+                    }
+                );
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>

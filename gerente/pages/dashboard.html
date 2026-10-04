@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dashboard — Unidac Industries</title><link rel="stylesheet" href="../css/style.css"><link rel="stylesheet" href="../css/responsive.css"></head>
+<body>
+<aside class="sidebar">
+ <div class="brand"><div class="brand-mark">U</div><div><strong>Unidac Industries</strong><small>Enterprise Management</small></div></div>
+ <nav class="nav">
+  <a href="dashboard.html"><i>⌂</i><span>Dashboard</span></a>
+
+<a href="financeiro.html"><i>R$</i><span>Financeiro</span></a>
+  <a href="estoque.html"><i>▣</i><span>Estoque</span></a>
+  
+  <a href="consumo.html"><i>◔</i><span>Consumo</span></a>
+  <a href="desperdicio.html"><i>↘</i><span>Desperdício</span></a>
+  <a href="compras.html"><i>▤</i><span>Compras</span></a>
+  <a href="validades.html"><i>◷</i><span>Validades</span></a>
+  <a href="relatorios.html"><i>▥</i><span>Relatórios</span></a>
+  <a href="sustentabilidade.html"><i>♧</i><span>Sustentabilidade</span></a>
+  <a href="metas.html"><i>◎</i><span>Metas</span></a>
+  
+  <a href="notificacoes.html"><i>●</i><span>Notificações</span></a>
+ </nav>
+ <div class="profile"><div class="profile-box"><div class="avatar">U</div><div><strong class="user-name">Usuário</strong><small class="user-role">Acesso</small></div></div><button onclick="event.preventDefault();if(!confirm('Sair do sistema?\nSua sessão será encerrada neste dispositivo.'))return;localStorage.removeItem('unidacUser');var p=location.pathname.split('/').filter(Boolean);if(p.length&&p[p.length-1].indexOf('.html')!==-1)p.pop();if(p.length&&p[p.length-1]==='pages')p.pop();if(p.length)p.pop();location.href=(p.length?'/'+p.join('/')+'/':'/')+'index.html';"  type="button" class="logout">↪ <span>Sair</span></button></div>
+</aside>
+<main class="main">
+<header class="topbar"><div><h1>Dashboard</h1><p id="welcome-sub">Visão central da Unidac Industries.</p></div>
+ <div class="top-actions"><button class="icon-btn" onclick="location.href='notificacoes.html'">♢<b class="dot"></b></button><div class="avatar">U</div></div>
+</header>
+<section class="page">
+ <div class="hero-card"><div><span class="eyebrow">PAINEL PERSONALIZADO</span><h2 id="hero-title">Olá!</h2><p id="hero-text">Aqui está um resumo das informações relevantes para seu perfil.</p></div><div class="hero-mark">U</div></div>
+ <div class="page-head"><div><h2 id="section-title">Visão geral</h2><p id="section-text">Acompanhe os principais indicadores.</p></div><button class="btn" data-toast="Dados atualizados com sucesso.">↻ Atualizar dados</button></div>
+ <div class="grid stats" id="stats">
+  <div class="card stat"><div class="icon">◈</div><span class="label">OPERAÇÃO</span><div class="value">94%</div><span class="trend">↑ 6,2% no período</span></div>
+  <div class="card stat"><div class="icon">✓</div><span class="label">ATIVIDADES</span><div class="value">128</div><span class="trend">24 concluídas hoje</span></div>
+  <div class="card stat"><div class="icon">⚠</div><span class="label">ALERTAS</span><div class="value">04</div><span class="trend">2 requerem atenção</span></div>
+  <div class="card stat"><div class="icon">↗</div><span class="label">EFICIÊNCIA</span><div class="value">87%</div><span class="trend">↑ 8% este mês</span></div>
+ </div>
+ <div class="grid two">
+  <div class="card"><div class="card-title"><h3 id="main-card-title">Atividades recentes</h3><span class="muted">Hoje</span></div>
+   <div class="activity"><div class="activity-icon">✓</div><div><strong>Operação atualizada</strong><p class="muted">Dados do sistema sincronizados.</p></div><time>10:42</time></div>
+   <div class="activity"><div class="activity-icon">↗</div><div><strong>Indicadores revisados</strong><p class="muted">Relatório mensal disponível.</p></div><time>09:18</time></div>
+   <div class="activity"><div class="activity-icon">●</div><div><strong>Novo comunicado</strong><p class="muted">Há uma atualização para sua área.</p></div><time>08:35</time></div>
+  </div>
+  <div class="card"><div class="card-title"><h3>Atalhos rápidos</h3></div><div class="quick-grid" id="quick-grid">
+   <a class="quick" href="notificacoes.html"><span>●</span><div><strong>Notificações</strong><small>Ver comunicados</small></div></a>
+   <a class="quick" href="estoque.html"><span>▣</span><div><strong>Estoque</strong><small>Consultar itens</small></div></a>
+   <a class="quick" href="relatorios.html"><span>▥</span><div><strong>Relatórios</strong><small>Consultar análises</small></div></a>
+   <a class="quick" href="dashboard.html"><span>♨</span><div><strong>Cantina</strong><small>Operação diária</small></div></a>
+  </div></div>
+ </div>
+ <div class="grid two" style="margin-top:18px">
+  <div class="card" id="menu-card"><div class="card-title"><div><h3>Refeição do dia</h3><p class="muted">Informação compartilhada</p></div><span class="badge ok">Disponível</span></div>
+   <div class="meal"><div class="meal-icon">🍽</div><div><strong>Arroz, feijão, frango e salada</strong><p class="muted">Serviço de hoje • Cantina Unidac</p></div></div>
+  </div>
+  <div class="card"><div class="card-title"><h3>Comunicados</h3><a class="link" href="notificacoes.html">Ver todos</a></div>
+   <div class="alert"><div class="badge info">i</div><div><strong>Operação normal</strong><p class="muted">Todos os setores estão funcionando normalmente.</p></div></div>
+   <div class="alert"><div class="badge warn">!</div><div><strong>Atualização interna</strong><p class="muted">Consulte as notificações do seu perfil.</p></div></div>
+  </div>
+ </div>
+</section></main>
+<div class="modal-bg" id="modal-bg"><div class="modal"><h3 id="modal-title"></h3><p id="modal-text"></p><div class="modal-actions"><button class="btn secondary" id="modal-no">Não</button><button class="btn danger" id="modal-yes">Sim</button></div></div></div>
+<div id="toast" class="toast"></div>
+<script src="../js/data.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore-compat.js"></script>
+<script src="../../js/firebase-config.js"></script>
+<script src="../../js/firebase-live.js"></script>
+<script src="../../js/firebase-actions.js"></script>
+<script src="../../js/firebase-pdf.js"></script>
+
+<script src="../js/app.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded",()=>{
+ const s=getSession(); if(!s)return;
+ const configs={
+ administrador:["Visão executiva","Controle completo da empresa, pessoas, operações e indicadores.","Indicadores corporativos","Administre usuários, setores, estoque, financeiro e relatórios.","Relatórios e gestão"],
+ cozinheira:["Operação da cantina","Acompanhe refeições, cardápio, consumo e rotina operacional.","Operação da cantina","Monitore refeições, ingredientes e avisos da cozinha.","Cardápio e operação"],
+ aluno:["Seu espaço","Consulte o cardápio, refeições, avisos e informações importantes.","Próximas informações","Tudo o que você precisa no dia a dia, sem acesso às áreas administrativas.","Cardápio e avisos"],
+ professor:["Área acadêmica","Acompanhe informações das turmas, comunicados e rotina escolar.","Informações acadêmicas","Consulte avisos, turmas e informações compartilhadas pela instituição.","Comunicados"],
+ estoquista:["Controle de estoque","Monitore produtos, entradas, saídas e níveis críticos.","Movimentações recentes","Acompanhe a disponibilidade e os alertas dos itens armazenados.","Estoque e alertas"],
+ financeiro:["Gestão financeira","Visualize indicadores, movimentações e informações financeiras.","Resumo financeiro","Acompanhe receitas, despesas e relatórios do período.","Indicadores financeiros"],
+ gerente:["Visão gerencial","Acompanhe o desempenho geral e os principais indicadores da operação.","Desempenho dos setores","Tenha uma visão consolidada para apoiar decisões de gestão.","Relatórios gerenciais"],
+ funcionario:["Área interna","Consulte tarefas, avisos e comunicados liberados para sua função.","Atividades recentes","Acompanhe as informações e tarefas disponíveis para você.","Avisos e tarefas"]
+ }[s.role]||null;
+ if(configs){
+  $("#hero-title").textContent=configs[0];$("#hero-text").textContent=configs[1];
+  $("#section-title").textContent=configs[2];$("#section-text").textContent=configs[3];$("#main-card-title").textContent=configs[4];
+ }
+});
+</script>
+</body></html>

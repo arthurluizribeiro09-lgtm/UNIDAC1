@@ -1,0 +1,1995 @@
+<!doctype html>
+
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+
+    <title>Cardápio — Área do Professor</title>
+
+    <link
+        rel="stylesheet"
+        href="../css/style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../css/responsive.css"
+    >
+
+    <style>
+
+        .menu-table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            border-radius: 12px;
+        }
+
+        .menu-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 1000px;
+        }
+
+        .menu-table th,
+        .menu-table td {
+            padding: 16px;
+            text-align: left;
+            border-bottom: 1px solid rgba(128, 128, 128, .15);
+            vertical-align: top;
+        }
+
+        .menu-table th {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+        }
+
+        .menu-table td {
+            font-size: 14px;
+        }
+
+        .menu-table .day {
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .meal-time {
+            display: block;
+            font-size: 12px;
+            margin-top: 5px;
+            opacity: .65;
+        }
+
+        .meal-name {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .meal-description {
+            font-size: 13px;
+            opacity: .7;
+            line-height: 1.4;
+        }
+
+        .weekend {
+            opacity: .55;
+        }
+
+        .schedule-card {
+            margin-bottom: 18px;
+        }
+
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+        }
+
+        .schedule-item {
+            padding: 18px;
+            border-radius: 12px;
+            background: rgba(128, 128, 128, .08);
+        }
+
+        .schedule-item strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .schedule-item span {
+            font-size: 13px;
+            opacity: .7;
+        }
+
+        .coffee-highlight {
+            border: 1px solid rgba(190, 145, 70, .25);
+            background: linear-gradient(
+                135deg,
+                rgba(190, 145, 70, .12),
+                rgba(128, 128, 128, .06)
+            );
+        }
+
+        .coffee-highlight strong {
+            color: #9a6b2f;
+        }
+
+        .teacher-note {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .teacher-note-icon {
+            width: 42px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            background: rgba(190, 145, 70, .15);
+            font-size: 21px;
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 1000px) {
+
+            .schedule-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .schedule-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-mark">
+                U
+            </div>
+
+            <div>
+
+                <strong>
+                    Unidac Industries
+                </strong>
+
+                <small>
+                    Portal do Professor
+                </small>
+
+            </div>
+
+        </div>
+
+           <nav class="nav">
+
+            <a href="dashboard.html">
+                <i>⌂</i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="cardapio.html">
+                <i>🍽</i>
+                <span>Cardapio</span>
+            </a>
+
+             <a href="desperdicio.html">
+                <i>🗑️</i>
+                <span>Desperdicio</span>
+            </a>
+
+             <a href="notificacoes.html">
+                <i>●</i>
+                <span>Notificações</span>
+            </a>
+
+
+        </nav>
+
+        <div class="profile">
+
+            <div class="profile-box">
+
+                <div class="avatar">
+                    P
+                </div>
+
+                <div>
+
+                    <strong class="user-name">
+                        Professor
+                    </strong>
+
+                    <small class="user-role">
+                        Professor
+                    </small>
+
+                </div>
+
+            </div>
+
+            <button onclick="event.preventDefault();if(!confirm('Sair do sistema?\nSua sessão será encerrada neste dispositivo.'))return;localStorage.removeItem('unidacUser');var p=location.pathname.split('/').filter(Boolean);if(p.length&&p[p.length-1].indexOf('.html')!==-1)p.pop();if(p.length&&p[p.length-1]==='pages')p.pop();if(p.length)p.pop();location.href=(p.length?'/'+p.join('/')+'/':'/')+'index.html';" type="button"
+                class="logout"
+            >
+
+                ↪
+
+                <span>
+                    Sair
+                </span>
+
+            </button>
+
+        </div>
+
+    </aside>
+
+    <!-- CONTEÚDO -->
+
+    <main class="main">
+
+        <header class="topbar">
+
+            <div>
+
+                <h1>
+                    Cardápio
+                </h1>
+
+                <p>
+                    Confira as refeições e opções disponíveis para os professores.
+                </p>
+
+            </div>
+
+            <div class="top-actions">
+
+                <div class="avatar">
+                    P
+                </div>
+
+            </div>
+
+        </header>
+
+        <section class="page">
+
+            <!-- HERO -->
+
+            <div class="hero-card">
+
+                <div>
+
+                    <span class="eyebrow">
+                        CARDÁPIO DO PROFESSOR
+                    </span>
+
+                    <h2>
+                        Setembro de 2026
+                    </h2>
+
+                    <p>
+                        Refeições completas, café e opções especiais
+                        disponíveis durante o expediente.
+                    </p>
+
+                </div>
+
+                <div class="hero-mark">
+                    ☕
+                </div>
+
+            </div>
+
+            <!-- HORÁRIOS -->
+
+            <div class="card schedule-card">
+
+                <div class="card-title">
+
+                    <div>
+
+                        <h3>
+                            Horários das refeições
+                        </h3>
+
+                        <p class="muted">
+                            Confira os horários de atendimento aos professores.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="schedule-grid">
+
+                    <div class="schedule-item coffee-highlight">
+
+                        <strong>
+                            ☕ Café
+                        </strong>
+
+                        <span>
+                            07:00 às 08:30
+                        </span>
+
+                    </div>
+
+                    <div class="schedule-item">
+
+                        <strong>
+                            🥐 Café da manhã
+                        </strong>
+
+                        <span>
+                            08:40 às 09:30
+                        </span>
+
+                    </div>
+
+                    <div class="schedule-item">
+
+                        <strong>
+                            🍛 Almoço
+                        </strong>
+
+                        <span>
+                            11:30 às 13:30
+                        </span>
+
+                    </div>
+
+                    <div class="schedule-item">
+
+                        <strong>
+                            ☕ Café da tarde
+                        </strong>
+
+                        <span>
+                            14:30 às 16:00
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- TÍTULO -->
+
+            <div class="page-head">
+
+                <div>
+
+                    <h2>
+                        Cardápio mensal
+                    </h2>
+
+                    <p>
+                        Setembro de 2026
+                    </p>
+
+                </div>
+
+                <span class="badge info">
+                    Professor
+                </span>
+
+            </div>
+
+            <!-- TABELA -->
+
+            <div class="card">
+
+                <div class="menu-table-wrapper">
+
+                    <table class="menu-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Data
+                                </th>
+
+                                <th>
+
+                                    ☕ Café
+
+                                    <span class="meal-time">
+                                        07:00 — 08:30
+                                    </span>
+
+                                </th>
+
+                                <th>
+
+                                    🥐 Café da manhã
+
+                                    <span class="meal-time">
+                                        08:40 — 09:30
+                                    </span>
+
+                                </th>
+
+                                <th>
+
+                                    🍛 Almoço
+
+                                    <span class="meal-time">
+                                        11:30 — 13:30
+                                    </span>
+
+                                </th>
+
+                                <th>
+
+                                    ☕ Café da tarde
+
+                                    <span class="meal-time">
+                                        14:30 — 16:00
+                                    </span>
+
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <!-- 01 -->
+
+                            <tr>
+
+                                <td class="day">
+
+                                    01/09
+
+                                    <span class="meal-time">
+                                        Terça-feira
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Café coado
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Café com leite e açúcar
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Pão de queijo
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Fruta fresca e iogurte
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Arroz, feijão e filé de frango grelhado
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Purê de batata, salada verde, legumes assados
+                                        e fruta
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Café com leite
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Bolo de cenoura com cobertura de chocolate
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+                            <!-- 02 -->
+
+                            <tr>
+
+                                <td class="day">
+
+                                    02/09
+
+                                    <span class="meal-time">
+                                        Quarta-feira
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Espresso
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Café tradicional
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Croissant de queijo
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Mamão e iogurte natural
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Arroz, feijão e carne assada
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Batata rústica, salada, legumes no vapor
+                                        e sobremesa
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Cappuccino
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Pão de queijo e fruta
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+                            <!-- 03 -->
+
+                            <tr>
+
+                                <td class="day">
+
+                                    03/09
+
+                                    <span class="meal-time">
+                                        Quinta-feira
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Café coado
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Café com leite
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Tapioca com queijo
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Banana e mel
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Arroz, feijão e frango assado
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Farofa, salada tropical, legumes
+                                        e fruta
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Café com leite
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Sanduíche natural de frango
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+                            <!-- 04 -->
+
+                            <tr>
+
+                                <td class="day">
+
+                                    04/09
+
+                                    <span class="meal-time">
+                                        Sexta-feira
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Café coado
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Café com leite
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Pão na chapa
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Queijo minas e fruta
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Strogonoff de frango
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Arroz, batata palha, salada e sobremesa
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Café especial
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Bolo de chocolate e frutas
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+                            <!-- 07 -->
+
+                            <tr class="weekend">
+
+                                <td class="day">
+
+                                    07/09
+
+                                    <span class="meal-time">
+                                        Segunda-feira
+                                    </span>
+
+                                </td>
+
+                                <td colspan="4">
+
+                                    <span class="meal-name">
+                                        Feriado
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Não haverá atendimento.
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+                            <!-- 08 -->
+
+                            <tr>
+
+                                <td class="day">
+
+                                    08/09
+
+                                    <span class="meal-time">
+                                        Terça-feira
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Café coado
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Café com leite
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Pão de queijo
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Frutas variadas e iogurte
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Arroz, feijão e carne cozida
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Polenta cremosa, salada, legumes
+                                        e fruta
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Cappuccino
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Bolo de fubá com erva-doce
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+                            <!-- 09 -->
+
+                            <tr>
+
+                                <td class="day">
+
+                                    09/09
+
+                                    <span class="meal-time">
+                                        Quarta-feira
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Espresso
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Café tradicional
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Omelete de queijo
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Pão integral e fruta
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Frango grelhado ao molho de ervas
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Arroz, feijão, legumes salteados,
+                                        salada e fruta
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Café com leite
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Torta de maçã
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+                            <!-- 10 -->
+
+                            <tr>
+
+                                <td class="day">
+
+                                    10/09
+
+                                    <span class="meal-time">
+                                        Quinta-feira
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Café coado
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Café com leite
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Pão francês com queijo
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Banana e iogurte
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Macarrão à bolonhesa
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Salada italiana, legumes grelhados
+                                        e sobremesa
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Espresso
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Pão de queijo quentinho
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+                            <!-- 11 -->
+
+                            <tr>
+
+                                <td class="day">
+
+                                    11/09
+
+                                    <span class="meal-time">
+                                        Sexta-feira
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Café especial
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Café coado e leite
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Waffle com mel
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Morango e iogurte
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Peito de frango grelhado
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Arroz, feijão, purê de mandioquinha,
+                                        salada e fruta
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Café com leite
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Brownie e fruta
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+                            <!-- 14 -->
+
+                            <tr>
+
+                                <td class="day">
+
+                                    14/09
+
+                                    <span class="meal-time">
+                                        Segunda-feira
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Café coado
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Café com leite
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Pão de queijo
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Queijo minas e mamão
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Arroz, feijão e bife acebolado
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Batata assada, salada verde,
+                                        legumes e fruta
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Cappuccino
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Bolo de chocolate
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+                            <!-- 15 -->
+
+                            <tr>
+
+                                <td class="day">
+
+                                    15/09
+
+                                    <span class="meal-time">
+                                        Terça-feira
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Espresso
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Café tradicional
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Tapioca de queijo
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Fruta e iogurte
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Frango ao molho de mostarda
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Arroz, feijão, legumes, salada
+                                        e sobremesa
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Café com leite
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Sanduíche natural
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+                            <!-- 16 -->
+
+                            <tr>
+
+                                <td class="day">
+
+                                    16/09
+
+                                    <span class="meal-time">
+                                        Quarta-feira
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Café coado
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Café com leite
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Croissant de queijo
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Fruta fresca
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Lasanha de carne
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Arroz, salada verde, legumes
+                                        e sobremesa
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Cappuccino
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Bolo de cenoura
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+                            <!-- 17 -->
+
+                            <tr>
+
+                                <td class="day">
+
+                                    17/09
+
+                                    <span class="meal-time">
+                                        Quinta-feira
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Café especial
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Café coado
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Pão na chapa
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Queijo minas e fruta
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Arroz, feijão e frango assado
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Farofa, salada, legumes e fruta
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Café com leite
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Pão de queijo
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+                            <!-- 18 -->
+
+                            <tr>
+
+                                <td class="day">
+
+                                    18/09
+
+                                    <span class="meal-time">
+                                        Sexta-feira
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Espresso
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Café tradicional
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Ovos mexidos com queijo
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Pão integral e fruta
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Filé de frango ao molho
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Arroz, feijão, purê, salada
+                                        e sobremesa
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Café especial
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Torta de chocolate
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+                            <!-- 21 -->
+
+                            <tr>
+
+                                <td class="day">
+
+                                    21/09
+
+                                    <span class="meal-time">
+                                        Segunda-feira
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Café coado
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Café com leite
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Pão de queijo
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Fruta e iogurte
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Carne assada ao molho
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Arroz, feijão, batata dourada,
+                                        salada e fruta
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Cappuccino
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Bolo de fubá
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+                            <!-- 22 -->
+
+                            <tr>
+
+                                <td class="day">
+
+                                    22/09
+
+                                    <span class="meal-time">
+                                        Terça-feira
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Espresso
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Café tradicional
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Tapioca com queijo
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Banana e mel
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Strogonoff de carne
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Arroz, batata palha, salada
+                                        e sobremesa
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Café com leite
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Sanduíche natural
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+                            <!-- 23 -->
+
+                            <tr>
+
+                                <td class="day">
+
+                                    23/09
+
+                                    <span class="meal-time">
+                                        Quarta-feira
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Café coado
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Café com leite
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Croissant de queijo
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Mamão e iogurte
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Frango grelhado
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Arroz, feijão, legumes assados,
+                                        salada e fruta
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Cappuccino
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Bolo de cenoura
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+                            <!-- 24 -->
+
+                            <tr>
+
+                                <td class="day">
+
+                                    24/09
+
+                                    <span class="meal-time">
+                                        Quinta-feira
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Café especial
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Café coado
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Pão na chapa
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Queijo minas e fruta
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Macarrão ao molho de frango
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Salada, legumes grelhados
+                                        e sobremesa
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Café com leite
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Pão de queijo
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+                            <!-- 25 -->
+
+                            <tr>
+
+                                <td class="day">
+
+                                    25/09
+
+                                    <span class="meal-time">
+                                        Sexta-feira
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Espresso
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Café tradicional
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Omelete de queijo
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Pão integral e fruta
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Feijoada leve
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Arroz, couve refogada, farofa,
+                                        laranja e sobremesa
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Café especial
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Bolo de chocolate
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+                            <!-- 28 -->
+
+                            <tr>
+
+                                <td class="day">
+
+                                    28/09
+
+                                    <span class="meal-time">
+                                        Segunda-feira
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Café coado
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Café com leite
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Pão de queijo
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Fruta e iogurte
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Arroz, feijão e bife acebolado
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Purê, salada, legumes
+                                        e fruta
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Cappuccino
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Bolo de chocolate
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+                            <!-- 29 -->
+
+                            <tr>
+
+                                <td class="day">
+
+                                    29/09
+
+                                    <span class="meal-time">
+                                        Terça-feira
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Espresso
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Café tradicional
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Tapioca de queijo
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Banana e iogurte
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Frango assado com ervas
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Arroz, feijão, batata rústica,
+                                        salada e sobremesa
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Café com leite
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Sanduíche natural
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+                            <!-- 30 -->
+
+                            <tr>
+
+                                <td class="day">
+
+                                    30/09
+
+                                    <span class="meal-time">
+                                        Quarta-feira
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Café especial
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Café coado e leite
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Pão de queijo especial
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Frutas variadas e iogurte
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Arroz, feijão e frango grelhado
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Purê de batata, salada,
+                                        legumes e sobremesa
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="meal-name">
+                                        Cappuccino
+                                    </span>
+
+                                    <span class="meal-description">
+                                        Bolo de cenoura com chocolate
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+            <!-- OBSERVAÇÃO -->
+
+            <div
+                class="card"
+                style="margin-top:18px"
+            >
+
+                <div class="card-title">
+
+                    <h3>
+                        Café do professor
+                    </h3>
+
+                    <span class="badge info">
+                        Disponível
+                    </span>
+
+                </div>
+
+                <div class="teacher-note">
+
+                    <div class="teacher-note-icon">
+                        ☕
+                    </div>
+
+                    <p class="muted">
+
+                        O café do professor inclui café coado ou espresso,
+                        com opção de leite e acompanhamentos conforme o
+                        cardápio do dia.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- INFORMAÇÃO -->
+
+            <div
+                class="card"
+                style="margin-top:18px"
+            >
+
+                <div class="card-title">
+
+                    <h3>
+                        Informação
+                    </h3>
+
+                    <span class="badge info">
+                        Consulta
+                    </span>
+
+                </div>
+
+                <p class="muted">
+
+                    O cardápio é planejado previamente e pode sofrer
+                    alterações conforme a disponibilidade dos alimentos,
+                    programação da cantina e necessidades do serviço.
+
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- MODAL -->
+
+    <div
+        class="modal-bg"
+        id="modal-bg"
+    >
+
+        <div class="modal">
+
+            <h3 id="modal-title"></h3>
+
+            <p id="modal-text"></p>
+
+            <div class="modal-actions">
+
+                <button
+                    class="btn secondary"
+                    id="modal-no"
+                >
+                    Não
+                </button>
+
+                <button
+                    class="btn danger"
+                    id="modal-yes"
+                >
+                    Sim
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- TOAST -->
+
+    <div
+        id="toast"
+        class="toast"
+    ></div>
+
+    <!-- SCRIPTS -->
+
+    <script src="../js/data.js"></script>
+
+    
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore-compat.js"></script>
+<script src="../../js/firebase-config.js"></script>
+<script src="../../js/firebase-live.js"></script>
+<script src="../../js/firebase-actions.js"></script>
+<script src="../../js/firebase-pdf.js"></script>
+
+<script src="../js/app.js"></script>
+
+</body>
+
+</html>

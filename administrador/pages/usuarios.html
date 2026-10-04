@@ -1,0 +1,1243 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+
+    <title>
+        Usuários — Unidac Industries
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="../css/style_adm.css"
+    >
+
+    </head>
+
+<body>
+
+
+    <!-- =========================================
+         SIDEBAR
+    ========================================== -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-mark">
+                U
+            </div>
+
+            <div>
+
+                <strong>
+                    Unidac Industries
+                </strong>
+
+                <small>
+                    Enterprise Management
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- MENU -->
+
+        <nav class="nav">
+
+            <a href="dashboard.html">
+
+                <i>⌂</i>
+
+                <span>
+                    Dashboard
+                </span>
+
+            </a>
+
+
+            <a
+                href="usuarios.html"
+                class="ativo"
+            >
+
+                <i>♙</i>
+
+                <span>
+                    Usuários
+                </span>
+
+            </a>
+
+
+            <a href="financeiro.html">
+
+                <i>R$</i>
+
+                <span>
+                    Financeiro
+                </span>
+
+            </a>
+
+
+            <a href="estoque.html">
+
+                <i>▣</i>
+
+                <span>
+                    Estoque
+                </span>
+
+            </a>
+
+
+            <a href="cozinha.html">
+
+                <i>♨</i>
+
+                <span>
+                    Cantina
+                </span>
+
+            </a>
+
+
+            <a href="consumo.html">
+
+                <i>◔</i>
+
+                <span>
+                    Consumo
+                </span>
+
+            </a>
+
+
+            <a href="desperdicio.html">
+
+                <i>↘</i>
+
+                <span>
+                    Desperdício
+                </span>
+
+            </a>
+
+
+            <a href="compras.html">
+
+                <i>▤</i>
+
+                <span>
+                    Compras
+                </span>
+
+            </a>
+
+
+            <a href="validades.html">
+
+                <i>◷</i>
+
+                <span>
+                    Validades
+                </span>
+
+            </a>
+
+
+            <a href="relatorios.html">
+
+                <i>▥</i>
+
+                <span>
+                    Relatórios
+                </span>
+
+            </a>
+
+
+            <a href="sustentabilidade.html">
+
+                <i>♧</i>
+
+                <span>
+                    Sustentabilidade
+                </span>
+
+            </a>
+
+
+            <a href="metas.html">
+
+                <i>◎</i>
+
+                <span>
+                    Metas
+                </span>
+
+            </a>
+
+
+            <a href="inteligente.html">
+
+                <i>✦</i>
+
+                <span>
+                    Inteligência
+                </span>
+
+            </a>
+
+
+            <a href="notificacoes.html">
+
+                <i>●</i>
+
+                <span>
+                    Notificações
+                </span>
+
+            </a>
+
+        </nav>
+
+
+        <!-- PERFIL -->
+
+        <div class="profile">
+
+            <div class="profile-box">
+
+                <div class="avatar">
+                    U
+                </div>
+
+                <div>
+
+                    <strong class="user-name">
+                        Usuário
+                    </strong>
+
+                    <small class="user-role">
+                        Acesso
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <button onclick="event.preventDefault();if(!confirm('Sair do sistema?\nSua sessão será encerrada neste dispositivo.'))return;localStorage.removeItem('unidacUser');var p=location.pathname.split('/').filter(Boolean);if(p.length&&p[p.length-1].indexOf('.html')!==-1)p.pop();if(p.length&&p[p.length-1]==='pages')p.pop();if(p.length)p.pop();location.href=(p.length?'/'+p.join('/')+'/':'/')+'index.html';"  type="button" class="logout">
+
+                ↪
+
+                <span>
+                    Sair
+                </span>
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =========================================
+         CONTEÚDO PRINCIPAL
+    ========================================== -->
+
+    <main class="main">
+
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div>
+
+                <h1>
+                    Usuários
+                </h1>
+
+                <p>
+                    Unidac Industries • Gestão corporativa
+                </p>
+
+            </div>
+
+
+            <div class="top-actions">
+
+                <button
+                    class="icon-btn"
+                    onclick="location.href='notificacoes.html'"
+                >
+
+                    ♢
+
+                    <b class="dot"></b>
+
+                </button>
+
+
+                <div class="avatar">
+                    U
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =========================================
+             PÁGINA
+        ========================================== -->
+
+        <section class="page">
+
+
+            <!-- CABEÇALHO -->
+
+            <div class="page-head">
+
+                <div>
+
+                    <span class="eyebrow">
+                        ADMINISTRAÇÃO
+                    </span>
+
+                    <h2>
+                        Gestão de usuários
+                    </h2>
+
+                    <p>
+                        Crie, edite e controle os níveis
+                        de acesso da organização.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="btn"
+                    id="addUser"
+                >
+
+                    + Novo usuário
+
+                </button>
+
+            </div>
+
+
+
+            <!-- =========================================
+                 ESTATÍSTICAS
+            ========================================== -->
+
+            <div class="grid stats">
+
+
+                <div class="card stat">
+
+                    <span class="label">
+                        USUÁRIOS
+                    </span>
+
+                    <div
+                        class="value"
+                        id="userCount"
+                    >
+                        8
+                    </div>
+
+                    <span class="trend">
+                        Contas cadastradas
+                    </span>
+
+                </div>
+
+
+                <div class="card stat">
+
+                    <span class="label">
+                        PERFIS
+                    </span>
+
+                    <div class="value">
+                        8
+                    </div>
+
+                    <span class="trend">
+                        Níveis de acesso
+                    </span>
+
+                </div>
+
+
+                <div class="card stat">
+
+                    <span class="label">
+                        STATUS
+                    </span>
+
+                    <div class="value">
+                        100%
+                    </div>
+
+                    <span class="trend">
+                        Ambiente local
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================================
+                 TABELA
+            ========================================== -->
+
+            <div
+                class="card"
+                style="margin-top: 18px;"
+            >
+
+                <div class="card-title">
+
+                    <h3>
+                        Contas cadastradas
+                    </h3>
+
+
+                    <input
+                        class="live-search input"
+                        data-target="#usersTable tr"
+                        placeholder="Pesquisar usuário..."
+                    >
+
+                </div>
+
+
+                <div class="table-wrap">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Usuário
+                                </th>
+
+                                <th>
+                                    E-mail
+                                </th>
+
+                                <th>
+                                    Perfil
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                                <th>
+                                    Ações
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="usersTable">
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =========================================
+         MODAL — NOVO / EDITAR USUÁRIO
+    ========================================== -->
+
+    <div
+        class="modal-bg"
+        id="user-modal"
+    >
+
+        <div class="modal">
+
+            <h3 id="user-modal-title">
+                Novo usuário
+            </h3>
+
+
+            <p>
+                Cadastre ou altere os dados do usuário.
+            </p>
+
+
+            <!-- NOME -->
+
+            <div class="field">
+
+                <label for="user-name">
+                    NOME DO USUÁRIO
+                </label>
+
+                <input
+                    type="text"
+                    id="user-name"
+                    placeholder="Nome completo"
+                >
+
+            </div>
+
+
+            <!-- E-MAIL -->
+
+            <div class="field">
+
+                <label for="user-email">
+                    E-MAIL
+                </label>
+
+                <input
+                    type="email"
+                    id="user-email"
+                    placeholder="usuario@gmail.com"
+                >
+
+            </div>
+
+
+            <!-- PERFIL -->
+
+            <div class="field">
+
+                <label for="user-role">
+                    PERFIL DE ACESSO
+                </label>
+
+                <select id="user-role">
+
+                    <option value="administrador">
+                        Administrador
+                    </option>
+
+                    <option value="cozinheira">
+                        Cozinheira
+                    </option>
+
+                    <option value="aluno">
+                        Aluno
+                    </option>
+
+                    <option value="professor">
+                        Professor
+                    </option>
+
+                    <option value="estoquista">
+                        Estoquista
+                    </option>
+
+                    <option value="financeiro">
+                        Financeiro
+                    </option>
+
+                    <option value="gerente">
+                        Gerente
+                    </option>
+
+                    <option value="funcionario">
+                        Funcionário
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- BOTÕES -->
+
+            <div class="modal-actions">
+
+                <button
+                    class="btn secondary"
+                    id="close-user"
+                >
+                    Cancelar
+                </button>
+
+
+                <button
+                    class="btn"
+                    id="save-user"
+                >
+                    Salvar usuário
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================
+         MODAL — CONFIRMAÇÃO
+    ========================================== -->
+
+    <div
+        class="modal-bg"
+        id="modal-bg"
+    >
+
+        <div class="modal">
+
+            <h3 id="modal-title">
+                Confirmar ação
+            </h3>
+
+            <p id="modal-text">
+                Deseja realmente continuar?
+            </p>
+
+
+            <div class="modal-actions">
+
+                <button
+                    class="btn secondary"
+                    id="modal-no"
+                >
+                    Não
+                </button>
+
+
+                <button
+                    class="btn danger"
+                    id="modal-yes"
+                >
+                    Sim
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================
+         TOAST
+    ========================================== -->
+
+    <div
+        id="toast"
+        class="toast"
+    ></div>
+
+
+
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================== -->
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            () => {
+
+
+                /* =====================================
+                   USUÁRIOS PADRÃO
+                ====================================== */
+
+                const baseUsers = [
+
+                    [
+                        "Administrador",
+                        "administrador@gmail.com",
+                        "administrador"
+                    ],
+
+                    [
+                        "Cantineira",
+                        "catineira@gmail.com",
+                        "cozinheira"
+                    ],
+
+                    [
+                        "Aluno",
+                        "aluno@gmail.com",
+                        "aluno"
+                    ],
+
+                    [
+                        "Professor",
+                        "professor@gmail.com",
+                        "professor"
+                    ],
+
+                    [
+                        "Estoquista",
+                        "estoquista@gmail.com",
+                        "estoquista"
+                    ],
+
+                    [
+                        "Financeiro",
+                        "financeiro@gmail.com",
+                        "financeiro"
+                    ],
+
+                    [
+                        "Funcionário",
+                        "funcionario@gmail.com",
+                        "funcionario"
+                    ]
+
+                ];
+
+
+                /* =====================================
+                   CARREGAR USUÁRIOS
+                ====================================== */
+
+                let users =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "unidacUsers"
+                        )
+                    ) || baseUsers;
+
+
+                let editingIndex = null;
+
+
+                /* =====================================
+                   ELEMENTOS
+                ====================================== */
+
+                const userModal =
+                    document.querySelector(
+                        "#user-modal"
+                    );
+
+                const userModalTitle =
+                    document.querySelector(
+                        "#user-modal-title"
+                    );
+
+                const userName =
+                    document.querySelector(
+                        "#user-name"
+                    );
+
+                const userEmail =
+                    document.querySelector(
+                        "#user-email"
+                    );
+
+                const userRole =
+                    document.querySelector(
+                        "#user-role"
+                    );
+
+                const usersTable =
+                    document.querySelector(
+                        "#usersTable"
+                    );
+
+                const userCount =
+                    document.querySelector(
+                        "#userCount"
+                    );
+
+
+                /* =====================================
+                   SALVAR LOCALMENTE
+                ====================================== */
+
+                function saveUsers() {
+
+                    localStorage.setItem(
+                        "unidacUsers",
+                        JSON.stringify(users)
+                    );
+
+                }
+
+
+                /* =====================================
+                   ABRIR MODAL
+                ====================================== */
+
+                function openUserModal(index = null) {
+
+                    editingIndex = index;
+
+
+                    if (index === null) {
+
+                        userModalTitle.textContent =
+                            "Novo usuário";
+
+                        userName.value = "";
+                        userEmail.value = "";
+                        userRole.value = "funcionario";
+
+                    } else {
+
+                        userModalTitle.textContent =
+                            "Editar usuário";
+
+                        userName.value =
+                            users[index][0];
+
+                        userEmail.value =
+                            users[index][1];
+
+                        userRole.value =
+                            users[index][2];
+
+                    }
+
+
+                    userModal.classList.add(
+                        "show"
+                    );
+
+
+                    setTimeout(
+                        () => {
+                            userName.focus();
+                        },
+                        100
+                    );
+
+                }
+
+
+                /* =====================================
+                   FECHAR MODAL
+                ====================================== */
+
+                function closeUserModal() {
+
+                    userModal.classList.remove(
+                        "show"
+                    );
+
+                    editingIndex = null;
+
+                }
+
+
+                /* =====================================
+                   RENDERIZAR TABELA
+                ====================================== */
+
+                function renderUsers() {
+
+                    usersTable.innerHTML = "";
+
+
+                    users.forEach(
+                        (user, index) => {
+
+                            const row =
+                                document.createElement(
+                                    "tr"
+                                );
+
+
+                            row.innerHTML = `
+
+                                <td>
+                                    <strong>
+                                        ${user[0]}
+                                    </strong>
+                                </td>
+
+                                <td>
+                                    ${user[1]}
+                                </td>
+
+                                <td>
+
+                                    <span class="badge info">
+                                        ${user[2]}
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="badge ok">
+                                        Ativo
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <button
+                                        class="table-action"
+                                        data-edit="${index}"
+                                    >
+                                        Editar
+                                    </button>
+
+                                    <button
+                                        class="table-action danger-text"
+                                        data-delete="${index}"
+                                    >
+                                        Excluir
+                                    </button>
+
+                                </td>
+
+                            `;
+
+
+                            usersTable.appendChild(
+                                row
+                            );
+
+                        }
+                    );
+
+
+                    userCount.textContent =
+                        users.length;
+
+
+                    /* =================================
+                       EDITAR
+                    ================================== */
+
+                    document
+                        .querySelectorAll(
+                            "[data-edit]"
+                        )
+                        .forEach(
+                            button => {
+
+                                button.onclick =
+                                    () => {
+
+                                        const index =
+                                            Number(
+                                                button.dataset.edit
+                                            );
+
+                                        openUserModal(
+                                            index
+                                        );
+
+                                    };
+
+                            }
+                        );
+
+
+                    /* =================================
+                       EXCLUIR
+                    ================================== */
+
+                    document
+                        .querySelectorAll(
+                            "[data-delete]"
+                        )
+                        .forEach(
+                            button => {
+
+                                button.onclick =
+                                    () => {
+
+                                        const index =
+                                            Number(
+                                                button.dataset.delete
+                                            );
+
+
+                                        users.splice(
+                                            index,
+                                            1
+                                        );
+
+
+                                        saveUsers();
+
+                                        renderUsers();
+
+
+                                        showToast(
+                                            "Usuário excluído com sucesso."
+                                        );
+
+                                    };
+
+                            }
+                        );
+
+                }
+
+
+                /* =====================================
+                   NOVO USUÁRIO
+                ====================================== */
+
+                document
+                    .querySelector(
+                        "#addUser"
+                    )
+                    .onclick =
+                    () => {
+
+                        openUserModal();
+
+                    };
+
+
+                /* =====================================
+                   FECHAR
+                ====================================== */
+
+                document
+                    .querySelector(
+                        "#close-user"
+                    )
+                    .onclick =
+                    () => {
+
+                        closeUserModal();
+
+                    };
+
+
+                /* =====================================
+                   SALVAR USUÁRIO
+                ====================================== */
+
+                document
+                    .querySelector(
+                        "#save-user"
+                    )
+                    .onclick =
+                    () => {
+
+
+                        const name =
+                            userName.value.trim();
+
+                        const email =
+                            userEmail.value.trim();
+
+                        const role =
+                            userRole.value;
+
+
+                        /* VALIDAR */
+
+                        if (!name) {
+
+                            showToast(
+                                "Digite o nome do usuário."
+                            );
+
+                            userName.focus();
+
+                            return;
+
+                        }
+
+
+                        if (!email) {
+
+                            showToast(
+                                "Digite o e-mail do usuário."
+                            );
+
+                            userEmail.focus();
+
+                            return;
+
+                        }
+
+
+                        if (!role) {
+
+                            showToast(
+                                "Selecione um perfil."
+                            );
+
+                            return;
+
+                        }
+
+
+                        /* =================================
+                           EDITAR
+                        ================================== */
+
+                        if (editingIndex !== null) {
+
+                            users[editingIndex] = [
+
+                                name,
+                                email,
+                                role
+
+                            ];
+
+
+                            saveUsers();
+
+                            renderUsers();
+
+                            closeUserModal();
+
+
+                            showToast(
+                                "Usuário atualizado com sucesso."
+                            );
+
+
+                            return;
+
+                        }
+
+
+                        /* =================================
+                           CRIAR
+                        ================================== */
+
+                        users.push([
+
+                            name,
+                            email,
+                            role
+
+                        ]);
+
+
+                        saveUsers();
+
+                        renderUsers();
+
+                        closeUserModal();
+
+
+                        showToast(
+                            "Usuário criado com sucesso."
+                        );
+
+                    };
+
+
+                /* =====================================
+                   FECHAR CLICANDO FORA
+                ====================================== */
+
+                userModal.onclick =
+                    event => {
+
+                        if (
+                            event.target ===
+                            userModal
+                        ) {
+
+                            closeUserModal();
+
+                        }
+
+                    };
+
+
+                /* =====================================
+                   ESC PARA FECHAR
+                ====================================== */
+
+                document.addEventListener(
+                    "keydown",
+                    event => {
+
+                        if (
+                            event.key === "Escape" &&
+                            userModal.classList.contains(
+                                "show"
+                            )
+                        ) {
+
+                            closeUserModal();
+
+                        }
+
+                    }
+                );
+
+
+                /* =====================================
+                   INICIAR
+                ====================================== */
+
+                renderUsers();
+
+            }
+        );
+
+    </script>
+
+
+    <!-- SCRIPTS DO SISTEMA -->
+
+    <script src="../js/data.js"></script>
+
+    
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore-compat.js"></script>
+<script src="../../js/firebase-config.js"></script>
+<script src="../../js/firebase-live.js"></script>
+<script src="../../js/firebase-actions.js"></script>
+<script src="../../js/firebase-pdf.js"></script>
+
+<script src="../js/app.js"></script>
+
+    <script src="../js/charts.js"></script>
+
+</body>
+
+</html>

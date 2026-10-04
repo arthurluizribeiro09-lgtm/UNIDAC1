@@ -1,0 +1,638 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+
+    <title>Metas — Unidac Industries</title>
+
+    <link
+        rel="stylesheet"
+        href="../css/style_adm.css"
+    >
+
+    </head>
+
+<body>
+
+    <!-- =========================================
+         SIDEBAR
+    ========================================== -->
+
+    <aside class="sidebar">
+
+        <!-- LOGO -->
+
+        <div class="brand">
+
+            <div class="brand-mark">
+                U
+            </div>
+
+            <div>
+
+                <strong>
+                    Unidac Industries
+                </strong>
+
+                <small>
+                    Cantina inteligente
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- MENU -->
+
+        <nav class="nav">
+
+            <a href="dashboard.html">
+
+                <i>⌂</i>
+
+                <span>
+                    Dashboard
+                </span>
+
+            </a>
+
+
+            <a href="usuarios.html">
+
+                <i>♙</i>
+
+                <span>
+                    Usuários
+                </span>
+
+            </a>
+
+
+            <a href="financeiro.html">
+
+                <i>R$</i>
+
+                <span>
+                    Financeiro
+                </span>
+
+            </a>
+
+
+            <a href="estoque.html">
+
+                <i>▣</i>
+
+                <span>
+                    Estoque
+                </span>
+
+            </a>
+
+
+            <a href="cozinha.html">
+
+                <i>♨</i>
+
+                <span>
+                    Cozinha
+                </span>
+
+            </a>
+
+
+            <a href="consumo.html">
+
+                <i>◔</i>
+
+                <span>
+                    Consumo
+                </span>
+
+            </a>
+
+
+            <a href="desperdicio.html">
+
+                <i>↘</i>
+
+                <span>
+                    Desperdício
+                </span>
+
+            </a>
+
+
+            <a href="compras.html">
+
+                <i>▤</i>
+
+                <span>
+                    Compras
+                </span>
+
+            </a>
+
+
+            <a href="validades.html">
+
+                <i>◷</i>
+
+                <span>
+                    Validades
+                </span>
+
+            </a>
+
+
+            <a href="relatorios.html">
+
+                <i>▥</i>
+
+                <span>
+                    Relatórios
+                </span>
+
+            </a>
+
+
+            <a href="sustentabilidade.html">
+
+                <i>♧</i>
+
+                <span>
+                    Sustentabilidade
+                </span>
+
+            </a>
+
+
+            <a
+                href="metas.html"
+                class="ativo"
+            >
+
+                <i>◎</i>
+
+                <span>
+                    Metas
+                </span>
+
+            </a>
+
+
+            <a href="inteligente.html">
+
+                <i>✦</i>
+
+                <span>
+                    Modo Inteligente
+                </span>
+
+            </a>
+
+
+            <a href="notificacoes.html">
+
+                <i>●</i>
+
+                <span>
+                    Notificações
+                </span>
+
+            </a>
+
+        </nav>
+
+
+        <!-- PERFIL -->
+
+        <div class="profile">
+
+            <div class="profile-box">
+
+                <div class="avatar">
+                    G
+                </div>
+
+                <div>
+
+                    <strong class="user-name">
+                        Usuário
+                    </strong>
+
+                    <small class="user-role">
+                        Acesso
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- SAIR -->
+
+            <button onclick="event.preventDefault();if(!confirm('Sair do sistema?\nSua sessão será encerrada neste dispositivo.'))return;localStorage.removeItem('unidacUser');var p=location.pathname.split('/').filter(Boolean);if(p.length&&p[p.length-1].indexOf('.html')!==-1)p.pop();if(p.length&&p[p.length-1]==='pages')p.pop();if(p.length)p.pop();location.href=(p.length?'/'+p.join('/')+'/':'/')+'index.html';"  type="button" class="logout">
+
+                ↪
+
+                <span>
+                    Sair
+                </span>
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =========================================
+         CONTEÚDO PRINCIPAL
+    ========================================== -->
+
+    <main class="main">
+
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div>
+
+                <h1>
+                    Metas
+                </h1>
+
+                <p>
+                    Objetivos e desafios da cantina.
+                </p>
+
+            </div>
+
+
+            <div class="top-actions">
+
+                <button
+                    class="icon-btn"
+                    onclick="location.href='notificacoes.html'"
+                >
+
+                    ♢
+
+                    <b class="dot"></b>
+
+                </button>
+
+
+                <div class="avatar">
+                    G
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- =========================================
+             PÁGINA DE METAS
+        ========================================== -->
+
+        <section class="page">
+
+
+            <!-- CABEÇALHO -->
+
+            <div class="page-head">
+
+                <div>
+
+                    <h2>
+                        Metas
+                    </h2>
+
+                    <p>
+                        Acompanhe objetivos estratégicos da cantina.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="btn"
+                    data-toast="Desafio semanal atualizado."
+                >
+
+                    + Novo desafio
+
+                </button>
+
+            </div>
+
+
+            <!-- =========================================
+                 INDICADORES DAS METAS
+            ========================================== -->
+
+            <div class="grid three">
+
+
+                <!-- REDUZIR DESPERDÍCIO -->
+
+                <div class="card">
+
+                    <div class="eyebrow">
+                        Reduzir desperdício
+                    </div>
+
+
+                    <div class="big-number">
+
+                        23%
+
+                        <small class="muted">
+                            / 30%
+                        </small>
+
+                    </div>
+
+
+                    <div class="progress">
+
+                        <i data-width="77"></i>
+
+                    </div>
+
+
+                    <p
+                        class="muted"
+                        style="margin-top: 10px;"
+                    >
+                        7 pontos percentuais para a meta.
+                    </p>
+
+                </div>
+
+
+                <!-- ECONOMIA -->
+
+                <div class="card">
+
+                    <div class="eyebrow">
+                        Economia
+                    </div>
+
+
+                    <div class="big-number">
+
+                        R$ 9.840
+
+                        <small class="muted">
+                            / 12.000
+                        </small>
+
+                    </div>
+
+
+                    <div class="progress">
+
+                        <i data-width="82"></i>
+
+                    </div>
+
+
+                    <p
+                        class="muted"
+                        style="margin-top: 10px;"
+                    >
+                        82% da meta alcançada.
+                    </p>
+
+                </div>
+
+
+                <!-- APROVEITAMENTO -->
+
+                <div class="card">
+
+                    <div class="eyebrow">
+                        Aproveitamento
+                    </div>
+
+
+                    <div class="big-number">
+
+                        91,9%
+
+                        <small class="muted">
+                            / 95%
+                        </small>
+
+                    </div>
+
+
+                    <div class="progress">
+
+                        <i data-width="97"></i>
+
+                    </div>
+
+
+                    <p
+                        class="muted"
+                        style="margin-top: 10px;"
+                    >
+                        Próximo do objetivo.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================================
+                 DESAFIOS
+            ========================================== -->
+
+            <div
+                class="card"
+                style="margin-top: 18px;"
+            >
+
+                <div class="card-title">
+
+                    <h3>
+                        Desafios
+                    </h3>
+
+
+                    <span class="badge info">
+                        3 ativos
+                    </span>
+
+                </div>
+
+
+                <div class="list">
+
+
+                    <!-- DESAFIO 1 -->
+
+                    <div class="list-item">
+
+                        <div>
+
+                            <strong>
+                                Semana sem desperdício
+                            </strong>
+
+                            <p class="muted">
+                                Reduza perdas durante 7 dias.
+                            </p>
+
+                        </div>
+
+
+                        <span class="badge ok">
+                            Em andamento
+                        </span>
+
+                    </div>
+
+
+                    <!-- DESAFIO 2 -->
+
+                    <div class="list-item">
+
+                        <div>
+
+                            <strong>
+                                Zero validade perdida
+                            </strong>
+
+                            <p class="muted">
+                                Consuma todos os itens prioritários.
+                            </p>
+
+                        </div>
+
+
+                        <span class="badge warn">
+                            2 dias
+                        </span>
+
+                    </div>
+
+
+                    <!-- DESAFIO 3 -->
+
+                    <div class="list-item">
+
+                        <div>
+
+                            <strong>
+                                Melhor equipe do mês
+                            </strong>
+
+                            <p class="muted">
+                                Reconheça a equipe com melhor aproveitamento.
+                            </p>
+
+                        </div>
+
+
+                        <span class="badge info">
+                            68%
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================================
+         MODAL
+    ========================================== -->
+
+    <div
+        class="modal-bg"
+        id="modal-bg"
+    >
+
+        <div class="modal">
+
+            <h3 id="modal-title"></h3>
+
+            <p id="modal-text"></p>
+
+
+            <div class="modal-actions">
+
+                <button
+                    class="btn secondary"
+                    id="modal-no"
+                >
+                    Não
+                </button>
+
+
+                <button
+                    class="btn danger"
+                    id="modal-yes"
+                >
+                    Sim
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         TOAST
+    ========================================== -->
+
+    <div
+        id="toast"
+        class="toast"
+    ></div>
+
+
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================== -->
+
+    <script src="../js/data.js"></script>
+
+    
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore-compat.js"></script>
+<script src="../../js/firebase-config.js"></script>
+<script src="../../js/firebase-live.js"></script>
+<script src="../../js/firebase-actions.js"></script>
+<script src="../../js/firebase-pdf.js"></script>
+
+<script src="../js/app.js"></script>
+
+    <script src="../js/charts.js"></script>
+
+</body>
+
+</html>

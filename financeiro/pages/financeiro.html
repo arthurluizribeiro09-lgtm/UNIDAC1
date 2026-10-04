@@ -1,0 +1,2032 @@
+<!doctype html>
+
+<html lang="pt-BR">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Financeiro — Unidac Industries</title>
+
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/responsive.css">
+
+<style>
+
+    /* =========================================================
+       MODAL DE NOVA MOVIMENTAÇÃO
+    ========================================================= */
+
+    #movimentacaoModal {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 99999;
+
+        align-items: center;
+        justify-content: center;
+
+        padding: 20px;
+
+        background: rgba(0, 0, 0, 0.55);
+    }
+
+    #movimentacaoModal.aberto {
+        display: flex;
+    }
+
+    #movimentacaoModal .modal-movimentacao {
+        width: 100%;
+        max-width: 500px;
+
+        background: #ffffff;
+        border-radius: 18px;
+
+        padding: 28px;
+
+        box-shadow:
+            0 25px 60px rgba(0, 0, 0, 0.25);
+
+        animation: aparecerModal 0.2s ease;
+    }
+
+    @keyframes aparecerModal {
+
+        from {
+            opacity: 0;
+            transform: translateY(-15px) scale(0.97);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+    }
+
+    .campo-movimentacao {
+        margin-top: 16px;
+    }
+
+    .campo-movimentacao label {
+        display: block;
+        margin-bottom: 7px;
+
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    .campo-movimentacao input,
+    .campo-movimentacao select {
+
+        width: 100%;
+
+        padding: 13px 14px;
+
+        border: 1px solid #dfe5e1;
+        border-radius: 10px;
+
+        background: #ffffff;
+
+        font-family: inherit;
+        font-size: 14px;
+
+        outline: none;
+
+        transition: 0.2s;
+    }
+
+    .campo-movimentacao input:focus,
+    .campo-movimentacao select:focus {
+
+        border-color: #45b96d;
+
+        box-shadow:
+            0 0 0 3px rgba(69, 185, 109, 0.12);
+    }
+
+    .botoes-movimentacao {
+
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+
+        margin-top: 24px;
+    }
+
+    .botoes-movimentacao button {
+
+        border: none;
+        cursor: pointer;
+
+        padding: 12px 18px;
+
+        border-radius: 10px;
+
+        font-family: inherit;
+        font-weight: 600;
+
+        transition: 0.2s;
+    }
+
+    .btn-cancelar-movimentacao {
+
+        background: #eef1ef;
+        color: #333;
+    }
+
+    .btn-cancelar-movimentacao:hover {
+        background: #e2e6e3;
+    }
+
+    .btn-salvar-movimentacao {
+
+        background: #45b96d;
+        color: white;
+    }
+
+    .btn-salvar-movimentacao:hover {
+        background: #38a95f;
+        transform: translateY(-1px);
+    }
+
+    /* =========================================================
+       BOTÃO NOVA MOVIMENTAÇÃO
+    ========================================================= */
+
+    #btnNovaMovimentacao {
+        cursor: pointer;
+    }
+
+    /* =========================================================
+       TOAST
+    ========================================================= */
+
+    #toast {
+
+        position: fixed;
+
+        right: 25px;
+        bottom: 25px;
+
+        z-index: 100000;
+
+        padding: 14px 20px;
+
+        background: #222;
+        color: #fff;
+
+        border-radius: 10px;
+
+        box-shadow:
+            0 10px 30px rgba(0, 0, 0, 0.2);
+
+        opacity: 0;
+        pointer-events: none;
+
+        transform: translateY(15px);
+
+        transition: 0.3s;
+    }
+
+    #toast.show {
+
+        opacity: 1;
+        transform: translateY(0);
+
+    }
+
+    /* =========================================================
+       RESPONSIVO DO MODAL
+    ========================================================= */
+
+    @media (max-width: 600px) {
+
+        #movimentacaoModal .modal-movimentacao {
+            padding: 22px;
+        }
+
+        .botoes-movimentacao {
+            flex-direction: column;
+        }
+
+        .botoes-movimentacao button {
+            width: 100%;
+        }
+
+    }
+
+</style>
+```
+
+</head>
+
+<body>
+
+```
+<!-- =========================================================
+     SIDEBAR
+========================================================= -->
+
+<aside class="sidebar">
+
+    <div class="brand">
+
+        <div class="brand-mark">
+            U
+        </div>
+
+        <div>
+
+            <strong>
+                Unidac Industries
+            </strong>
+
+            <small>
+                Enterprise Management
+            </small>
+
+        </div>
+
+    </div>
+
+
+    <nav class="nav">
+
+        <a href="dashboard.html">
+
+            <i>⌂</i>
+
+            <span>
+                Dashboard
+            </span>
+
+        </a>
+
+
+        <a href="financeiro.html">
+
+            <i>R$</i>
+
+            <span>
+                Financeiro
+            </span>
+
+        </a>
+
+
+        <a href="compras.html">
+
+            <i>▤</i>
+
+            <span>
+                Compras
+            </span>
+
+        </a>
+
+
+        <a href="relatorios.html">
+
+            <i>▥</i>
+
+            <span>
+                Relatórios
+            </span>
+
+        </a>
+
+
+        <a href="notificacoes.html">
+
+            <i>●</i>
+
+            <span>
+                Notificações
+            </span>
+
+        </a>
+
+    </nav>
+
+
+    <div class="profile">
+
+        <div class="profile-box">
+
+            <div class="avatar">
+                U
+            </div>
+
+            <div>
+
+                <strong class="user-name">
+                    Usuário
+                </strong>
+
+                <small class="user-role">
+                    Acesso
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <button onclick="event.preventDefault();if(!confirm('Sair do sistema?\nSua sessão será encerrada neste dispositivo.'))return;localStorage.removeItem('unidacUser');var p=location.pathname.split('/').filter(Boolean);if(p.length&&p[p.length-1].indexOf('.html')!==-1)p.pop();if(p.length&&p[p.length-1]==='pages')p.pop();if(p.length)p.pop();location.href=(p.length?'/'+p.join('/')+'/':'/')+'index.html';"  type="button" class="logout">
+
+            ↪
+
+            <span>
+                Sair
+            </span>
+
+        </button>
+
+    </div>
+
+</aside>
+
+
+
+<!-- =========================================================
+     CONTEÚDO PRINCIPAL
+========================================================= -->
+
+<main class="main">
+
+
+    <!-- TOPBAR -->
+
+    <header class="topbar">
+
+        <div>
+
+            <h1>
+                Financeiro
+            </h1>
+
+            <p>
+                Unidac Industries • Gestão corporativa
+            </p>
+
+        </div>
+
+
+        <div class="top-actions">
+
+            <button
+                class="icon-btn"
+                onclick="location.href='notificacoes.html'">
+
+                ♢
+
+                <b class="dot"></b>
+
+            </button>
+
+
+            <div class="avatar">
+                U
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         PÁGINA
+    ===================================================== -->
+
+    <section class="page">
+
+
+        <!-- CABEÇALHO -->
+
+        <div class="page-head">
+
+            <div>
+
+                <span class="eyebrow">
+                    FINANÇAS
+                </span>
+
+                <h2>
+                    Central financeira
+                </h2>
+
+                <p>
+                    Resumo das movimentações, despesas,
+                    receitas e indicadores financeiros da cantina.
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="btn"
+                id="btnNovaMovimentacao">
+
+                + Nova movimentação
+
+            </button>
+
+        </div>
+
+
+
+        <!-- =================================================
+             INDICADORES
+        ================================================== -->
+
+        <div class="grid stats">
+
+
+            <!-- RECEITAS -->
+
+            <div class="card stat">
+
+                <div class="icon">
+                    ↗
+                </div>
+
+                <span class="label">
+                    RECEITAS
+                </span>
+
+                <div
+                    class="value"
+                    id="totalReceitas">
+
+                    R$ 48.620,00
+
+                </div>
+
+                <span class="trend">
+                    ↑ 12,4% no mês
+                </span>
+
+            </div>
+
+
+
+            <!-- DESPESAS -->
+
+            <div class="card stat">
+
+                <div class="icon">
+                    ↘
+                </div>
+
+                <span class="label">
+                    DESPESAS
+                </span>
+
+                <div
+                    class="value"
+                    id="totalDespesas">
+
+                    R$ 31.840,00
+
+                </div>
+
+                <span class="trend">
+                    ↑ 4,8% no período
+                </span>
+
+            </div>
+
+
+
+            <!-- SALDO -->
+
+            <div class="card stat">
+
+                <div class="icon">
+                    R$
+                </div>
+
+                <span class="label">
+                    SALDO DISPONÍVEL
+                </span>
+
+                <div
+                    class="value"
+                    id="saldoDisponivel">
+
+                    R$ 16.780,00
+
+                </div>
+
+                <span class="trend">
+                    Saldo atualizado
+                </span>
+
+            </div>
+
+
+
+            <!-- MARGEM -->
+
+            <div class="card stat">
+
+                <div class="icon">
+                    %
+                </div>
+
+                <span class="label">
+                    MARGEM
+                </span>
+
+                <div class="value">
+                    34,5%
+                </div>
+
+                <span class="trend">
+                    ↑ 3,1 p.p.
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             ALERTAS
+        ================================================== -->
+
+        <div
+            class="grid two"
+            style="margin-top: 18px;">
+
+
+            <div class="card">
+
+                <div class="card-title">
+
+                    <h3>
+                        Atenção financeira
+                    </h3>
+
+                    <span class="badge warn">
+                        Alerta
+                    </span>
+
+                </div>
+
+
+                <div class="alert">
+
+                    <div class="badge warn">
+                        ↑
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Aumento nas despesas
+                        </strong>
+
+                        <p class="muted">
+                            As despesas deste período aumentaram
+                            4,8% em relação ao período anterior.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="alert">
+
+                    <div class="badge warn">
+                        !
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Pagamento próximo do vencimento
+                        </strong>
+
+                        <p class="muted">
+                            Conta de R$ 1.240 programada
+                            para 05/09.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="card">
+
+                <div class="card-title">
+
+                    <h3>
+                        Desempenho financeiro
+                    </h3>
+
+                    <span class="badge ok">
+                        Positivo
+                    </span>
+
+                </div>
+
+
+                <div class="alert">
+
+                    <div class="badge ok">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Economia financeira identificada
+                        </strong>
+
+                        <p class="muted">
+                            A cantina gerou uma economia estimada
+                            de R$ 1.148 neste período.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="alert">
+
+                    <div class="badge ok">
+                        +
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Receita operacional registrada
+                        </strong>
+
+                        <p class="muted">
+                            Foi registrada uma receita de
+                            R$ 8.420 no caixa da cantina.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             FLUXO + MOVIMENTAÇÕES
+        ================================================== -->
+
+        <div
+            class="grid two"
+            style="margin-top: 18px;">
+
+
+            <!-- FLUXO -->
+
+            <div class="card">
+
+                <div class="card-title">
+
+                    <h3>
+                        Fluxo financeiro
+                    </h3>
+
+                    <span class="muted">
+                        Últimos 6 meses
+                    </span>
+
+                </div>
+
+
+                <div class="finance-bars">
+
+                    <i style="height: 48%;"></i>
+
+                    <i style="height: 70%;"></i>
+
+                    <i style="height: 58%;"></i>
+
+                    <i style="height: 82%;"></i>
+
+                    <i style="height: 66%;"></i>
+
+                    <i style="height: 91%;"></i>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- MOVIMENTAÇÕES -->
+
+            <div class="card">
+
+                <div class="card-title">
+
+                    <h3>
+                        Últimas movimentações
+                    </h3>
+
+                    <span class="badge info">
+                        Atualizado
+                    </span>
+
+                </div>
+
+
+                <div id="listaMovimentacoes">
+
+
+                    <!-- RECEITA PADRÃO -->
+
+                    <div class="alert">
+
+                        <div class="badge ok">
+                            +
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Receita operacional
+                            </strong>
+
+                            <p class="muted">
+                                R$ 8.420,00 • Hoje
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- DESPESA PADRÃO -->
+
+                    <div class="alert">
+
+                        <div class="badge danger-b">
+                            −
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Compra de insumos
+                            </strong>
+
+                            <p class="muted">
+                                R$ 2.180,00 • Ontem
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- CONTA PROGRAMADA -->
+
+                    <div class="alert">
+
+                        <div class="badge warn">
+                            !
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Conta programada
+                            </strong>
+
+                            <p class="muted">
+                                R$ 1.240,00 • 05/09
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- ECONOMIA -->
+
+                    <div class="alert">
+
+                        <div class="badge ok">
+                            ✓
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Economia identificada
+                            </strong>
+
+                            <p class="muted">
+                                R$ 1.148,00 • Período atual
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             RESUMO
+        ================================================== -->
+
+        <div
+            class="card"
+            style="margin-top: 18px;">
+
+            <div class="card-title">
+
+                <div>
+
+                    <h3>
+                        Resumo financeiro
+                    </h3>
+
+                    <p class="muted">
+                        Principais informações do período atual.
+                    </p>
+
+                </div>
+
+                <span class="badge info">
+                    Visão geral
+                </span>
+
+            </div>
+
+
+            <div class="grid stats">
+
+
+                <div class="stat">
+
+                    <span class="label">
+                        RECEITA RECENTE
+                    </span>
+
+                    <div
+                        class="value"
+                        id="receitaRecente">
+
+                        R$ 8.420,00
+
+                    </div>
+
+                    <span class="trend">
+                        Receita operacional
+                    </span>
+
+                </div>
+
+
+
+                <div class="stat">
+
+                    <span class="label">
+                        DESPESA RECENTE
+                    </span>
+
+                    <div
+                        class="value"
+                        id="despesaRecente">
+
+                        R$ 2.180,00
+
+                    </div>
+
+                    <span class="trend">
+                        Compra de insumos
+                    </span>
+
+                </div>
+
+
+
+                <div class="stat">
+
+                    <span class="label">
+                        ECONOMIA
+                    </span>
+
+                    <div class="value">
+                        R$ 1.148,00
+                    </div>
+
+                    <span class="trend">
+                        Economia identificada
+                    </span>
+
+                </div>
+
+
+
+                <div class="stat">
+
+                    <span class="label">
+                        VARIAÇÃO DAS DESPESAS
+                    </span>
+
+                    <div class="value">
+                        +4,8%
+                    </div>
+
+                    <span class="trend">
+                        Em relação ao período anterior
+                    </span>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+</main>
+
+
+
+<!-- =========================================================
+     MODAL NOVA MOVIMENTAÇÃO
+========================================================= -->
+
+<div
+    id="movimentacaoModal"
+    aria-hidden="true">
+
+    <div class="modal-movimentacao">
+
+        <div class="card-title">
+
+            <div>
+
+                <h3>
+                    Nova movimentação
+                </h3>
+
+                <p class="muted">
+                    Registre uma nova entrada ou saída financeira.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- TIPO -->
+
+        <div class="campo-movimentacao">
+
+            <label for="tipoMovimentacao">
+                Tipo da movimentação
+            </label>
+
+            <select id="tipoMovimentacao">
+
+                <option value="receita">
+                    Receita
+                </option>
+
+                <option value="despesa">
+                    Despesa
+                </option>
+
+            </select>
+
+        </div>
+
+
+
+        <!-- DESCRIÇÃO -->
+
+        <div class="campo-movimentacao">
+
+            <label for="descricaoMovimentacao">
+                Descrição
+            </label>
+
+            <input
+                type="text"
+                id="descricaoMovimentacao"
+                placeholder="Ex.: Venda de refeições">
+
+        </div>
+
+
+
+        <!-- VALOR -->
+
+        <div class="campo-movimentacao">
+
+            <label for="valorMovimentacao">
+                Valor
+            </label>
+
+            <input
+                type="text"
+                id="valorMovimentacao"
+                placeholder="Ex.: R$ 500,00"
+                inputmode="decimal">
+
+        </div>
+
+
+
+        <!-- DATA -->
+
+        <div class="campo-movimentacao">
+
+            <label for="dataMovimentacao">
+                Data
+            </label>
+
+            <input
+                type="date"
+                id="dataMovimentacao">
+
+        </div>
+
+
+
+        <!-- BOTÕES -->
+
+        <div class="botoes-movimentacao">
+
+            <button
+                type="button"
+                class="btn-cancelar-movimentacao"
+                id="cancelarMovimentacao">
+
+                Cancelar
+
+            </button>
+
+
+            <button
+                type="button"
+                class="btn-salvar-movimentacao"
+                id="salvarMovimentacao">
+
+                Salvar movimentação
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     MODAL PADRÃO DO SISTEMA
+========================================================= -->
+
+<div
+    class="modal-bg"
+    id="modal-bg">
+
+    <div class="modal">
+
+        <h3 id="modal-title"></h3>
+
+        <p id="modal-text"></p>
+
+
+        <div class="modal-actions">
+
+            <button
+                class="btn secondary"
+                id="modal-no">
+
+                Não
+
+            </button>
+
+
+            <button
+                class="btn danger"
+                id="modal-yes">
+
+                Sim
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- TOAST -->
+
+<div
+    id="toast"
+    class="toast">
+</div>
+
+
+
+<!-- =========================================================
+     SCRIPTS DO SISTEMA
+========================================================= -->
+
+<script src="../js/data.js"></script>
+
+
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore-compat.js"></script>
+<script src="../../js/firebase-config.js"></script>
+<script src="../../js/firebase-live.js"></script>
+<script src="../../js/firebase-actions.js"></script>
+<script src="../../js/firebase-pdf.js"></script>
+
+<script src="../js/app.js"></script>
+
+<script src="../js/charts.js"></script>
+
+
+
+<!-- =========================================================
+     SCRIPT FINANCEIRO
+========================================================= -->
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+
+        /* =====================================================
+           ELEMENTOS
+        ===================================================== */
+
+        const btnNova =
+            document.getElementById("btnNovaMovimentacao");
+
+        const modal =
+            document.getElementById("movimentacaoModal");
+
+        const cancelar =
+            document.getElementById("cancelarMovimentacao");
+
+        const salvar =
+            document.getElementById("salvarMovimentacao");
+
+        const tipo =
+            document.getElementById("tipoMovimentacao");
+
+        const descricao =
+            document.getElementById("descricaoMovimentacao");
+
+        const valor =
+            document.getElementById("valorMovimentacao");
+
+        const data =
+            document.getElementById("dataMovimentacao");
+
+        const lista =
+            document.getElementById("listaMovimentacoes");
+
+        const totalReceitas =
+            document.getElementById("totalReceitas");
+
+        const totalDespesas =
+            document.getElementById("totalDespesas");
+
+        const saldoDisponivel =
+            document.getElementById("saldoDisponivel");
+
+
+
+        /* =====================================================
+           VALORES BASE DO SISTEMA
+        ===================================================== */
+
+        const RECEITAS_BASE = 48620;
+
+        const DESPESAS_BASE = 31840;
+
+
+
+        /* =====================================================
+           FORMATAR MOEDA
+        ===================================================== */
+
+        function formatarMoeda(numero) {
+
+            return Number(numero).toLocaleString(
+                "pt-BR",
+                {
+                    style: "currency",
+                    currency: "BRL"
+                }
+            );
+
+        }
+
+
+
+        /* =====================================================
+           CONVERTER VALOR DIGITADO
+        ===================================================== */
+
+        function converterValor(texto) {
+
+            if (!texto) {
+                return NaN;
+            }
+
+            let valorTexto =
+                String(texto)
+                .trim()
+                .replace(/R\$/gi, "")
+                .replace(/\s/g, "");
+
+            /*
+                Se tiver vírgula:
+
+                1.500,50
+
+                vira:
+
+                1500.50
+            */
+
+            if (valorTexto.includes(",")) {
+
+                valorTexto =
+                    valorTexto
+                    .replace(/\./g, "")
+                    .replace(",", ".");
+
+            }
+
+            /*
+                Se não tiver vírgula:
+
+                1500.50
+
+                continua como:
+
+                1500.50
+            */
+
+            const numero =
+                Number(valorTexto);
+
+            return numero;
+
+        }
+
+
+
+        /* =====================================================
+           DATA DE HOJE
+        ===================================================== */
+
+        function colocarDataAtual() {
+
+            const hoje =
+                new Date();
+
+            const ano =
+                hoje.getFullYear();
+
+            const mes =
+                String(
+                    hoje.getMonth() + 1
+                ).padStart(2, "0");
+
+            const dia =
+                String(
+                    hoje.getDate()
+                ).padStart(2, "0");
+
+            data.value =
+                `${ano}-${mes}-${dia}`;
+
+        }
+
+
+
+        /* =====================================================
+           FORMATAR DATA
+        ===================================================== */
+
+        function formatarData(dataISO) {
+
+            if (!dataISO) {
+                return "";
+            }
+
+            const partes =
+                dataISO.split("-");
+
+            return `${partes[2]}/${partes[1]}`;
+
+        }
+
+
+
+        /* =====================================================
+           ABRIR MODAL
+        ===================================================== */
+
+        btnNova.addEventListener("click", function () {
+
+            descricao.value = "";
+
+            valor.value = "";
+
+            tipo.value = "receita";
+
+            colocarDataAtual();
+
+            modal.classList.add("aberto");
+
+            modal.setAttribute(
+                "aria-hidden",
+                "false"
+            );
+
+            setTimeout(function () {
+
+                descricao.focus();
+
+            }, 100);
+
+        });
+
+
+
+        /* =====================================================
+           FECHAR MODAL
+        ===================================================== */
+
+        function fecharModal() {
+
+            modal.classList.remove("aberto");
+
+            modal.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+
+        }
+
+
+
+        cancelar.addEventListener(
+            "click",
+            fecharModal
+        );
+
+
+
+        modal.addEventListener(
+            "click",
+            function (event) {
+
+                if (
+                    event.target === modal
+                ) {
+
+                    fecharModal();
+
+                }
+
+            }
+        );
+
+
+
+        document.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (
+                    event.key === "Escape" &&
+                    modal.classList.contains("aberto")
+                ) {
+
+                    fecharModal();
+
+                }
+
+            }
+        );
+
+
+
+        /* =====================================================
+           TOAST
+        ===================================================== */
+
+        function mostrarToast(mensagem) {
+
+            const toast =
+                document.getElementById("toast");
+
+            if (!toast) {
+                return;
+            }
+
+            toast.textContent =
+                mensagem;
+
+            toast.classList.add("show");
+
+            setTimeout(function () {
+
+                toast.classList.remove("show");
+
+            }, 3000);
+
+        }
+
+
+
+        /* =====================================================
+           PEGAR MOVIMENTAÇÕES SALVAS
+        ===================================================== */
+
+        function obterMovimentacoes() {
+
+            try {
+
+                const dados =
+                    localStorage.getItem(
+                        "unidacMovimentacoes"
+                    );
+
+                if (!dados) {
+                    return [];
+                }
+
+                const movimentacoes =
+                    JSON.parse(dados);
+
+                if (
+                    !Array.isArray(
+                        movimentacoes
+                    )
+                ) {
+
+                    return [];
+
+                }
+
+                return movimentacoes;
+
+            } catch (erro) {
+
+                console.error(
+                    "Erro ao carregar movimentações:",
+                    erro
+                );
+
+                return [];
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           SALVAR NO LOCALSTORAGE
+        ===================================================== */
+
+        function salvarMovimentacoes(
+            movimentacoes
+        ) {
+
+            localStorage.setItem(
+                "unidacMovimentacoes",
+                JSON.stringify(
+                    movimentacoes
+                )
+            );
+
+        }
+
+
+
+        /* =====================================================
+           ADICIONAR MOVIMENTAÇÃO NA TELA
+        ===================================================== */
+
+        function adicionarMovimentacaoNaTela(
+            movimentacao
+        ) {
+
+            const bloco =
+                document.createElement("div");
+
+            bloco.className =
+                "alert";
+
+
+            const icone =
+                document.createElement("div");
+
+            if (
+                movimentacao.tipo === "receita"
+            ) {
+
+                icone.className =
+                    "badge ok";
+
+                icone.textContent =
+                    "+";
+
+            } else {
+
+                icone.className =
+                    "badge danger-b";
+
+                icone.textContent =
+                    "−";
+
+            }
+
+
+            const conteudo =
+                document.createElement("div");
+
+
+            const titulo =
+                document.createElement("strong");
+
+            titulo.textContent =
+                movimentacao.descricao;
+
+
+            const detalhe =
+                document.createElement("p");
+
+            detalhe.className =
+                "muted";
+
+            detalhe.textContent =
+                `${formatarMoeda(
+                    movimentacao.valor
+                )} • ${movimentacao.data}`;
+
+
+            conteudo.appendChild(
+                titulo
+            );
+
+            conteudo.appendChild(
+                detalhe
+            );
+
+
+            bloco.appendChild(
+                icone
+            );
+
+            bloco.appendChild(
+                conteudo
+            );
+
+
+            lista.prepend(
+                bloco
+            );
+
+        }
+
+
+
+        /* =====================================================
+           ATUALIZAR INDICADORES
+        ===================================================== */
+
+        function atualizarIndicadores() {
+
+            const movimentacoes =
+                obterMovimentacoes();
+
+
+            let receitas =
+                RECEITAS_BASE;
+
+            let despesas =
+                DESPESAS_BASE;
+
+
+            movimentacoes.forEach(
+                function (movimentacao) {
+
+                    const valorMov =
+                        Number(
+                            movimentacao.valor
+                        ) || 0;
+
+
+                    if (
+                        movimentacao.tipo === "receita"
+                    ) {
+
+                        receitas +=
+                            valorMov;
+
+                    }
+
+
+                    if (
+                        movimentacao.tipo === "despesa"
+                    ) {
+
+                        despesas +=
+                            valorMov;
+
+                    }
+
+                }
+            );
+
+
+            const saldo =
+                receitas - despesas;
+
+
+            totalReceitas.textContent =
+                formatarMoeda(
+                    receitas
+                );
+
+
+            totalDespesas.textContent =
+                formatarMoeda(
+                    despesas
+                );
+
+
+            saldoDisponivel.textContent =
+                formatarMoeda(
+                    saldo
+                );
+
+
+
+            /*
+                Atualiza também o resumo.
+            */
+
+            const receitasRecentes =
+                movimentacoes.filter(
+                    function (item) {
+
+                        return item.tipo === "receita";
+
+                    }
+                );
+
+
+            const despesasRecentes =
+                movimentacoes.filter(
+                    function (item) {
+
+                        return item.tipo === "despesa";
+
+                    }
+                );
+
+
+            if (
+                receitasRecentes.length > 0
+            ) {
+
+                const ultimaReceita =
+                    receitasRecentes[0];
+
+                const elemento =
+                    document.getElementById(
+                        "receitaRecente"
+                    );
+
+                if (elemento) {
+
+                    elemento.textContent =
+                        formatarMoeda(
+                            ultimaReceita.valor
+                        );
+
+                }
+
+            }
+
+
+            if (
+                despesasRecentes.length > 0
+            ) {
+
+                const ultimaDespesa =
+                    despesasRecentes[0];
+
+                const elemento =
+                    document.getElementById(
+                        "despesaRecente"
+                    );
+
+                if (elemento) {
+
+                    elemento.textContent =
+                        formatarMoeda(
+                            ultimaDespesa.valor
+                        );
+
+                }
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           SALVAR MOVIMENTAÇÃO
+        ===================================================== */
+
+        salvar.addEventListener(
+            "click",
+            function () {
+
+
+                const descricaoValor =
+                    descricao.value.trim();
+
+
+                const valorNumerico =
+                    converterValor(
+                        valor.value
+                    );
+
+
+                const tipoValor =
+                    tipo.value;
+
+
+                const dataValor =
+                    data.value;
+
+
+
+                /* ==========================
+                   VALIDAÇÃO DA DESCRIÇÃO
+                ========================== */
+
+                if (
+                    descricaoValor === ""
+                ) {
+
+                    alert(
+                        "Informe a descrição da movimentação."
+                    );
+
+                    descricao.focus();
+
+                    return;
+
+                }
+
+
+
+                /* ==========================
+                   VALIDAÇÃO DO VALOR
+                ========================== */
+
+                if (
+                    isNaN(valorNumerico) ||
+                    valorNumerico <= 0
+                ) {
+
+                    alert(
+                        "Informe um valor válido."
+                    );
+
+                    valor.focus();
+
+                    return;
+
+                }
+
+
+
+                /* ==========================
+                   VALIDAÇÃO DA DATA
+                ========================== */
+
+                if (
+                    dataValor === ""
+                ) {
+
+                    alert(
+                        "Informe a data da movimentação."
+                    );
+
+                    data.focus();
+
+                    return;
+
+                }
+
+
+
+                /* ==========================
+                   CRIAR MOVIMENTAÇÃO
+                ========================== */
+
+                const movimentacao = {
+
+                    id:
+                        Date.now(),
+
+                    tipo:
+                        tipoValor,
+
+                    descricao:
+                        descricaoValor,
+
+                    valor:
+                        valorNumerico,
+
+                    data:
+                        formatarData(
+                            dataValor
+                        )
+
+                };
+
+
+
+                /* ==========================
+                   BUSCAR MOVIMENTAÇÕES
+                ========================== */
+
+                const movimentacoes =
+                    obterMovimentacoes();
+
+
+
+                /* ==========================
+                   ADICIONAR NO INÍCIO
+                ========================== */
+
+                movimentacoes.unshift(
+                    movimentacao
+                );
+
+
+
+                /* ==========================
+                   SALVAR
+                ========================== */
+
+                salvarMovimentacoes(
+                    movimentacoes
+                );
+
+
+
+                /* ==========================
+                   COLOCAR NA TELA
+                ========================== */
+
+                adicionarMovimentacaoNaTela(
+                    movimentacao
+                );
+
+
+
+                /* ==========================
+                   ATUALIZAR VALORES
+                ========================== */
+
+                atualizarIndicadores();
+
+
+
+                /* ==========================
+                   FECHAR MODAL
+                ========================== */
+
+                fecharModal();
+
+
+
+                /* ==========================
+                   LIMPAR CAMPOS
+                ========================== */
+
+                descricao.value = "";
+
+                valor.value = "";
+
+
+
+                /* ==========================
+                   AVISO
+                ========================== */
+
+                mostrarToast(
+                    "Movimentação registrada com sucesso!"
+                );
+
+            }
+        );
+
+
+
+        /* =====================================================
+           CARREGAR MOVIMENTAÇÕES
+        ===================================================== */
+
+        function carregarMovimentacoes() {
+
+            const movimentacoes =
+                obterMovimentacoes();
+
+
+            /*
+                Adicionamos de trás para frente
+                para manter a ordem correta.
+            */
+
+            movimentacoes
+                .slice()
+                .reverse()
+                .forEach(
+                    function (movimentacao) {
+
+                        adicionarMovimentacaoNaTela(
+                            movimentacao
+                        );
+
+                    }
+                );
+
+
+            atualizarIndicadores();
+
+        }
+
+
+
+        /* =====================================================
+           INICIAR SISTEMA
+        ===================================================== */
+
+        carregarMovimentacoes();
+
+    });
+
+</script>
+
+
+</body>
+
+</html>

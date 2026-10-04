@@ -1,0 +1,1773 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1">
+
+    <title>Dashboard — Unidac Industries</title>
+
+    <link
+        rel="stylesheet"
+        href="../css/style.css">
+
+    <link
+        rel="stylesheet"
+        href="../css/responsive.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-mark">
+                U
+            </div>
+
+            <div>
+
+                <strong>
+                    Unidac Industries
+                </strong>
+
+                <small>
+                    Cantina inteligente
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <nav class="nav">
+
+            <a
+                href="dashboard.html"
+                class="active">
+
+                <i>⌂</i>
+
+                <span>
+                    Dashboard
+                </span>
+
+            </a>
+
+
+            <a href="estoque.html">
+
+                <i>▣</i>
+
+                <span>
+                    Estoque
+                </span>
+
+            </a>
+
+
+            <a href="compras.html">
+
+                <i>▤</i>
+
+                <span>
+                    Compras
+                </span>
+
+            </a>
+
+
+            <a href="validades.html">
+
+                <i>◷</i>
+
+                <span>
+                    Validades
+                </span>
+
+            </a>
+
+
+            <a href="notificacoes.html">
+
+                <i>●</i>
+
+                <span>
+                    Notificações
+                </span>
+
+            </a>
+
+        </nav>
+
+
+        <div class="profile">
+
+            <div class="profile-box">
+
+                <div class="avatar">
+                    S
+                </div>
+
+                <div>
+
+                    <strong class="user-name">
+                        Usuário
+                    </strong>
+
+                    <small class="user-role">
+                        Estoquista
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <button onclick="event.preventDefault();if(!confirm('Sair do sistema?\nSua sessão será encerrada neste dispositivo.'))return;localStorage.removeItem('unidacUser');var p=location.pathname.split('/').filter(Boolean);if(p.length&&p[p.length-1].indexOf('.html')!==-1)p.pop();if(p.length&&p[p.length-1]==='pages')p.pop();if(p.length)p.pop();location.href=(p.length?'/'+p.join('/')+'/':'/')+'index.html';"  type="button" class="logout">
+
+                ↪
+
+                <span>
+                    Sair
+                </span>
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         CONTEÚDO PRINCIPAL
+    ====================================================== -->
+
+    <main class="main">
+
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div>
+
+                <h1>
+                    Dashboard
+                </h1>
+
+                <p>
+                    Controle e acompanhamento do estoque.
+                </p>
+
+            </div>
+
+
+            <div class="top-actions">
+
+                <button
+                    class="icon-btn"
+                    onclick="location.href='notificacoes.html'"
+                    title="Notificações">
+
+                    ♢
+
+                    <b
+                        class="dot"
+                        id="notification-dot">
+                    </b>
+
+                </button>
+
+
+                <div class="avatar">
+                    S
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =====================================================
+             PÁGINA
+        ====================================================== -->
+
+        <section class="page">
+
+
+            <!-- =================================================
+                 HERO
+            ================================================== -->
+
+            <div class="hero-card">
+
+                <div>
+
+                    <span class="eyebrow">
+                        PAINEL DO ESTOQUISTA
+                    </span>
+
+
+                    <h2>
+                        Controle do estoque
+                    </h2>
+
+
+                    <p>
+                        Acompanhe produtos, compras, validades
+                        e alertas importantes da cantina.
+                    </p>
+
+                </div>
+
+
+                <div class="hero-mark">
+                    S
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 CABEÇALHO
+            ================================================== -->
+
+            <div class="page-head">
+
+                <div>
+
+                    <h2>
+                        Resumo do estoque
+                    </h2>
+
+                    <p>
+                        Informações atualizadas das áreas
+                        administradas pelo estoque.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="btn"
+                    onclick="atualizarDashboard()">
+
+                    ↻ Atualizar dados
+
+                </button>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 INDICADORES
+            ================================================== -->
+
+            <div class="grid stats">
+
+
+                <!-- PRODUTOS -->
+
+                <div class="card stat">
+
+                    <div class="icon">
+                        ▣
+                    </div>
+
+                    <span class="label">
+                        PRODUTOS EM ESTOQUE
+                    </span>
+
+                    <div
+                        class="value"
+                        id="total-produtos">
+
+                        0
+
+                    </div>
+
+                    <span class="trend">
+                        Itens cadastrados
+                    </span>
+
+                </div>
+
+
+
+                <!-- ESTOQUE BAIXO -->
+
+                <div class="card stat">
+
+                    <div class="icon">
+                        ⚠
+                    </div>
+
+                    <span class="label">
+                        ESTOQUE BAIXO
+                    </span>
+
+                    <div
+                        class="value"
+                        id="estoque-baixo">
+
+                        0
+
+                    </div>
+
+                    <span class="trend">
+                        Requer atenção
+                    </span>
+
+                </div>
+
+
+
+                <!-- VALIDADES -->
+
+                <div class="card stat">
+
+                    <div class="icon">
+                        ◷
+                    </div>
+
+                    <span class="label">
+                        VALIDADES PRÓXIMAS
+                    </span>
+
+                    <div
+                        class="value"
+                        id="valididades-proximas">
+
+                        0
+
+                    </div>
+
+                    <span class="trend">
+                        Próximos 7 dias
+                    </span>
+
+                </div>
+
+
+
+                <!-- PEDIDOS -->
+
+                <div class="card stat">
+
+                    <div class="icon">
+                        ▤
+                    </div>
+
+                    <span class="label">
+                        PEDIDOS RECENTES
+                    </span>
+
+                    <div
+                        class="value"
+                        id="total-pedidos">
+
+                        0
+
+                    </div>
+
+                    <span class="trend">
+                        Compras registradas
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 DUAS COLUNAS
+            ================================================== -->
+
+            <div class="grid two">
+
+
+                <!-- ALERTAS -->
+
+                <div class="card">
+
+                    <div class="card-title">
+
+                        <div>
+
+                            <h3>
+                                Alertas do estoque
+                            </h3>
+
+                            <p class="muted">
+                                Situações que precisam de atenção.
+                            </p>
+
+                        </div>
+
+
+                        <a
+                            class="link"
+                            href="notificacoes.html">
+
+                            Ver notificações
+
+                        </a>
+
+                    </div>
+
+
+                    <div
+                        id="alerts-container">
+
+                        <div class="activity">
+
+                            <div class="activity-icon">
+                                ✓
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Verificando estoque
+                                </strong>
+
+                                <p class="muted">
+                                    Carregando informações...
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ATALHOS -->
+
+                <div class="card">
+
+                    <div class="card-title">
+
+                        <h3>
+                            Acesso rápido
+                        </h3>
+
+                    </div>
+
+
+                    <div class="quick-grid">
+
+
+                        <a
+                            class="quick"
+                            href="estoque.html">
+
+                            <span>
+                                ▣
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Estoque
+                                </strong>
+
+                                <small>
+                                    Consultar produtos
+                                </small>
+
+                            </div>
+
+                        </a>
+
+
+
+                        <a
+                            class="quick"
+                            href="compras.html">
+
+                            <span>
+                                ▤
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Compras
+                                </strong>
+
+                                <small>
+                                    Ver pedidos
+                                </small>
+
+                            </div>
+
+                        </a>
+
+
+
+                        <a
+                            class="quick"
+                            href="validades.html">
+
+                            <span>
+                                ◷
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Validades
+                                </strong>
+
+                                <small>
+                                    Controlar vencimentos
+                                </small>
+
+                            </div>
+
+                        </a>
+
+
+
+                        <a
+                            class="quick"
+                            href="notificacoes.html">
+
+                            <span>
+                                ●
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Notificações
+                                </strong>
+
+                                <small>
+                                    Ver alertas
+                                </small>
+
+                            </div>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 SITUAÇÃO DOS PRODUTOS
+            ================================================== -->
+
+            <div
+                class="grid two"
+                style="margin-top:18px">
+
+
+                <!-- VALIDADES -->
+
+                <div class="card">
+
+                    <div class="card-title">
+
+                        <div>
+
+                            <h3>
+                                Próximas validades
+                            </h3>
+
+                            <p class="muted">
+                                Produtos que precisam de atenção.
+                            </p>
+
+                        </div>
+
+
+                        <a
+                            class="link"
+                            href="validades.html">
+
+                            Ver todas
+
+                        </a>
+
+                    </div>
+
+
+                    <div
+                        id="validity-summary">
+
+                        <div class="activity">
+
+                            <div class="activity-icon">
+                                ◷
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Carregando...
+                                </strong>
+
+                                <p class="muted">
+                                    Consultando validades.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- COMPRAS -->
+
+                <div class="card">
+
+                    <div class="card-title">
+
+                        <div>
+
+                            <h3>
+                                Últimas compras
+                            </h3>
+
+                            <p class="muted">
+                                Pedidos registrados recentemente.
+                            </p>
+
+                        </div>
+
+
+                        <a
+                            class="link"
+                            href="compras.html">
+
+                            Ver compras
+
+                        </a>
+
+                    </div>
+
+
+                    <div
+                        id="purchase-summary">
+
+                        <div class="activity">
+
+                            <div class="activity-icon">
+                                ▤
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Carregando...
+                                </strong>
+
+                                <p class="muted">
+                                    Consultando pedidos.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 PRODUTOS COM PROBLEMAS
+            ================================================== -->
+
+            <div
+                class="card"
+                style="margin-top:18px">
+
+
+                <div class="card-title">
+
+                    <div>
+
+                        <h3>
+                            Situação do estoque
+                        </h3>
+
+                        <p class="muted">
+                            Produtos que exigem acompanhamento.
+                        </p>
+
+                    </div>
+
+
+                    <a
+                        class="link"
+                        href="estoque.html">
+
+                        Gerenciar estoque
+
+                    </a>
+
+                </div>
+
+
+                <div
+                    id="stock-summary">
+
+                    <div class="activity">
+
+                        <div class="activity-icon">
+                            ✓
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Carregando estoque...
+                            </strong>
+
+                            <p class="muted">
+                                Aguarde enquanto os dados são
+                                consultados.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =====================================================
+         MODAL GERAL
+    ====================================================== -->
+
+    <div
+        class="modal-bg"
+        id="modal-bg">
+
+        <div class="modal">
+
+            <h3 id="modal-title"></h3>
+
+            <p id="modal-text"></p>
+
+
+            <div class="modal-actions">
+
+                <button
+                    class="btn secondary"
+                    id="modal-no">
+
+                    Não
+
+                </button>
+
+
+                <button
+                    class="btn danger"
+                    id="modal-yes">
+
+                    Sim
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- TOAST -->
+
+    <div
+        id="toast"
+        class="toast">
+    </div>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT EXISTENTE
+    ====================================================== -->
+
+    <script src="../js/data.js"></script>
+
+    
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore-compat.js"></script>
+<script src="../../js/firebase-config.js"></script>
+<script src="../../js/firebase-live.js"></script>
+<script src="../../js/firebase-actions.js"></script>
+<script src="../../js/firebase-pdf.js"></script>
+
+<script src="../js/app.js"></script>
+
+    <script src="../js/charts.js"></script>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT DO DASHBOARD
+    ====================================================== -->
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+                atualizarDashboard();
+
+            }
+        );
+
+
+
+        /*
+        ======================================================
+        ATUALIZAR DASHBOARD
+        ======================================================
+        */
+
+        function atualizarDashboard() {
+
+            carregarEstoque();
+
+            carregarValidades();
+
+            carregarCompras();
+
+            carregarAlertas();
+
+        }
+
+
+
+        /*
+        ======================================================
+        ESTOQUE
+        ======================================================
+        */
+
+        function carregarEstoque() {
+
+            let estoque = [];
+
+            try {
+
+                estoque =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "unidac_estoque"
+                        )
+                    ) || [];
+
+            } catch (erro) {
+
+                estoque = [];
+
+            }
+
+
+            /*
+            Se a página de estoque ainda não
+            tiver dados salvos, utiliza alguns
+            dados demonstrativos.
+            */
+
+            if (estoque.length === 0) {
+
+                estoque = [
+
+                    {
+                        nome: "Arroz",
+                        quantidade: 18,
+                        minimo: 10
+                    },
+
+                    {
+                        nome: "Feijão",
+                        quantidade: 7,
+                        minimo: 10
+                    },
+
+                    {
+                        nome: "Frango",
+                        quantidade: 15,
+                        minimo: 8
+                    },
+
+                    {
+                        nome: "Tomate",
+                        quantidade: 9,
+                        minimo: 12
+                    },
+
+                    {
+                        nome: "Leite",
+                        quantidade: 24,
+                        minimo: 10
+                    }
+
+                ];
+
+            }
+
+
+            const produtos =
+                estoque.length;
+
+
+            let baixos = 0;
+
+
+            estoque.forEach(
+                function (produto) {
+
+                    const quantidade =
+                        Number(
+                            produto.quantidade
+                        ) || 0;
+
+
+                    const minimo =
+                        Number(
+                            produto.minimo
+                        ) || 0;
+
+
+                    if (
+                        minimo > 0 &&
+                        quantidade <= minimo
+                    ) {
+
+                        baixos++;
+
+                    }
+
+                }
+            );
+
+
+            document.getElementById(
+                "total-produtos"
+            ).textContent =
+                produtos;
+
+
+            document.getElementById(
+                "estoque-baixo"
+            ).textContent =
+                baixos;
+
+
+            const container =
+                document.getElementById(
+                    "stock-summary"
+                );
+
+
+            const produtosBaixos =
+                estoque.filter(
+                    function (produto) {
+
+                        return (
+                            Number(
+                                produto.quantidade
+                            ) <=
+                            Number(
+                                produto.minimo
+                            )
+                        );
+
+                    }
+                );
+
+
+            if (
+                produtosBaixos.length === 0
+            ) {
+
+                container.innerHTML = `
+
+                    <div class="activity">
+
+                        <div class="activity-icon">
+                            ✓
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Estoque em situação normal
+                            </strong>
+
+                            <p class="muted">
+                                Nenhum produto abaixo do estoque mínimo.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            container.innerHTML =
+                produtosBaixos
+                    .slice(0, 5)
+                    .map(
+                        function (produto) {
+
+                            return `
+
+                                <div class="activity">
+
+                                    <div class="activity-icon">
+                                        ⚠
+                                    </div>
+
+                                    <div>
+
+                                        <strong>
+                                            ${produto.nome}
+                                        </strong>
+
+                                        <p class="muted">
+                                            Quantidade atual:
+                                            ${produto.quantidade}
+                                            ${produto.unidade || ""}
+                                            • Mínimo:
+                                            ${produto.minimo}
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+                            `;
+
+                        }
+                    )
+                    .join("");
+
+        }
+
+
+
+        /*
+        ======================================================
+        VALIDADES
+        ======================================================
+        */
+
+        function carregarValidades() {
+
+            let produtos = [];
+
+            try {
+
+                produtos =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "unidac_valididades"
+                        )
+                    ) || [];
+
+            } catch (erro) {
+
+                produtos = [];
+
+            }
+
+
+            /*
+            Dados iniciais caso ainda não
+            existam registros.
+            */
+
+            if (produtos.length === 0) {
+
+                produtos = [
+
+                    {
+                        nome: "Banana",
+                        quantidade: 5,
+                        unidade: "Kg",
+                        validade: "2026-09-05"
+                    },
+
+                    {
+                        nome: "Tomate",
+                        quantidade: 9,
+                        unidade: "Kg",
+                        validade: "2026-09-08"
+                    },
+
+                    {
+                        nome: "Leite",
+                        quantidade: 24,
+                        unidade: "L",
+                        validade: "2026-09-11"
+                    },
+
+                    {
+                        nome: "Arroz",
+                        quantidade: 18,
+                        unidade: "sacos",
+                        validade: "2026-10-02"
+                    }
+
+                ];
+
+            }
+
+
+            const hoje =
+                new Date();
+
+
+            hoje.setHours(
+                0,
+                0,
+                0,
+                0
+            );
+
+
+            const proximas =
+                produtos.filter(
+                    function (produto) {
+
+                        const validade =
+                            new Date(
+                                produto.validade +
+                                "T00:00:00"
+                            );
+
+
+                        const diferenca =
+                            Math.ceil(
+                                (
+                                    validade -
+                                    hoje
+                                ) /
+                                (
+                                    1000 *
+                                    60 *
+                                    60 *
+                                    24
+                                )
+                            );
+
+
+                        produto.diasDashboard =
+                            diferenca;
+
+
+                        return (
+                            diferenca >= 0 &&
+                            diferenca <= 7
+                        );
+
+                    }
+                );
+
+
+            document.getElementById(
+                "valididades-proximas"
+            ).textContent =
+                proximas.length;
+
+
+            const container =
+                document.getElementById(
+                    "validity-summary"
+                );
+
+
+            if (
+                proximas.length === 0
+            ) {
+
+                container.innerHTML = `
+
+                    <div class="activity">
+
+                        <div class="activity-icon">
+                            ✓
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Nenhuma validade próxima
+                            </strong>
+
+                            <p class="muted">
+                                Não há produtos vencendo nos próximos 7 dias.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            proximas.sort(
+                function (a, b) {
+
+                    return (
+                        a.diasDashboard -
+                        b.diasDashboard
+                    );
+
+                }
+            );
+
+
+            container.innerHTML =
+                proximas
+                    .slice(0, 4)
+                    .map(
+                        function (produto) {
+
+                            const dias =
+                                produto.diasDashboard;
+
+
+                            let texto;
+
+
+                            if (dias === 0) {
+
+                                texto =
+                                    "Vence hoje";
+
+                            } else if (dias === 1) {
+
+                                texto =
+                                    "Vence amanhã";
+
+                            } else {
+
+                                texto =
+                                    "Vence em " +
+                                    dias +
+                                    " dias";
+
+                            }
+
+
+                            return `
+
+                                <div class="activity">
+
+                                    <div class="activity-icon">
+                                        ◷
+                                    </div>
+
+                                    <div>
+
+                                        <strong>
+                                            ${produto.nome}
+                                        </strong>
+
+                                        <p class="muted">
+                                            ${produto.quantidade}
+                                            ${produto.unidade || ""}
+                                            • ${texto}
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+                            `;
+
+                        }
+                    )
+                    .join("");
+
+        }
+
+
+
+        /*
+        ======================================================
+        COMPRAS
+        ======================================================
+        */
+
+        function carregarCompras() {
+
+            let pedidos = [];
+
+            try {
+
+                pedidos =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "unidacPedidos"
+                        )
+                    ) || [];
+
+            } catch (erro) {
+
+                pedidos = [];
+
+            }
+
+
+            document.getElementById(
+                "total-pedidos"
+            ).textContent =
+                pedidos.length;
+
+
+            const container =
+                document.getElementById(
+                    "purchase-summary"
+                );
+
+
+            if (
+                pedidos.length === 0
+            ) {
+
+                container.innerHTML = `
+
+                    <div class="activity">
+
+                        <div class="activity-icon">
+                            ▤
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Nenhum pedido registrado
+                            </strong>
+
+                            <p class="muted">
+                                Os novos pedidos aparecerão aqui.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            const recentes =
+                pedidos
+                    .slice()
+                    .reverse()
+                    .slice(0, 4);
+
+
+            container.innerHTML =
+                recentes
+                    .map(
+                        function (pedido) {
+
+                            return `
+
+                                <div class="activity">
+
+                                    <div class="activity-icon">
+                                        ▤
+                                    </div>
+
+                                    <div>
+
+                                        <strong>
+                                            Pedido #${pedido.number}
+                                        </strong>
+
+                                        <p class="muted">
+                                            ${pedido.supplier}
+                                            • ${pedido.amount}
+                                            • ${pedido.status}
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+                            `;
+
+                        }
+                    )
+                    .join("");
+
+        }
+
+
+
+        /*
+        ======================================================
+        ALERTAS
+        ======================================================
+        */
+
+        function carregarAlertas() {
+
+            let estoque = [];
+
+            let validades = [];
+
+
+            try {
+
+                estoque =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "unidac_estoque"
+                        )
+                    ) || [];
+
+            } catch (erro) {
+
+                estoque = [];
+
+            }
+
+
+            try {
+
+                validades =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "unidac_valididades"
+                        )
+                    ) || [];
+
+            } catch (erro) {
+
+                validades = [];
+
+            }
+
+
+            let alertas = [];
+
+
+            /*
+            Estoque baixo
+            */
+
+            estoque.forEach(
+                function (produto) {
+
+                    const quantidade =
+                        Number(
+                            produto.quantidade
+                        ) || 0;
+
+
+                    const minimo =
+                        Number(
+                            produto.minimo
+                        ) || 0;
+
+
+                    if (
+                        minimo > 0 &&
+                        quantidade <= minimo
+                    ) {
+
+                        alertas.push({
+
+                            tipo: "estoque",
+
+                            titulo:
+                                "Estoque baixo — " +
+                                produto.nome,
+
+                            texto:
+                                "Quantidade atual: " +
+                                quantidade +
+                                ". Mínimo: " +
+                                minimo + "."
+
+                        });
+
+                    }
+
+                }
+            );
+
+
+            /*
+            Validades próximas
+            */
+
+            const hoje =
+                new Date();
+
+
+            hoje.setHours(
+                0,
+                0,
+                0,
+                0
+            );
+
+
+            validades.forEach(
+                function (produto) {
+
+                    const validade =
+                        new Date(
+                            produto.validade +
+                            "T00:00:00"
+                        );
+
+
+                    const dias =
+                        Math.ceil(
+                            (
+                                validade -
+                                hoje
+                            ) /
+                            (
+                                1000 *
+                                60 *
+                                60 *
+                                24
+                            )
+                        );
+
+
+                    if (
+                        dias >= 0 &&
+                        dias <= 7
+                    ) {
+
+                        alertas.push({
+
+                            tipo: "validade",
+
+                            titulo:
+                                "Validade próxima — " +
+                                produto.nome,
+
+                            texto:
+                                dias === 0
+                                    ? "O produto vence hoje."
+                                    : "Vence em " +
+                                      dias +
+                                      " dias."
+
+                        });
+
+                    }
+
+                }
+            );
+
+
+            const container =
+                document.getElementById(
+                    "alerts-container"
+                );
+
+
+            if (
+                alertas.length === 0
+            ) {
+
+                container.innerHTML = `
+
+                    <div class="activity">
+
+                        <div class="activity-icon">
+                            ✓
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Nenhum alerta pendente
+                            </strong>
+
+                            <p class="muted">
+                                O estoque está sem ocorrências críticas.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            container.innerHTML =
+                alertas
+                    .slice(0, 5)
+                    .map(
+                        function (alerta) {
+
+                            const icone =
+                                alerta.tipo ===
+                                "estoque"
+                                    ? "⚠"
+                                    : "◷";
+
+
+                            return `
+
+                                <div class="activity">
+
+                                    <div class="activity-icon">
+                                        ${icone}
+                                    </div>
+
+                                    <div>
+
+                                        <strong>
+                                            ${alerta.titulo}
+                                        </strong>
+
+                                        <p class="muted">
+                                            ${alerta.texto}
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+                            `;
+
+                        }
+                    )
+                    .join("");
+
+
+
+            /*
+            Indicador de notificação
+            */
+
+            const dot =
+                document.getElementById(
+                    "notification-dot"
+                );
+
+
+            if (
+                dot
+            ) {
+
+                dot.style.display =
+                    alertas.length > 0
+                        ? "block"
+                        : "none";
+
+            }
+
+        }
+
+
+
+        /*
+        ======================================================
+        BOTÃO ATUALIZAR
+        ======================================================
+        */
+
+        function atualizarDashboard() {
+
+            carregarEstoque();
+
+            carregarValidades();
+
+            carregarCompras();
+
+            carregarAlertas();
+
+
+            if (
+                typeof showToast ===
+                "function"
+            ) {
+
+                showToast(
+                    "Dashboard atualizado com sucesso."
+                );
+
+            }
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

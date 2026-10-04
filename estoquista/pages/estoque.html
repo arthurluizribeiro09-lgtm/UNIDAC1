@@ -1,0 +1,1966 @@
+<!doctype html>
+
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1">
+
+    <title>Estoque — Unidac Industries</title>
+
+    <link
+        rel="stylesheet"
+        href="../css/style.css">
+
+    <link
+        rel="stylesheet"
+        href="../css/responsive.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<aside class="sidebar">
+
+    <div class="brand">
+
+        <div class="brand-mark">
+            U
+        </div>
+
+        <div>
+
+            <strong>
+                Unidac Industries
+            </strong>
+
+            <small>
+                Cantina inteligente
+            </small>
+
+        </div>
+
+    </div>
+
+
+    <nav class="nav">
+
+        <a href="dashboard.html">
+
+            <i>⌂</i>
+
+            <span>
+                Dashboard
+            </span>
+
+        </a>
+
+
+        <a
+            href="estoque.html"
+            class="active">
+
+            <i>▣</i>
+
+            <span>
+                Estoque
+            </span>
+
+        </a>
+
+
+        <a href="compras.html">
+
+            <i>▤</i>
+
+            <span>
+                Compras
+            </span>
+
+        </a>
+
+
+        <a href="validades.html">
+
+            <i>◷</i>
+
+            <span>
+                Validades
+            </span>
+
+        </a>
+
+
+        <a href="notificacoes.html">
+
+            <i>●</i>
+
+            <span>
+                Notificações
+            </span>
+
+        </a>
+
+    </nav>
+
+
+    <!-- PERFIL -->
+
+    <div class="profile">
+
+        <div class="profile-box">
+
+            <div class="avatar">
+                G
+            </div>
+
+            <div>
+
+                <strong class="user-name">
+                    Usuário
+                </strong>
+
+                <small class="user-role">
+                    Administrador
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <button onclick="event.preventDefault();if(!confirm('Sair do sistema?\nSua sessão será encerrada neste dispositivo.'))return;localStorage.removeItem('unidacUser');var p=location.pathname.split('/').filter(Boolean);if(p.length&&p[p.length-1].indexOf('.html')!==-1)p.pop();if(p.length&&p[p.length-1]==='pages')p.pop();if(p.length)p.pop();location.href=(p.length?'/'+p.join('/')+'/':'/')+'index.html';" 
+            class="logout"
+            type="button">
+
+            ↪
+
+            <span>
+                Sair
+            </span>
+
+        </button>
+
+    </div>
+
+</aside>
+
+
+
+<!-- =====================================================
+     CONTEÚDO PRINCIPAL
+===================================================== -->
+
+<main class="main">
+
+
+    <!-- TOPBAR -->
+
+    <header class="topbar">
+
+        <div>
+
+            <h1>
+                Estoque
+            </h1>
+
+            <p>
+                Controle completo de produtos e movimentações.
+            </p>
+
+        </div>
+
+
+        <div class="top-actions">
+
+            <button
+                class="icon-btn"
+                onclick="location.href='notificacoes.html'"
+                title="Notificações">
+
+                ♢
+
+                <b class="dot"></b>
+
+            </button>
+
+
+            <div class="avatar">
+                G
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =================================================
+         PÁGINA
+    ================================================= -->
+
+    <section class="page">
+
+
+        <!-- CABEÇALHO -->
+
+        <div class="page-head">
+
+            <div>
+
+                <h2>
+                    Controle de Estoque
+                </h2>
+
+                <p>
+                    Gerencie produtos, quantidades,
+                    preços, validades e movimentações.
+                </p>
+
+            </div>
+
+
+            <div class="page-actions">
+
+                <button
+                    class="btn secondary"
+                    onclick="showToast('Estoque atualizado com sucesso.')">
+
+                    ↻ Atualizar
+
+                </button>
+
+
+                <button
+                    class="btn"
+                    id="open-add-product">
+
+                    + Novo produto
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             INDICADORES
+        ================================================= -->
+
+        <div class="grid stats">
+
+
+            <div class="card stat">
+
+                <span class="label">
+                    PRODUTOS CADASTRADOS
+                </span>
+
+                <div class="value">
+                    48
+                </div>
+
+                <span class="trend">
+                    ↑ 4 este mês
+                </span>
+
+            </div>
+
+
+
+            <div class="card stat">
+
+                <span class="label">
+                    ESTOQUE BAIXO
+                </span>
+
+                <div class="value">
+                    3
+                </div>
+
+                <span class="trend">
+                    Necessitam reposição
+                </span>
+
+            </div>
+
+
+
+            <div class="card stat">
+
+                <span class="label">
+                    VALIDADES PRÓXIMAS
+                </span>
+
+                <div class="value">
+                    8
+                </div>
+
+                <span class="trend">
+                    Próximos 7 dias
+                </span>
+
+            </div>
+
+
+
+            <div class="card stat">
+
+                <span class="label">
+                    VALOR EM ESTOQUE
+                </span>
+
+                <div class="value">
+                    R$ 18,4k
+                </div>
+
+                <span class="trend">
+                    Atualizado hoje
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             AÇÕES RÁPIDAS
+        ================================================= -->
+
+        <div class="grid">
+
+            <div class="card">
+
+                <div class="table-head">
+
+                    <div>
+
+                        <h3>
+                            Ações rápidas
+                        </h3>
+
+                        <p>
+                            Acesse rapidamente as principais
+                            funções do estoque.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="quick-actions">
+
+                    <button
+                        class="btn"
+                        id="quick-entry">
+
+                        📥 Entrada
+
+                    </button>
+
+
+                    <button
+                        class="btn secondary"
+                        id="quick-exit">
+
+                        📤 Saída
+
+                    </button>
+
+
+                    <button
+                        class="btn secondary"
+                        onclick="showToast('Inventário iniciado.')">
+
+                        📋 Inventário
+
+                    </button>
+
+
+                    <button
+                        class="btn secondary"
+                        onclick="showToast('Relatório gerado.')">
+
+                        📊 Relatório
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             TABELA DE PRODUTOS
+        ================================================= -->
+
+        <div class="card table-card">
+
+
+            <div class="table-head">
+
+                <div>
+
+                    <h3>
+                        Produtos cadastrados
+                    </h3>
+
+                    <p>
+                        Consulte e gerencie todos os produtos.
+                    </p>
+
+                </div>
+
+
+                <div class="tools">
+
+
+                    <input
+                        class="search live-search"
+                        data-target="#stock-body tr"
+                        placeholder="Pesquisar produto...">
+
+
+                    <select
+                        class="select"
+                        id="status-filter">
+
+                        <option value="all">
+                            Todos os status
+                        </option>
+
+                        <option value="ok">
+                            Estável
+                        </option>
+
+                        <option value="low">
+                            Estoque baixo
+                        </option>
+
+                        <option value="attention">
+                            Atenção
+                        </option>
+
+                        <option value="expired">
+                            Vencido
+                        </option>
+
+                    </select>
+
+
+                    <select
+                        class="select"
+                        id="category-filter">
+
+                        <option value="all">
+                            Todas as categorias
+                        </option>
+
+                        <option value="alimentos">
+                            Alimentos
+                        </option>
+
+                        <option value="bebidas">
+                            Bebidas
+                        </option>
+
+                        <option value="hortifruti">
+                            Hortifruti
+                        </option>
+
+                        <option value="carnes">
+                            Carnes
+                        </option>
+
+                    </select>
+
+
+                    <button
+                        class="btn secondary"
+                        onclick="showToast('Histórico de movimentações aberto.')">
+
+                        Histórico
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="table-wrap">
+
+                <table>
+
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Produto</th>
+                            <th>Categoria</th>
+                            <th>Unidade</th>
+                            <th>Quantidade</th>
+                            <th>Mínimo</th>
+                            <th>Preço</th>
+                            <th>Validade</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+
+                        </tr>
+
+                    </thead>
+
+
+
+                    <tbody id="stock-body">
+
+
+                        <tr
+                            data-status="ok"
+                            data-category="alimentos">
+
+                            <td>
+                                <strong>
+                                    Arroz
+                                </strong>
+                            </td>
+
+                            <td>
+                                Alimentos
+                            </td>
+
+                            <td>
+                                Saco
+                            </td>
+
+                            <td>
+                                18
+                            </td>
+
+                            <td>
+                                10
+                            </td>
+
+                            <td>
+                                R$ 28,90
+                            </td>
+
+                            <td>
+                                15/12/2026
+                            </td>
+
+                            <td>
+
+                                <span class="badge ok">
+                                    Estável
+                                </span>
+
+                            </td>
+
+                            <td>
+
+                                <button
+                                    class="action"
+                                    onclick="openMovement('Arroz')">
+
+                                    Movimentar
+
+                                </button>
+
+
+                                <button
+                                    class="action"
+                                    onclick="editProduct('Arroz')">
+
+                                    Editar
+
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+
+
+                        <tr
+                            data-status="low"
+                            data-category="alimentos">
+
+                            <td>
+                                <strong>
+                                    Feijão
+                                </strong>
+                            </td>
+
+                            <td>
+                                Alimentos
+                            </td>
+
+                            <td>
+                                Saco
+                            </td>
+
+                            <td>
+                                7
+                            </td>
+
+                            <td>
+                                10
+                            </td>
+
+                            <td>
+                                R$ 8,90
+                            </td>
+
+                            <td>
+                                10/11/2026
+                            </td>
+
+                            <td>
+
+                                <span class="badge danger-b">
+                                    Estoque baixo
+                                </span>
+
+                            </td>
+
+                            <td>
+
+                                <button
+                                    class="action"
+                                    onclick="openMovement('Feijão')">
+
+                                    Repor
+
+                                </button>
+
+
+                                <button
+                                    class="action"
+                                    onclick="editProduct('Feijão')">
+
+                                    Editar
+
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+
+
+                        <tr
+                            data-status="ok"
+                            data-category="carnes">
+
+                            <td>
+                                <strong>
+                                    Frango
+                                </strong>
+                            </td>
+
+                            <td>
+                                Carnes
+                            </td>
+
+                            <td>
+                                Kg
+                            </td>
+
+                            <td>
+                                42
+                            </td>
+
+                            <td>
+                                20
+                            </td>
+
+                            <td>
+                                R$ 12,90
+                            </td>
+
+                            <td>
+                                08/09/2026
+                            </td>
+
+                            <td>
+
+                                <span class="badge ok">
+                                    Estável
+                                </span>
+
+                            </td>
+
+                            <td>
+
+                                <button
+                                    class="action"
+                                    onclick="openMovement('Frango')">
+
+                                    Movimentar
+
+                                </button>
+
+
+                                <button
+                                    class="action"
+                                    onclick="editProduct('Frango')">
+
+                                    Editar
+
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+
+
+                        <tr
+                            data-status="attention"
+                            data-category="hortifruti">
+
+                            <td>
+                                <strong>
+                                    Tomate
+                                </strong>
+                            </td>
+
+                            <td>
+                                Hortifruti
+                            </td>
+
+                            <td>
+                                Kg
+                            </td>
+
+                            <td>
+                                9
+                            </td>
+
+                            <td>
+                                12
+                            </td>
+
+                            <td>
+                                R$ 7,50
+                            </td>
+
+                            <td>
+                                07/09/2026
+                            </td>
+
+                            <td>
+
+                                <span class="badge warn">
+                                    Atenção
+                                </span>
+
+                            </td>
+
+                            <td>
+
+                                <button
+                                    class="action"
+                                    onclick="openMovement('Tomate')">
+
+                                    Repor
+
+                                </button>
+
+
+                                <button
+                                    class="action"
+                                    onclick="editProduct('Tomate')">
+
+                                    Editar
+
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+
+
+                        <tr
+                            data-status="attention"
+                            data-category="hortifruti">
+
+                            <td>
+                                <strong>
+                                    Banana
+                                </strong>
+                            </td>
+
+                            <td>
+                                Hortifruti
+                            </td>
+
+                            <td>
+                                Kg
+                            </td>
+
+                            <td>
+                                5
+                            </td>
+
+                            <td>
+                                8
+                            </td>
+
+                            <td>
+                                R$ 6,90
+                            </td>
+
+                            <td>
+                                06/09/2026
+                            </td>
+
+                            <td>
+
+                                <span class="badge warn">
+                                    Validade próxima
+                                </span>
+
+                            </td>
+
+                            <td>
+
+                                <button
+                                    class="action"
+                                    onclick="openMovement('Banana')">
+
+                                    Priorizar
+
+                                </button>
+
+
+                                <button
+                                    class="action"
+                                    onclick="editProduct('Banana')">
+
+                                    Editar
+
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             ÚLTIMAS MOVIMENTAÇÕES
+        ================================================= -->
+
+        <div class="card table-card">
+
+
+            <div class="table-head">
+
+                <div>
+
+                    <h3>
+                        Últimas movimentações
+                    </h3>
+
+                    <p>
+                        Histórico recente do estoque.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="table-wrap">
+
+                <table>
+
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Data
+                            </th>
+
+                            <th>
+                                Produto
+                            </th>
+
+                            <th>
+                                Tipo
+                            </th>
+
+                            <th>
+                                Quantidade
+                            </th>
+
+                            <th>
+                                Responsável
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+
+                        <tr>
+
+                            <td>
+                                Hoje, 10:42
+                            </td>
+
+                            <td>
+                                Arroz
+                            </td>
+
+                            <td>
+
+                                <span class="badge ok">
+                                    Entrada
+                                </span>
+
+                            </td>
+
+                            <td>
+                                +10
+                            </td>
+
+                            <td>
+                                Usuário
+                            </td>
+
+                        </tr>
+
+
+
+                        <tr>
+
+                            <td>
+                                Hoje, 09:18
+                            </td>
+
+                            <td>
+                                Frango
+                            </td>
+
+                            <td>
+
+                                <span class="badge danger-b">
+                                    Saída
+                                </span>
+
+                            </td>
+
+                            <td>
+                                -8 Kg
+                            </td>
+
+                            <td>
+                                Usuário
+                            </td>
+
+                        </tr>
+
+
+
+                        <tr>
+
+                            <td>
+                                Ontem, 16:32
+                            </td>
+
+                            <td>
+                                Tomate
+                            </td>
+
+                            <td>
+
+                                <span class="badge ok">
+                                    Entrada
+                                </span>
+
+                            </td>
+
+                            <td>
+                                +15 Kg
+                            </td>
+
+                            <td>
+                                Usuário
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+
+<!-- =====================================================
+     MODAL — NOVO PRODUTO
+===================================================== -->
+
+<div
+    class="modal-bg"
+    id="product-modal">
+
+    <div class="modal">
+
+        <h3>
+            Novo produto
+        </h3>
+
+        <p>
+            Cadastre um novo item no estoque.
+        </p>
+
+
+        <form id="product-form">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>
+                        Nome do produto
+                    </label>
+
+                    <input
+                        type="text"
+                        id="product-name"
+                        placeholder="Ex: Macarrão"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Categoria
+                    </label>
+
+                    <select id="product-category">
+
+                        <option>
+                            Alimentos
+                        </option>
+
+                        <option>
+                            Bebidas
+                        </option>
+
+                        <option>
+                            Hortifruti
+                        </option>
+
+                        <option>
+                            Carnes
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Unidade
+                    </label>
+
+                    <select id="product-unit">
+
+                        <option>
+                            Unidade
+                        </option>
+
+                        <option>
+                            Kg
+                        </option>
+
+                        <option>
+                            Litro
+                        </option>
+
+                        <option>
+                            Caixa
+                        </option>
+
+                        <option>
+                            Saco
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Quantidade inicial
+                    </label>
+
+                    <input
+                        type="number"
+                        id="product-quantity"
+                        min="0"
+                        placeholder="0"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Estoque mínimo
+                    </label>
+
+                    <input
+                        type="number"
+                        id="product-minimum"
+                        min="0"
+                        placeholder="0"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Preço unitário
+                    </label>
+
+                    <input
+                        type="number"
+                        id="product-price"
+                        min="0"
+                        step="0.01"
+                        placeholder="R$ 0,00">
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Data de validade
+                    </label>
+
+                    <input
+                        type="date"
+                        id="product-expiry">
+
+                </div>
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="btn secondary"
+                    onclick="closeProductModal()">
+
+                    Cancelar
+
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="btn">
+
+                    Cadastrar produto
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     MODAL — MOVIMENTAÇÃO
+===================================================== -->
+
+<div
+    class="modal-bg"
+    id="movement-modal">
+
+    <div class="modal">
+
+        <h3 id="movement-title">
+            Movimentar estoque
+        </h3>
+
+        <p id="movement-product">
+            Produto
+        </p>
+
+
+        <div class="form-group">
+
+            <label>
+                Tipo de movimentação
+            </label>
+
+            <select id="movement-type">
+
+                <option value="entrada">
+                    Entrada
+                </option>
+
+                <option value="saida">
+                    Saída
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Quantidade
+            </label>
+
+            <input
+                type="number"
+                id="movement-quantity"
+                min="1"
+                placeholder="Quantidade">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Observação
+            </label>
+
+            <textarea
+                id="movement-note"
+                placeholder="Ex: Compra realizada com fornecedor..."></textarea>
+
+        </div>
+
+
+        <div class="modal-actions">
+
+            <button
+                type="button"
+                class="btn secondary"
+                onclick="closeMovementModal()">
+
+                Cancelar
+
+            </button>
+
+
+            <button
+                type="button"
+                class="btn"
+                onclick="confirmMovement()">
+
+                Confirmar movimentação
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     MODAL GERAL — SAÍDA
+     IGUAL AO DA PÁGINA COMPRAS
+===================================================== -->
+
+<div
+    class="modal-bg"
+    id="modal-bg">
+
+    <div class="modal">
+
+        <h3 id="modal-title">
+            Sair da conta?
+        </h3>
+
+        <p id="modal-text">
+            Tem certeza que deseja sair do sistema?
+        </p>
+
+
+        <div class="modal-actions">
+
+            <button
+                type="button"
+                class="btn secondary"
+                id="modal-no">
+
+                Não
+
+            </button>
+
+
+            <button
+                type="button"
+                class="btn danger"
+                id="modal-yes">
+
+                Sim
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     TOAST
+===================================================== -->
+
+<div
+    id="toast"
+    class="toast">
+</div>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script src="../js/data.js"></script>
+
+
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore-compat.js"></script>
+<script src="../../js/firebase-config.js"></script>
+<script src="../../js/firebase-live.js"></script>
+<script src="../../js/firebase-actions.js"></script>
+<script src="../../js/firebase-pdf.js"></script>
+
+<script src="../js/app.js"></script>
+
+<script src="../js/charts.js"></script>
+
+
+<script>
+
+
+/* =====================================================
+   VARIÁVEIS
+===================================================== */
+
+let currentProduct = "";
+
+
+
+/* =====================================================
+   MODAL DE NOVO PRODUTO
+===================================================== */
+
+const productModal =
+    document.getElementById("product-modal");
+
+const openAddProduct =
+    document.getElementById("open-add-product");
+
+
+if (openAddProduct && productModal) {
+
+    openAddProduct.addEventListener(
+        "click",
+        function () {
+
+            productModal.classList.add("show");
+
+        }
+    );
+
+}
+
+
+function closeProductModal() {
+
+    if (productModal) {
+
+        productModal.classList.remove("show");
+
+    }
+
+}
+
+
+
+/* =====================================================
+   CADASTRAR PRODUTO
+===================================================== */
+
+const productForm =
+    document.getElementById("product-form");
+
+
+if (productForm) {
+
+    productForm.addEventListener(
+        "submit",
+        function (event) {
+
+            event.preventDefault();
+
+
+            const name =
+                document.getElementById(
+                    "product-name"
+                ).value;
+
+
+            showToast(
+                "Produto " +
+                name +
+                " cadastrado com sucesso."
+            );
+
+
+            this.reset();
+
+
+            closeProductModal();
+
+        }
+    );
+
+}
+
+
+
+/* =====================================================
+   MODAL DE MOVIMENTAÇÃO
+===================================================== */
+
+const movementModal =
+    document.getElementById(
+        "movement-modal"
+    );
+
+
+function openMovement(product) {
+
+    currentProduct = product;
+
+
+    document.getElementById(
+        "movement-product"
+    ).textContent =
+        "Produto selecionado: " +
+        product;
+
+
+    movementModal.classList.add(
+        "show"
+    );
+
+}
+
+
+function closeMovementModal() {
+
+    movementModal.classList.remove(
+        "show"
+    );
+
+}
+
+
+
+/* =====================================================
+   CONFIRMAR MOVIMENTAÇÃO
+===================================================== */
+
+function confirmMovement() {
+
+    const type =
+        document.getElementById(
+            "movement-type"
+        ).value;
+
+
+    const quantity =
+        document.getElementById(
+            "movement-quantity"
+        ).value;
+
+
+    if (
+        !quantity ||
+        quantity <= 0
+    ) {
+
+        showToast(
+            "Informe uma quantidade válida."
+        );
+
+        return;
+
+    }
+
+
+    const action =
+        type === "entrada"
+            ? "Entrada"
+            : "Saída";
+
+
+    showToast(
+        action +
+        " de " +
+        quantity +
+        " unidade(s) de " +
+        currentProduct +
+        " registrada."
+    );
+
+
+    document.getElementById(
+        "movement-quantity"
+    ).value = "";
+
+
+    document.getElementById(
+        "movement-note"
+    ).value = "";
+
+
+    closeMovementModal();
+
+}
+
+
+
+/* =====================================================
+   AÇÕES RÁPIDAS
+===================================================== */
+
+document
+    .getElementById("quick-entry")
+    .addEventListener(
+        "click",
+        function () {
+
+            openMovement(
+                "Selecione o produto"
+            );
+
+
+            document.getElementById(
+                "movement-type"
+            ).value = "entrada";
+
+        }
+    );
+
+
+document
+    .getElementById("quick-exit")
+    .addEventListener(
+        "click",
+        function () {
+
+            openMovement(
+                "Selecione o produto"
+            );
+
+
+            document.getElementById(
+                "movement-type"
+            ).value = "saida";
+
+        }
+    );
+
+
+
+/* =====================================================
+   EDITAR PRODUTO
+===================================================== */
+
+function editProduct(product) {
+
+    showToast(
+        "Edição de " +
+        product +
+        " disponível."
+    );
+
+}
+
+
+
+/* =====================================================
+   FILTRO DE STATUS
+===================================================== */
+
+const statusFilter =
+    document.getElementById(
+        "status-filter"
+    );
+
+
+if (statusFilter) {
+
+    statusFilter.addEventListener(
+        "change",
+        filterProducts
+    );
+
+}
+
+
+
+/* =====================================================
+   FILTRO DE CATEGORIA
+===================================================== */
+
+const categoryFilter =
+    document.getElementById(
+        "category-filter"
+    );
+
+
+if (categoryFilter) {
+
+    categoryFilter.addEventListener(
+        "change",
+        filterProducts
+    );
+
+}
+
+
+
+/* =====================================================
+   FILTRAR PRODUTOS
+===================================================== */
+
+function filterProducts() {
+
+    const status =
+        statusFilter.value;
+
+
+    const category =
+        categoryFilter.value;
+
+
+    const rows =
+        document.querySelectorAll(
+            "#stock-body tr"
+        );
+
+
+    rows.forEach(
+        function (row) {
+
+            const rowStatus =
+                row.dataset.status;
+
+
+            const rowCategory =
+                row.dataset.category;
+
+
+            const statusMatch =
+                status === "all" ||
+                status === rowStatus;
+
+
+            const categoryMatch =
+                category === "all" ||
+                category === rowCategory;
+
+
+            row.style.display =
+                statusMatch &&
+                categoryMatch
+                    ? ""
+                    : "none";
+
+        }
+    );
+
+}
+
+
+
+/* =====================================================
+   MODAL GERAL — SAÍDA
+   MESMO SISTEMA DA PÁGINA COMPRAS
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+
+        const logoutButton =
+            document.querySelector(
+                ".logout"
+            );
+
+
+        const modal =
+            document.querySelector(
+                "#modal-bg"
+            );
+
+
+        const modalNo =
+            document.querySelector(
+                "#modal-no"
+            );
+
+
+        const modalYes =
+            document.querySelector(
+                "#modal-yes"
+            );
+
+
+        /* =========================================
+           ABRIR MODAL
+        ========================================= */
+
+        if (
+            logoutButton &&
+            modal
+        ) {
+
+            logoutButton.onclick =
+                function () {
+
+                    modal.classList.add(
+                        "show"
+                    );
+
+                };
+
+        }
+
+
+        /* =========================================
+           BOTÃO NÃO
+        ========================================= */
+
+        if (modalNo) {
+
+            modalNo.onclick =
+                function () {
+
+                    modal.classList.remove(
+                        "show"
+                    );
+
+                };
+
+        }
+
+
+        /* =========================================
+           BOTÃO SIM
+        ========================================= */
+
+        if (modalYes) {
+
+            modalYes.onclick =
+                function () {
+
+                    window.location.href =
+                        "../index.html";
+
+                };
+
+        }
+
+
+        /* =========================================
+           CLICAR FORA
+        ========================================= */
+
+        if (modal) {
+
+            modal.onclick =
+                function (event) {
+
+                    if (
+                        event.target === modal
+                    ) {
+
+                        modal.classList.remove(
+                            "show"
+                        );
+
+                    }
+
+                };
+
+        }
+
+    }
+);
+
+
+
+/* =====================================================
+   FECHAR MODAIS CLICANDO FORA
+===================================================== */
+
+window.addEventListener(
+    "click",
+    function (event) {
+
+
+        if (
+            event.target === productModal
+        ) {
+
+            closeProductModal();
+
+        }
+
+
+        if (
+            event.target === movementModal
+        ) {
+
+            closeMovementModal();
+
+        }
+
+    }
+);
+
+
+
+/* =====================================================
+   FECHAR MODAIS COM ESC
+===================================================== */
+
+document.addEventListener(
+    "keydown",
+    function (event) {
+
+        if (
+            event.key === "Escape"
+        ) {
+
+
+            if (productModal) {
+
+                productModal.classList.remove(
+                    "show"
+                );
+
+            }
+
+
+            if (movementModal) {
+
+                movementModal.classList.remove(
+                    "show"
+                );
+
+            }
+
+
+            const logoutModal =
+                document.getElementById(
+                    "modal-bg"
+                );
+
+
+            if (logoutModal) {
+
+                logoutModal.classList.remove(
+                    "show"
+                );
+
+            }
+
+        }
+
+    }
+);
+
+
+</script>
+
+
+</body>
+
+</html>

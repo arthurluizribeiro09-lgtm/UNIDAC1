@@ -1,0 +1,33 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Desperdício — Unidac Industries</title><link rel="stylesheet" href="../css/style.css"><link rel="stylesheet" href="../css/responsive.css"></head><body>
+<aside class="sidebar"><div class="brand"><div class="brand-mark">S</div><div><strong>Unidac Industries</strong><small>Cantina inteligente</small></div></div><nav class="nav"><a href="dashboard.html"><i>⌂</i><span>Dashboard</span></a>
+
+<a href="financeiro.html"><i>R$</i><span>Financeiro</span></a>
+<a href="estoque.html"><i>▣</i><span>Estoque</span></a>
+
+<a href="consumo.html"><i>◔</i><span>Consumo</span></a>
+<a href="desperdicio.html"><i>↘</i><span>Desperdício</span></a>
+<a href="compras.html"><i>▤</i><span>Compras</span></a>
+<a href="validades.html"><i>◷</i><span>Validades</span></a>
+<a href="relatorios.html"><i>▥</i><span>Relatórios</span></a>
+<a href="sustentabilidade.html"><i>♧</i><span>Sustentabilidade</span></a>
+<a href="metas.html"><i>◎</i><span>Metas</span></a>
+
+<a href="notificacoes.html"><i>●</i><span>Notificações</span></a></nav><div class="profile"><div class="profile-box"><div class="avatar">G</div><div><strong class="user-name">Usuário</strong><small class="user-role">Acesso</small></div></div><button onclick="event.preventDefault();if(!confirm('Sair do sistema?\nSua sessão será encerrada neste dispositivo.'))return;localStorage.removeItem('unidacUser');var p=location.pathname.split('/').filter(Boolean);if(p.length&&p[p.length-1].indexOf('.html')!==-1)p.pop();if(p.length&&p[p.length-1]==='pages')p.pop();if(p.length)p.pop();location.href=(p.length?'/'+p.join('/')+'/':'/')+'index.html';"  type="button" class="logout">↪ <span>Sair</span></button></div></aside>
+<main class="main"><header class="topbar"><div><h1>Desperdício</h1><p>Indicadores e causas das perdas.</p></div><div class="top-actions"><button class="icon-btn" onclick="location.href='notificacoes.html'">♢<b class="dot"></b></button><div class="avatar">G</div></div></header><section class="page">
+<div class="page-head"><div><h2>Desperdício</h2><p>Identifique perdas, causas e oportunidades de economia.</p></div><button class="btn" data-toast="Registro de desperdício iniciado.">+ Registrar ocorrência</button></div>
+<div class="grid stats"><div class="card stat"><span class="label">DESPERDÍCIO TOTAL</span><div class="value">34 kg</div><span class="trend">↓ 14% vs. média</span></div><div class="card stat"><span class="label">META</span><div class="value">30 kg</div></div><div class="card stat"><span class="label">CUSTO DO DESPERDÍCIO</span><div class="value">R$ 740</div></div><div class="card stat"><span class="label">CUSTO EVITADO</span><div class="value">R$ 1.284</div></div></div>
+<div class="grid two"><div class="card"><div class="card-title"><h3>Ranking de desperdício</h3><span class="muted">Hoje</span></div><div class="list"><div class="list-item"><strong>1. Arroz</strong><span>12,4 kg</span></div><div class="list-item"><strong>2. Salada</strong><span>8,1 kg</span></div><div class="list-item"><strong>3. Frutas</strong><span>5,8 kg</span></div></div></div>
+<div class="card"><div class="card-title"><h3>Principais causas</h3></div><div class="kpi"><strong>Sobra de produção</strong><span>46%</span></div><div class="progress"><i data-width="46"></i></div><div class="kpi"><strong>Baixo consumo</strong><span>29%</span></div><div class="progress"><i data-width="29"></i></div><div class="kpi"><strong>Validade</strong><span>15%</span></div><div class="progress"><i data-width="15"></i></div><div class="kpi"><strong>Preparo</strong><span>10%</span></div><div class="progress"><i data-width="10"></i></div></div></div>
+<div class="card table-card"><div class="table-head"><h3>Evolução</h3><span class="muted">Últimos 7 dias</span></div><div style="padding:0 20px 20px"><div class="chart" id="waste-chart"></div></div></div>
+</section></main>
+<div class="modal-bg" id="modal-bg"><div class="modal"><h3 id="modal-title"></h3><p id="modal-text"></p><div class="modal-actions"><button class="btn secondary" id="modal-no">Não</button><button class="btn danger" id="modal-yes">Sim</button></div></div></div><div id="toast" class="toast"></div>
+<script src="../js/data.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore-compat.js"></script>
+<script src="../../js/firebase-config.js"></script>
+<script src="../../js/firebase-live.js"></script>
+<script src="../../js/firebase-actions.js"></script>
+<script src="../../js/firebase-pdf.js"></script>
+
+<script src="../js/app.js"></script><script src="../js/charts.js"></script></body></html>

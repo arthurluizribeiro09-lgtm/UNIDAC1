@@ -1,0 +1,36 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Validades — Unidac Industries</title><link rel="stylesheet" href="../css/style.css"><link rel="stylesheet" href="../css/responsive.css"></head><body>
+<aside class="sidebar"><div class="brand"><div class="brand-mark">S</div><div><strong>Unidac Industries</strong><small>Cantina inteligente</small></div></div><nav class="nav"><a href="dashboard.html"><i>⌂</i><span>Dashboard</span></a>
+
+<a href="financeiro.html"><i>R$</i><span>Financeiro</span></a>
+<a href="estoque.html"><i>▣</i><span>Estoque</span></a>
+
+<a href="consumo.html"><i>◔</i><span>Consumo</span></a>
+<a href="desperdicio.html"><i>↘</i><span>Desperdício</span></a>
+<a href="compras.html"><i>▤</i><span>Compras</span></a>
+<a href="validades.html"><i>◷</i><span>Validades</span></a>
+<a href="relatorios.html"><i>▥</i><span>Relatórios</span></a>
+<a href="sustentabilidade.html"><i>♧</i><span>Sustentabilidade</span></a>
+<a href="metas.html"><i>◎</i><span>Metas</span></a>
+
+<a href="notificacoes.html"><i>●</i><span>Notificações</span></a></nav><div class="profile"><div class="profile-box"><div class="avatar">G</div><div><strong class="user-name">Usuário</strong><small class="user-role">Acesso</small></div></div><button onclick="event.preventDefault();if(!confirm('Sair do sistema?\nSua sessão será encerrada neste dispositivo.'))return;localStorage.removeItem('unidacUser');var p=location.pathname.split('/').filter(Boolean);if(p.length&&p[p.length-1].indexOf('.html')!==-1)p.pop();if(p.length&&p[p.length-1]==='pages')p.pop();if(p.length)p.pop();location.href=(p.length?'/'+p.join('/')+'/':'/')+'index.html';"  type="button" class="logout">↪ <span>Sair</span></button></div></aside>
+<main class="main"><header class="topbar"><div><h1>Validades</h1><p>Controle de prazos e prioridades.</p></div><div class="top-actions"><button class="icon-btn" onclick="location.href='notificacoes.html'">♢<b class="dot"></b></button><div class="avatar">G</div></div></header><section class="page">
+<div class="page-head"><div><h2>Validades</h2><p>Priorize produtos antes que percam sua validade.</p></div><button class="btn" data-toast="Lista de prioridades atualizada.">Atualizar prioridades</button></div>
+<div class="grid three"><div class="card"><span class="eyebrow">Prioridade alta</span><div class="big-number">3 itens</div><span class="muted">Ação imediata</span></div><div class="card"><span class="eyebrow">Próximos 7 dias</span><div class="big-number">8 itens</div><span class="muted">Planeje o consumo</span></div><div class="card"><span class="eyebrow">Próximos 30 dias</span><div class="big-number">17 itens</div><span class="muted">Monitoramento</span></div></div>
+<div class="card table-card"><div class="table-head"><h3>Controle de validade</h3><select class="select" onchange="showToast('Filtro: '+this.value)"><option>Todos</option><option>Urgente</option><option>Atenção</option><option>Normal</option></select></div><div class="table-wrap"><table><thead><tr><th>Produto</th><th>Quantidade</th><th>Validade</th><th>Prioridade</th><th>Ação</th></tr></thead><tbody id="stock-body">
+<tr><td><strong>Banana</strong></td><td>5 Kg</td><td>05/09</td><td><span class="badge danger-b">Urgente</span></td><td><button class="action" data-toast="Banana priorizada para consumo.">Priorizar</button></td></tr>
+<tr><td><strong>Tomate</strong></td><td>9 Kg</td><td>08/09</td><td><span class="badge warn">Atenção</span></td><td><button class="action" data-toast="Tomate priorizado para consumo.">Priorizar</button></td></tr>
+<tr><td><strong>Leite</strong></td><td>24 L</td><td>11/09</td><td><span class="badge warn">Atenção</span></td><td><button class="action" data-toast="Leite priorizado para consumo.">Priorizar</button></td></tr>
+<tr><td><strong>Arroz</strong></td><td>18 sacos</td><td>02/10</td><td><span class="badge ok">Normal</span></td><td><button class="action" data-toast="Arroz mantido em monitoramento.">Monitorar</button></td></tr>
+</tbody></table></div></div>
+</section></main>
+<div class="modal-bg" id="modal-bg"><div class="modal"><h3 id="modal-title"></h3><p id="modal-text"></p><div class="modal-actions"><button class="btn secondary" id="modal-no">Não</button><button class="btn danger" id="modal-yes">Sim</button></div></div></div><div id="toast" class="toast"></div>
+<script src="../js/data.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore-compat.js"></script>
+<script src="../../js/firebase-config.js"></script>
+<script src="../../js/firebase-live.js"></script>
+<script src="../../js/firebase-actions.js"></script>
+<script src="../../js/firebase-pdf.js"></script>
+
+<script src="../js/app.js"></script><script src="../js/charts.js"></script></body></html>

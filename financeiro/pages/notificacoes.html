@@ -1,0 +1,612 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Notificações — Unidac Industries</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-mark">
+                U
+            </div>
+
+            <div>
+
+                <strong>
+                    Unidac Industries
+                </strong>
+
+                <small>
+                    Cantina inteligente
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- MENU -->
+        <nav class="nav">
+
+            <a href="dashboard.html">
+
+                <i>
+                    ⌂
+                </i>
+
+                <span>
+                    Dashboard
+                </span>
+
+            </a>
+
+
+            <a href="financeiro.html">
+
+                <i>
+                    R$
+                </i>
+
+                <span>
+                    Financeiro
+                </span>
+
+            </a>
+
+
+            <a href="compras.html">
+
+                <i>
+                    ▤
+                </i>
+
+                <span>
+                    Compras
+                </span>
+
+            </a>
+
+
+            <a href="relatorios.html">
+
+                <i>
+                    ▥
+                </i>
+
+                <span>
+                    Relatórios
+                </span>
+
+            </a>
+
+
+            <a href="notificacoes.html">
+
+                <i>
+                    ●
+                </i>
+
+                <span>
+                    Notificações
+                </span>
+
+            </a>
+
+        </nav>
+
+
+        <!-- PERFIL -->
+        <div class="profile">
+
+            <div class="profile-box">
+
+                <div class="avatar">
+                    G
+                </div>
+
+                <div>
+
+                    <strong class="user-name">
+                        Usuário
+                    </strong>
+
+                    <small class="user-role">
+                        Acesso
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <button onclick="event.preventDefault();if(!confirm('Sair do sistema?\nSua sessão será encerrada neste dispositivo.'))return;localStorage.removeItem('unidacUser');var p=location.pathname.split('/').filter(Boolean);if(p.length&&p[p.length-1].indexOf('.html')!==-1)p.pop();if(p.length&&p[p.length-1]==='pages')p.pop();if(p.length)p.pop();location.href=(p.length?'/'+p.join('/')+'/':'/')+'index.html';"  type="button" class="logout">
+
+                ↪
+
+                <span>
+                    Sair
+                </span>
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="main">
+
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+
+            <div>
+
+                <h1>
+                    Notificações
+                </h1>
+
+                <p>
+                    Central de alertas financeiros da cantina.
+                </p>
+
+            </div>
+
+
+            <div class="top-actions">
+
+                <button
+                    class="icon-btn"
+                    onclick="location.href='notificacoes.html'">
+
+                    ♢
+
+                    <b class="dot"></b>
+
+                </button>
+
+
+                <div class="avatar">
+                    G
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- PÁGINA -->
+        <section class="page">
+
+
+            <!-- CABEÇALHO -->
+            <div class="page-head">
+
+                <div>
+
+                    <h2>
+                        Notificações financeiras
+                    </h2>
+
+                    <p>
+                        Acompanhe receitas, despesas, pagamentos
+                        e movimentações importantes da cantina.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="btn secondary"
+                    id="read-all">
+
+                    Marcar todas como lidas
+
+                </button>
+
+            </div>
+
+
+            <!-- CENTRAL DE NOTIFICAÇÕES -->
+            <div class="card">
+
+
+                <!-- TÍTULO -->
+                <div class="card-title">
+
+                    <h3>
+                        Central de notificações
+                    </h3>
+
+                    <span class="badge info">
+                        6 novas
+                    </span>
+
+                </div>
+
+
+                <!-- LISTA -->
+                <div
+                    class="list"
+                    id="notification-list">
+
+
+                    <!-- NOTIFICAÇÃO 1 -->
+                    <div class="list-item">
+
+                        <div
+                            style="display: flex; gap: 12px;">
+
+                            <span class="badge ok">
+                                $
+                            </span>
+
+
+                            <div>
+
+                                <strong>
+                                    Receita registrada
+                                </strong>
+
+                                <p class="muted">
+                                    Foi registrada uma receita operacional
+                                    de R$ 8.420 no caixa da cantina.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            class="action"
+                            data-toast="Notificação marcada como lida.">
+
+                            Lida
+
+                        </button>
+
+                    </div>
+
+
+                    <!-- NOTIFICAÇÃO 2 -->
+                    <div class="list-item">
+
+                        <div
+                            style="display: flex; gap: 12px;">
+
+                            <span class="badge danger-b">
+                                −
+                            </span>
+
+
+                            <div>
+
+                                <strong>
+                                    Despesa registrada
+                                </strong>
+
+                                <p class="muted">
+                                    Foram registrados R$ 2.180 em
+                                    despesas com compra de insumos.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            class="action"
+                            data-toast="Notificação marcada como lida.">
+
+                            Lida
+
+                        </button>
+
+                    </div>
+
+
+                    <!-- NOTIFICAÇÃO 3 -->
+                    <div class="list-item">
+
+                        <div
+                            style="display: flex; gap: 12px;">
+
+                            <span class="badge warn">
+                                !
+                            </span>
+
+
+                            <div>
+
+                                <strong>
+                                    Pagamento próximo do vencimento
+                                </strong>
+
+                                <p class="muted">
+                                    Uma conta no valor de R$ 1.240
+                                    está programada para 05/09.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            class="action"
+                            data-toast="Notificação marcada como lida.">
+
+                            Lida
+
+                        </button>
+
+                    </div>
+
+
+                    <!-- NOTIFICAÇÃO 4 -->
+                    <div class="list-item">
+
+                        <div
+                            style="display: flex; gap: 12px;">
+
+                            <span class="badge info">
+                                R$
+                            </span>
+
+
+                            <div>
+
+                                <strong>
+                                    Saldo disponível atualizado
+                                </strong>
+
+                                <p class="muted">
+                                    O saldo financeiro atual da cantina
+                                    é de R$ 16.780.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            class="action"
+                            data-toast="Notificação marcada como lida.">
+
+                            Lida
+
+                        </button>
+
+                    </div>
+
+
+                    <!-- NOTIFICAÇÃO 5 -->
+                    <div class="list-item">
+
+                        <div
+                            style="display: flex; gap: 12px;">
+
+                            <span class="badge warn">
+                                ↑
+                            </span>
+
+
+                            <div>
+
+                                <strong>
+                                    Aumento nas despesas
+                                </strong>
+
+                                <p class="muted">
+                                    As despesas deste período aumentaram
+                                    4,8% em relação ao período anterior.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            class="action"
+                            data-toast="Notificação marcada como lida.">
+
+                            Lida
+
+                        </button>
+
+                    </div>
+
+
+                    <!-- NOTIFICAÇÃO 6 -->
+                    <div class="list-item">
+
+                        <div
+                            style="display: flex; gap: 12px;">
+
+                            <span class="badge ok">
+                                ✓
+                            </span>
+
+
+                            <div>
+
+                                <strong>
+                                    Economia financeira identificada
+                                </strong>
+
+                                <p class="muted">
+                                    A cantina gerou uma economia estimada
+                                    de R$ 1.148 neste período.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            class="action"
+                            data-toast="Notificação marcada como lida.">
+
+                            Lida
+
+                        </button>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- MODAL GERAL -->
+    <div
+        class="modal-bg"
+        id="modal-bg">
+
+        <div class="modal">
+
+            <h3 id="modal-title"></h3>
+
+            <p id="modal-text"></p>
+
+
+            <div class="modal-actions">
+
+                <button
+                    class="btn secondary"
+                    id="modal-no">
+
+                    Não
+
+                </button>
+
+
+                <button
+                    class="btn danger"
+                    id="modal-yes">
+
+                    Sim
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- TOAST -->
+    <div
+        id="toast"
+        class="toast">
+    </div>
+
+
+    <!-- MARCAR NOTIFICAÇÕES COMO LIDAS -->
+    <script>
+
+        document.addEventListener("DOMContentLoaded", () => {
+
+            const readAllButton =
+                document.querySelector("#read-all");
+
+            const notifications =
+                document.querySelectorAll(
+                    "#notification-list .list-item"
+                );
+
+
+            readAllButton.onclick = () => {
+
+                notifications.forEach(notification => {
+
+                    notification.style.opacity = "0.55";
+
+                });
+
+
+                showToast(
+                    "Todas as notificações financeiras foram marcadas como lidas."
+                );
+
+            };
+
+
+            /*
+            ========================================
+            MARCAR UMA NOTIFICAÇÃO COMO LIDA
+            ========================================
+            */
+
+            document
+                .querySelectorAll(".action")
+                .forEach(button => {
+
+                    button.onclick = () => {
+
+                        const notification =
+                            button.closest(".list-item");
+
+
+                        notification.style.opacity = "0.55";
+
+
+                        showToast(
+                            "Notificação marcada como lida."
+                        );
+
+                    };
+
+                });
+
+        });
+
+    </script>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="../js/data.js"></script>
+
+    
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore-compat.js"></script>
+<script src="../../js/firebase-config.js"></script>
+<script src="../../js/firebase-live.js"></script>
+<script src="../../js/firebase-actions.js"></script>
+<script src="../../js/firebase-pdf.js"></script>
+
+<script src="../js/app.js"></script>
+
+    <script src="../js/charts.js"></script>
+
+</body>
+
+</html>
+

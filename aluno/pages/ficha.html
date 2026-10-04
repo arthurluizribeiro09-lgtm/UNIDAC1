@@ -1,0 +1,764 @@
+<!doctype html>
+
+<html lang="pt-BR">
+
+<head>
+
+  <meta charset="utf-8">
+
+<meta
+ name="viewport"
+ content="width=device-width,initial-scale=1">
+
+  <title>Ficha do Refeitório — Área do Aluno</title>
+
+  <link
+    rel="stylesheet"
+    href="../css/style.css">
+
+  <link
+    rel="stylesheet"
+    href="../css/responsive.css">
+
+  <style>
+
+    /* MODAL DE SAÍDA */
+
+    .modal-bg {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 20px;
+    }
+
+    .modal {
+      width: 100%;
+      max-width: 420px;
+      background: #fff;
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 20px 50px rgba(0,0,0,.25);
+    }
+
+    .modal h3 {
+      margin: 0 0 10px;
+      font-size: 22px;
+    }
+
+    .modal p {
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 25px;
+    }
+
+    .modal-actions button {
+      cursor: pointer;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+<aside class="sidebar">
+
+  <div class="brand">
+
+
+<div class="brand-mark">
+  U
+</div>
+
+<div>
+
+  <strong>
+    Unidac Industries
+  </strong>
+
+  <small>
+    Portal do Aluno
+  </small>
+
+</div>
+
+
+  </div>
+
+  <nav class="nav">
+
+
+<a href="dashboard.html">
+  <i>⌂</i>
+  <span>Dashboard</span>
+</a>
+
+<a href="cardapio.html">
+  <i>🍽</i>
+  <span>Cardápio</span>
+</a>
+
+<a
+  href="ficha.html"
+  class="active">
+
+  <i>🎫</i>
+
+  <span>
+    Ficha do Refeitório
+  </span>
+
+</a>
+
+
+<a href="notificacoes.html">
+
+  <i>●</i>
+
+  <span>
+    Notificações
+  </span>
+
+</a>
+
+
+
+  </nav>
+
+  <div class="profile">
+
+
+<div class="profile-box">
+
+  <div class="avatar">
+    A
+  </div>
+
+  <div>
+
+    <strong class="user-name">
+      Aluno
+    </strong>
+
+    <small class="user-role">
+      Aluno
+    </small>
+
+  </div>
+
+</div>
+
+
+<button onclick="event.preventDefault();if(!confirm('Sair do sistema?\nSua sessão será encerrada neste dispositivo.'))return;localStorage.removeItem('unidacUser');var p=location.pathname.split('/').filter(Boolean);if(p.length&&p[p.length-1].indexOf('.html')!==-1)p.pop();if(p.length&&p[p.length-1]==='pages')p.pop();if(p.length)p.pop();location.href=(p.length?'/'+p.join('/')+'/':'/')+'index.html';"  type="button" class="logout">
+
+  ↪
+
+  <span>
+    Sair
+  </span>
+
+</button>
+
+
+  </div>
+
+</aside>
+
+<main class="main">
+
+<header class="topbar">
+
+  <div>
+
+
+<h1>
+  Ficha do Refeitório
+</h1>
+
+<p>
+  Retire sua ficha e acompanhe a fila do refeitório.
+</p>
+
+
+  </div>
+
+  <div class="top-actions">
+
+
+<div class="avatar">
+  A
+</div>
+
+
+  </div>
+
+</header>
+
+<section class="page">
+
+  <div class="hero-card">
+
+
+<div>
+
+  <span class="eyebrow">
+    FILA DO REFEITÓRIO
+  </span>
+
+  <h2>
+    Organize sua refeição
+  </h2>
+
+  <p>
+    Retire uma ficha para entrar na fila
+    do refeitório.
+  </p>
+
+</div>
+
+
+<div class="hero-mark">
+  🎫
+</div>
+
+
+  </div>
+
+  <div class="page-head">
+
+
+<div>
+
+  <h2>
+    Ficha de hoje
+  </h2>
+
+  <p>
+    Quinta-feira, 03 de setembro de 2026.
+  </p>
+
+</div>
+
+
+  </div>
+
+  <!-- FICHA -->
+
+  <div class="card">
+
+
+<div class="card-title">
+
+  <div>
+
+    <h3>
+      Almoço
+    </h3>
+
+    <p class="muted">
+      Atendimento das 11:30 às 13:00
+    </p>
+
+  </div>
+
+
+  <span class="badge ok">
+    Fila aberta
+  </span>
+
+</div>
+
+
+<div
+  style="
+    text-align:center;
+    padding:30px 10px;
+  "
+>
+
+  <p class="muted">
+    Sua ficha
+  </p>
+
+
+  <div
+    style="
+      font-size:64px;
+      font-weight:800;
+      margin:10px 0;
+    "
+    id="numeroFicha"
+  >
+    067
+  </div>
+
+
+  <p class="muted">
+    Número da ficha
+  </p>
+
+
+  <div
+    style="
+      margin-top:25px;
+    "
+  >
+
+    <span class="badge info">
+      12 pessoas na sua frente
+    </span>
+
+  </div>
+
+
+  <p
+    class="muted"
+    style="
+      margin-top:15px;
+    "
+  >
+
+    Tempo estimado de espera:
+
+    <strong>
+      18 minutos
+    </strong>
+
+  </p>
+
+
+  <button
+    class="btn"
+    id="fichaBtn"
+    style="
+      margin-top:20px;
+    "
+  >
+
+    🎫 Retirar ficha
+
+  </button>
+
+</div>
+
+
+  </div>
+
+  <!-- STATUS -->
+
+  <div
+    class="grid two"
+    style="margin-top:18px"
+  >
+
+
+<div class="card">
+
+  <div class="card-title">
+
+    <h3>
+      Status da fila
+    </h3>
+
+    <span class="badge ok">
+      Funcionando
+    </span>
+
+  </div>
+
+
+  <div class="activity">
+
+    <div class="activity-icon">
+      👥
+    </div>
+
+    <div>
+
+      <strong>
+        Pessoas na fila
+      </strong>
+
+      <p class="muted">
+        12 pessoas aguardando.
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div class="activity">
+
+    <div class="activity-icon">
+      🎫
+    </div>
+
+    <div>
+
+      <strong>
+        Última ficha chamada
+      </strong>
+
+      <p class="muted">
+        Ficha 035.
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div class="activity">
+
+    <div class="activity-icon">
+      ◷
+    </div>
+
+    <div>
+
+      <strong>
+        Tempo médio
+      </strong>
+
+      <p class="muted">
+        Aproximadamente 1,5 minuto por pessoa.
+      </p>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<div class="card">
+
+  <div class="card-title">
+
+    <h3>
+      Como funciona?
+    </h3>
+
+  </div>
+
+
+  <div class="activity">
+
+    <div class="activity-icon">
+      1
+    </div>
+
+    <div>
+
+      <strong>
+        Retire sua ficha
+      </strong>
+
+      <p class="muted">
+        Clique no botão para receber seu número.
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div class="activity">
+
+    <div class="activity-icon">
+      2
+    </div>
+
+    <div>
+
+      <strong>
+        Aguarde sua vez
+      </strong>
+
+      <p class="muted">
+        Acompanhe sua posição pelo sistema.
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div class="activity">
+
+    <div class="activity-icon">
+      3
+    </div>
+
+    <div>
+
+      <strong>
+        Dirija-se ao refeitório
+      </strong>
+
+      <p class="muted">
+        Quando sua ficha for chamada,
+        vá até o atendimento.
+      </p>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+  </div>
+
+  <!-- AVISO -->
+
+  <div
+    class="card"
+    style="margin-top:18px"
+  >
+
+
+<div class="card-title">
+
+  <h3>
+    Atenção
+  </h3>
+
+  <span class="badge warn">
+    Importante
+  </span>
+
+</div>
+
+<p class="muted">
+
+  A ficha é válida somente para a refeição
+  selecionada e para o dia atual. Após retirar
+  sua ficha, aguarde a chamada do seu número.
+
+</p>
+
+
+  </div>
+
+</section>
+
+</main>
+
+<!-- TOAST -->
+
+<div
+  id="toast"
+  class="toast">
+</div>
+
+<!-- MODAL DE CONFIRMAÇÃO DE SAÍDA -->
+
+<div
+  class="modal-bg"
+  id="modal-bg"
+>
+
+  <div class="modal">
+
+
+<h3 id="modal-title">
+  Sair do sistema?
+</h3>
+
+<p
+  id="modal-text"
+  class="muted"
+>
+  Tem certeza que deseja sair da sua conta?
+</p>
+
+
+<div class="modal-actions">
+
+  <button
+    class="btn secondary"
+    id="modal-no"
+  >
+    Voltar
+  </button>
+
+
+  <button
+    class="btn danger"
+    id="modal-yes"
+  >
+    Sair
+  </button>
+
+</div>
+
+
+  </div>
+
+</div>
+
+<script src="../js/data.js"></script>
+
+
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore-compat.js"></script>
+<script src="../../js/firebase-config.js"></script>
+<script src="../../js/firebase-live.js"></script>
+<script src="../../js/firebase-actions.js"></script>
+<script src="../../js/firebase-pdf.js"></script>
+
+<script src="../js/app.js"></script>
+
+<script>
+
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
+
+
+    /* =========================
+       BOTÃO DA FICHA
+    ========================= */
+
+    const botaoFicha =
+      document.getElementById("fichaBtn");
+
+
+    if (botaoFicha) {
+
+      botaoFicha.addEventListener(
+        "click",
+        () => {
+
+          botaoFicha.textContent =
+            "✓ Ficha 067 retirada";
+
+          botaoFicha.disabled = true;
+
+          botaoFicha.style.opacity =
+            "0.7";
+
+        }
+      );
+
+    }
+
+
+
+    /* =========================
+       MODAL DE SAÍDA
+    ========================= */
+
+    const logout =
+      document.querySelector(".logout");
+
+    const modalBg =
+      document.getElementById("modal-bg");
+
+    const modalNo =
+      document.getElementById("modal-no");
+
+    const modalYes =
+      document.getElementById("modal-yes");
+
+
+    if (!logout || !modalBg) return;
+
+
+    /* ABRIR MODAL */
+
+    logout.addEventListener(
+      "click",
+      () => {
+
+        modalBg.style.display =
+          "flex";
+
+      }
+    );
+
+
+    /* VOLTAR */
+
+    modalNo.addEventListener(
+      "click",
+      () => {
+
+        modalBg.style.display =
+          "none";
+
+      }
+    );
+
+
+    /* SAIR */
+
+    modalYes.addEventListener(
+      "click",
+      () => {
+
+        window.location.href =
+          "../index.html";
+
+      }
+    );
+
+
+    /* FECHAR CLICANDO FORA */
+
+    modalBg.addEventListener(
+      "click",
+      (event) => {
+
+        if (event.target === modalBg) {
+
+          modalBg.style.display =
+            "none";
+
+        }
+
+      }
+    );
+
+
+    /* FECHAR COM ESC */
+
+    document.addEventListener(
+      "keydown",
+      (event) => {
+
+        if (
+          event.key === "Escape" &&
+          modalBg.style.display === "flex"
+        ) {
+
+          modalBg.style.display =
+            "none";
+
+        }
+
+      }
+    );
+
+  }
+);
+
+</script>
+
+</body>
+
+</html>

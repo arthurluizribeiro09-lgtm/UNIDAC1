@@ -1,0 +1,936 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1">
+
+    <title>Notificações — Unidac Industries</title>
+
+    <link
+        rel="stylesheet"
+        href="../css/style.css">
+
+    <link
+        rel="stylesheet"
+        href="../css/responsive.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-mark">
+                U
+            </div>
+
+            <div>
+
+                <strong>
+                    Unidac Industries
+                </strong>
+
+                <small>
+                    Cantina inteligente
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- MENU -->
+
+        <nav class="nav">
+
+            <a href="dashboard.html">
+
+                <i>⌂</i>
+
+                <span>
+                    Dashboard
+                </span>
+
+            </a>
+
+
+            <a href="estoque.html">
+
+                <i>▣</i>
+
+                <span>
+                    Estoque
+                </span>
+
+            </a>
+
+
+            <a href="compras.html">
+
+                <i>▤</i>
+
+                <span>
+                    Compras
+                </span>
+
+            </a>
+
+
+            <a href="validades.html">
+
+                <i>◷</i>
+
+                <span>
+                    Validades
+                </span>
+
+            </a>
+
+
+            <a
+                href="notificacoes.html"
+                class="active">
+
+                <i>●</i>
+
+                <span>
+                    Notificações
+                </span>
+
+            </a>
+
+        </nav>
+
+
+        <!-- PERFIL -->
+
+        <div class="profile">
+
+            <div class="profile-box">
+
+                <div class="avatar">
+                    S
+                </div>
+
+                <div>
+
+                    <strong class="user-name">
+                        Estoquista
+                    </strong>
+
+                    <small class="user-role">
+                        Estoque
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <button onclick="event.preventDefault();if(!confirm('Sair do sistema?\nSua sessão será encerrada neste dispositivo.'))return;localStorage.removeItem('unidacUser');var p=location.pathname.split('/').filter(Boolean);if(p.length&&p[p.length-1].indexOf('.html')!==-1)p.pop();if(p.length&&p[p.length-1]==='pages')p.pop();if(p.length)p.pop();location.href=(p.length?'/'+p.join('/')+'/':'/')+'index.html';"  type="button" class="logout">
+
+                ↪
+
+                <span>
+                    Sair
+                </span>
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         CONTEÚDO PRINCIPAL
+    ====================================================== -->
+
+    <main class="main">
+
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div>
+
+                <h1>
+                    Notificações
+                </h1>
+
+                <p>
+                    Alertas e avisos importantes do estoque.
+                </p>
+
+            </div>
+
+
+            <div class="top-actions">
+
+                <button
+                    class="icon-btn"
+                    onclick="location.href='notificacoes.html'"
+                    title="Notificações">
+
+                    ♢
+
+                    <b class="dot"></b>
+
+                </button>
+
+
+                <div class="avatar">
+                    S
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =====================================================
+             PÁGINA
+        ====================================================== -->
+
+        <section class="page">
+
+
+            <!-- CABEÇALHO -->
+
+            <div class="page-head">
+
+                <div>
+
+                    <h2>
+                        Central de notificações
+                    </h2>
+
+                    <p>
+                        Acompanhe alertas relacionados ao estoque,
+                        compras e validade dos produtos.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="btn secondary"
+                    id="read-all">
+
+                    ✓ Marcar todas como lidas
+
+                </button>
+
+            </div>
+
+
+
+            <!-- =====================================================
+                 RESUMO
+            ====================================================== -->
+
+            <div class="grid three">
+
+
+                <!-- ESTOQUE -->
+
+                <div class="card stat">
+
+                    <span class="eyebrow">
+                        ESTOQUE
+                    </span>
+
+                    <div
+                        class="big-number"
+                        id="stock-alerts">
+
+                        1
+
+                    </div>
+
+                    <span class="muted">
+                        Alerta de estoque baixo
+                    </span>
+
+                </div>
+
+
+                <!-- VALIDADES -->
+
+                <div class="card stat">
+
+                    <span class="eyebrow">
+                        VALIDADES
+                    </span>
+
+                    <div
+                        class="big-number"
+                        id="validity-alerts">
+
+                        2
+
+                    </div>
+
+                    <span class="muted">
+                        Produtos próximos do vencimento
+                    </span>
+
+                </div>
+
+
+                <!-- COMPRAS -->
+
+                <div class="card stat">
+
+                    <span class="eyebrow">
+                        COMPRAS
+                    </span>
+
+                    <div
+                        class="big-number"
+                        id="purchase-alerts">
+
+                        1
+
+                    </div>
+
+                    <span class="muted">
+                        Pedido aguardando recebimento
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =====================================================
+                 NOTIFICAÇÕES
+            ====================================================== -->
+
+            <div class="card">
+
+
+                <!-- CABEÇALHO -->
+
+                <div class="card-title">
+
+                    <div>
+
+                        <h3>
+                            Alertas recentes
+                        </h3>
+
+                        <p class="muted">
+                            Informações que precisam da atenção do estoquista.
+                        </p>
+
+                    </div>
+
+
+                    <span
+                        class="badge info"
+                        id="notification-count">
+
+                        5 novas
+
+                    </span>
+
+                </div>
+
+
+
+                <!-- LISTA -->
+
+                <div
+                    class="list"
+                    id="notification-list">
+
+
+                    <!-- =================================================
+                         NOTIFICAÇÃO 1
+                    ================================================== -->
+
+                    <div
+                        class="list-item notification-item"
+                        data-type="estoque">
+
+                        <div
+                            style="display:flex;gap:12px">
+
+                            <span class="badge danger-b">
+                                ⚠
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Estoque baixo — Feijão
+                                </strong>
+
+                                <p class="muted">
+                                    Quantidade atual: 7 sacos.
+                                    Estoque mínimo configurado: 10 sacos.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            class="action read-notification">
+
+                            Lida
+
+                        </button>
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         NOTIFICAÇÃO 2
+                    ================================================== -->
+
+                    <div
+                        class="list-item notification-item"
+                        data-type="validade">
+
+                        <div
+                            style="display:flex;gap:12px">
+
+                            <span class="badge warn">
+                                ⏰
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Validade próxima — Banana
+                                </strong>
+
+                                <p class="muted">
+                                    5 Kg vencem nos próximos dias.
+                                    Priorize o consumo.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            class="action read-notification">
+
+                            Lida
+
+                        </button>
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         NOTIFICAÇÃO 3
+                    ================================================== -->
+
+                    <div
+                        class="list-item notification-item"
+                        data-type="validade">
+
+                        <div
+                            style="display:flex;gap:12px">
+
+                            <span class="badge warn">
+                                ⏰
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Validade próxima — Leite
+                                </strong>
+
+                                <p class="muted">
+                                    24 litros vencem em até 7 dias.
+                                    Verifique o armazenamento.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            class="action read-notification">
+
+                            Lida
+
+                        </button>
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         NOTIFICAÇÃO 4
+                    ================================================== -->
+
+                    <div
+                        class="list-item notification-item"
+                        data-type="compras">
+
+                        <div
+                            style="display:flex;gap:12px">
+
+                            <span class="badge info">
+                                📦
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Pedido aguardando recebimento
+                                </strong>
+
+                                <p class="muted">
+                                    Pedido #1047 da Hortifruti Verde
+                                    está em trânsito.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            class="action read-notification">
+
+                            Lida
+
+                        </button>
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         NOTIFICAÇÃO 5
+                    ================================================== -->
+
+                    <div
+                        class="list-item notification-item"
+                        data-type="estoque">
+
+                        <div
+                            style="display:flex;gap:12px">
+
+                            <span class="badge ok">
+                                ✓
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Reposição de estoque registrada
+                                </strong>
+
+                                <p class="muted">
+                                    Arroz foi atualizado para
+                                    18 sacos disponíveis no estoque.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            class="action read-notification">
+
+                            Lida
+
+                        </button>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =====================================================
+                 ORIENTAÇÃO
+            ====================================================== -->
+
+            <div class="card validity-alert">
+
+                <div class="alert-icon">
+                    ℹ
+                </div>
+
+                <div>
+
+                    <strong>
+                        Atenção aos alertas do estoque
+                    </strong>
+
+                    <p>
+                        Verifique primeiro os produtos com estoque baixo
+                        e aqueles próximos da validade. Após receber uma
+                        compra, atualize a quantidade disponível no estoque.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =====================================================
+         MODAL GERAL
+    ====================================================== -->
+
+    <div
+        class="modal-bg"
+        id="modal-bg">
+
+        <div class="modal">
+
+            <h3 id="modal-title">
+            </h3>
+
+            <p id="modal-text">
+            </p>
+
+
+            <div class="modal-actions">
+
+                <button
+                    class="btn secondary"
+                    id="modal-no">
+
+                    Não
+
+                </button>
+
+
+                <button
+                    class="btn danger"
+                    id="modal-yes">
+
+                    Sim
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         TOAST
+    ====================================================== -->
+
+    <div
+        id="toast"
+        class="toast">
+    </div>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT EXISTENTE
+    ====================================================== -->
+
+    <script src="../js/data.js"></script>
+
+    
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore-compat.js"></script>
+<script src="../../js/firebase-config.js"></script>
+<script src="../../js/firebase-live.js"></script>
+<script src="../../js/firebase-actions.js"></script>
+<script src="../../js/firebase-pdf.js"></script>
+
+<script src="../js/app.js"></script>
+
+    <script src="../js/charts.js"></script>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT DA PÁGINA
+    ====================================================== -->
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+
+                /*
+                ================================================
+                ELEMENTOS
+                ================================================
+                */
+
+                const notificationList =
+                    document.getElementById(
+                        "notification-list"
+                    );
+
+
+                const notificationCount =
+                    document.getElementById(
+                        "notification-count"
+                    );
+
+
+                const readAllButton =
+                    document.getElementById(
+                        "read-all"
+                    );
+
+
+
+                /*
+                ================================================
+                ATUALIZAR CONTADOR
+                ================================================
+                */
+
+                function atualizarContador() {
+
+                    const notificacoes =
+                        document.querySelectorAll(
+                            ".notification-item"
+                        );
+
+
+                    let naoLidas = 0;
+
+
+                    notificacoes.forEach(
+                        function (item) {
+
+                            if (
+                                !item.classList.contains(
+                                    "read"
+                                )
+                            ) {
+
+                                naoLidas++;
+
+                            }
+
+                        }
+                    );
+
+
+                    if (naoLidas === 0) {
+
+                        notificationCount.textContent =
+                            "Tudo lido";
+
+                        notificationCount.classList.remove(
+                            "info"
+                        );
+
+                        notificationCount.classList.add(
+                            "ok"
+                        );
+
+                    } else {
+
+                        notificationCount.textContent =
+                            naoLidas + " novas";
+
+                    }
+
+                }
+
+
+
+                /*
+                ================================================
+                MARCAR UMA NOTIFICAÇÃO COMO LIDA
+                ================================================
+                */
+
+                document
+                    .querySelectorAll(
+                        ".read-notification"
+                    )
+                    .forEach(
+                        function (button) {
+
+                            button.addEventListener(
+                                "click",
+                                function () {
+
+                                    const item =
+                                        button.closest(
+                                            ".notification-item"
+                                        );
+
+
+                                    if (!item) {
+                                        return;
+                                    }
+
+
+                                    item.classList.add(
+                                        "read"
+                                    );
+
+
+                                    item.style.opacity =
+                                        "0.55";
+
+
+                                    button.textContent =
+                                        "Lida ✓";
+
+
+                                    button.disabled =
+                                        true;
+
+
+                                    atualizarContador();
+
+
+                                    if (
+                                        typeof showToast ===
+                                        "function"
+                                    ) {
+
+                                        showToast(
+                                            "Notificação marcada como lida."
+                                        );
+
+                                    }
+
+                                }
+                            );
+
+                        }
+                    );
+
+
+
+                /*
+                ================================================
+                MARCAR TODAS COMO LIDAS
+                ================================================
+                */
+
+                readAllButton.addEventListener(
+                    "click",
+                    function () {
+
+
+                        const notificacoes =
+                            document.querySelectorAll(
+                                ".notification-item"
+                            );
+
+
+                        notificacoes.forEach(
+                            function (item) {
+
+                                item.classList.add(
+                                    "read"
+                                );
+
+
+                                item.style.opacity =
+                                    "0.55";
+
+                            }
+                        );
+
+
+                        document
+                            .querySelectorAll(
+                                ".read-notification"
+                            )
+                            .forEach(
+                                function (button) {
+
+                                    button.textContent =
+                                        "Lida ✓";
+
+                                    button.disabled =
+                                        true;
+
+                                }
+                            );
+
+
+                        atualizarContador();
+
+
+                        if (
+                            typeof showToast ===
+                            "function"
+                        ) {
+
+                            showToast(
+                                "Todas as notificações foram marcadas como lidas."
+                            );
+
+                        }
+
+                    }
+                );
+
+
+
+                /*
+                ================================================
+                INICIALIZAÇÃO
+                ================================================
+                */
+
+                atualizarContador();
+
+
+            }
+        );
+
+    </script>
+
+
+</body>
+
+</html>

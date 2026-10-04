@@ -1,0 +1,2032 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Desperdício — Unidac Industries</title>
+
+    <link rel="stylesheet" href="../css/style_adm.css">
+    <style>
+
+        /* ================================
+           DESPERDÍCIO
+        ================================= */
+
+        .filter-area {
+
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+
+            margin-bottom: 22px;
+
+        }
+
+        .filter-area select {
+
+            padding: 11px 14px;
+
+            border: 1px solid #dce5e1;
+
+            border-radius: 10px;
+
+            background: #ffffff;
+
+            color: #26352e;
+
+            font-size: 14px;
+
+            outline: none;
+
+        }
+
+        .filter-area select:focus {
+
+            border-color: #159447;
+
+        }
+
+
+        /* CARDS PRINCIPAIS */
+
+        .waste-stat {
+
+            position: relative;
+
+            overflow: hidden;
+
+        }
+
+        .waste-stat::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 70px;
+
+            height: 70px;
+
+            right: -20px;
+
+            bottom: -20px;
+
+            background: rgba(21, 148, 71, 0.08);
+
+            border-radius: 50%;
+
+        }
+
+        .waste-icon {
+
+            width: 38px;
+
+            height: 38px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 10px;
+
+            background: #e8f7ed;
+
+            color: #159447;
+
+            font-size: 18px;
+
+            margin-bottom: 12px;
+
+        }
+
+
+        /* PAINEL DE COMPARAÇÃO */
+
+        .comparison {
+
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 18px;
+
+        }
+
+        .comparison-box {
+
+            padding: 20px;
+
+            border: 1px solid #e2ece6;
+
+            border-radius: 14px;
+
+            background: #ffffff;
+
+        }
+
+        .comparison-header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 15px;
+
+        }
+
+        .comparison-header strong {
+
+            font-size: 16px;
+
+        }
+
+        .comparison-value {
+
+            font-size: 28px;
+
+            font-weight: 700;
+
+            margin-bottom: 10px;
+
+        }
+
+        .progress {
+
+            width: 100%;
+
+            height: 9px;
+
+            background: #edf2ef;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+
+        }
+
+        .progress span {
+
+            display: block;
+
+            height: 100%;
+
+            border-radius: 20px;
+
+            background: #159447;
+
+        }
+
+        .comparison-box small {
+
+            display: block;
+
+            margin-top: 9px;
+
+            color: #718078;
+
+        }
+
+
+        /* RANKING */
+
+        .ranking-list {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 14px;
+
+        }
+
+        .ranking-item {
+
+            display: grid;
+
+            grid-template-columns: 42px 1fr auto;
+
+            align-items: center;
+
+            gap: 12px;
+
+        }
+
+        .ranking-position {
+
+            width: 34px;
+
+            height: 34px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: #f0f4f2;
+
+            font-weight: 700;
+
+        }
+
+        .ranking-info strong {
+
+            display: block;
+
+            font-size: 14px;
+
+            margin-bottom: 5px;
+
+        }
+
+        .ranking-bar {
+
+            height: 7px;
+
+            width: 100%;
+
+            background: #edf2ef;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+
+        }
+
+        .ranking-bar span {
+
+            display: block;
+
+            height: 100%;
+
+            background: #159447;
+
+            border-radius: 20px;
+
+        }
+
+        .ranking-value {
+
+            font-weight: 700;
+
+            font-size: 14px;
+
+        }
+
+
+        /* CAUSAS */
+
+        .cause-list {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 16px;
+
+        }
+
+        .cause {
+
+            display: grid;
+
+            grid-template-columns: 1fr auto;
+
+            gap: 12px;
+
+            align-items: center;
+
+        }
+
+        .cause-name {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            margin-bottom: 6px;
+
+            font-size: 14px;
+
+        }
+
+        .cause-bar {
+
+            width: 100%;
+
+            height: 8px;
+
+            background: #edf2ef;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+
+        }
+
+        .cause-bar span {
+
+            display: block;
+
+            height: 100%;
+
+            background: #159447;
+
+            border-radius: 20px;
+
+        }
+
+
+        /* TABELA */
+
+        .table-wrapper {
+
+            overflow-x: auto;
+
+        }
+
+        .waste-table {
+
+            width: 100%;
+
+            border-collapse: collapse;
+
+            min-width: 720px;
+
+        }
+
+        .waste-table th {
+
+            text-align: left;
+
+            font-size: 12px;
+
+            color: #718078;
+
+            padding: 14px;
+
+            border-bottom: 1px solid #e2ece6;
+
+            text-transform: uppercase;
+
+        }
+
+        .waste-table td {
+
+            padding: 15px 14px;
+
+            border-bottom: 1px solid #edf2ef;
+
+            font-size: 14px;
+
+        }
+
+        .waste-table tr:last-child td {
+
+            border-bottom: none;
+
+        }
+
+        .badge {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            padding: 5px 9px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+        }
+
+        .badge-green {
+
+            background: #e8f7ed;
+
+            color: #168346;
+
+        }
+
+        .badge-warning {
+
+            background: #fff5df;
+
+            color: #ad7410;
+
+        }
+
+        .badge-danger {
+
+            background: #fdeaea;
+
+            color: #c33d3d;
+
+        }
+
+
+        /* RESUMO */
+
+        .summary-box {
+
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 16px;
+
+        }
+
+        .summary-item {
+
+            padding: 18px;
+
+            border-radius: 12px;
+
+            background: #f7faf8;
+
+            border: 1px solid #e7eee9;
+
+        }
+
+        .summary-item span {
+
+            display: block;
+
+            font-size: 12px;
+
+            color: #718078;
+
+            margin-bottom: 7px;
+
+        }
+
+        .summary-item strong {
+
+            font-size: 21px;
+
+        }
+
+
+        /* RESPONSIVO */
+
+        @media (max-width: 850px) {
+
+            .comparison {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .summary-box {
+
+                grid-template-columns: 1fr;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ================================
+         SIDEBAR
+    ================================= -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-mark">
+                U
+            </div>
+
+            <div>
+
+                <strong>
+                    Unidac Industries
+                </strong>
+
+                <small>
+                    Cantina inteligente
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <nav class="nav">
+
+            <a href="dashboard.html">
+                <i>⌂</i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="usuarios.html">
+                <i>♙</i>
+                <span>Usuários</span>
+            </a>
+
+            <a href="financeiro.html">
+                <i>R$</i>
+                <span>Financeiro</span>
+            </a>
+
+            <a href="estoque.html">
+                <i>▣</i>
+                <span>Estoque</span>
+            </a>
+
+            <a href="cozinha.html">
+                <i>♨</i>
+                <span>Cozinha</span>
+            </a>
+
+            <a href="consumo.html">
+                <i>◔</i>
+                <span>Consumo</span>
+            </a>
+
+            <a href="desperdicio.html" class="ativo">
+                <i>↘</i>
+                <span>Desperdício</span>
+            </a>
+
+            <a href="compras.html">
+                <i>▤</i>
+                <span>Compras</span>
+            </a>
+
+            <a href="validades.html">
+                <i>◷</i>
+                <span>Validades</span>
+            </a>
+
+            <a href="relatorios.html">
+                <i>▥</i>
+                <span>Relatórios</span>
+            </a>
+
+            <a href="sustentabilidade.html">
+                <i>♧</i>
+                <span>Sustentabilidade</span>
+            </a>
+
+            <a href="metas.html">
+                <i>◎</i>
+                <span>Metas</span>
+            </a>
+
+            <a href="inteligente.html">
+                <i>✦</i>
+                <span>Modo Inteligente</span>
+            </a>
+
+            <a href="notificacoes.html">
+                <i>●</i>
+                <span>Notificações</span>
+            </a>
+
+        </nav>
+
+
+        <div class="profile">
+
+            <div class="profile-box">
+
+                <div class="avatar">
+                    G
+                </div>
+
+                <div>
+
+                    <strong class="user-name">
+                        Usuário
+                    </strong>
+
+                    <small class="user-role">
+                        Acesso
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <button onclick="event.preventDefault();if(!confirm('Sair do sistema?\nSua sessão será encerrada neste dispositivo.'))return;localStorage.removeItem('unidacUser');var p=location.pathname.split('/').filter(Boolean);if(p.length&&p[p.length-1].indexOf('.html')!==-1)p.pop();if(p.length&&p[p.length-1]==='pages')p.pop();if(p.length)p.pop();location.href=(p.length?'/'+p.join('/')+'/':'/')+'index.html';"  type="button" class="logout">
+
+                ↪
+
+                <span>
+                    Sair
+                </span>
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- ================================
+         CONTEÚDO PRINCIPAL
+    ================================= -->
+
+    <main class="main">
+
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div>
+
+                <h1>
+                    Desperdício
+                </h1>
+
+                <p>
+                    Controle das perdas da cantina por alunos, professores e turmas.
+                </p>
+
+            </div>
+
+
+            <div class="top-actions">
+
+                <button
+                    class="icon-btn"
+                    onclick="location.href='notificacoes.html'"
+                >
+
+                    ♢
+
+                    <b class="dot"></b>
+
+                </button>
+
+
+                <div class="avatar">
+                    G
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- ================================
+             PÁGINA
+        ================================= -->
+
+        <section class="page">
+
+
+            <!-- CABEÇALHO -->
+
+            <div class="page-head">
+
+                <div>
+
+                    <h2>
+                        Controle de desperdício
+                    </h2>
+
+                    <p>
+                        Acompanhe onde estão ocorrendo as maiores perdas e tome decisões.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="btn"
+                    onclick="registrarOcorrencia()"
+                >
+
+                    + Registrar ocorrência
+
+                </button>
+
+            </div>
+
+
+
+            <!-- FILTROS -->
+
+            <div class="filter-area">
+
+                <select id="periodo">
+
+                    <option>
+                        Este mês
+                    </option>
+
+                    <option>
+                        Últimos 7 dias
+                    </option>
+
+                    <option>
+                        Últimos 30 dias
+                    </option>
+
+                    <option>
+                        Este ano
+                    </option>
+
+                </select>
+
+
+                <select id="tipo">
+
+                    <option>
+                        Todos
+                    </option>
+
+                    <option>
+                        Alunos
+                    </option>
+
+                    <option>
+                        Professores
+                    </option>
+
+                    <option>
+                        Cozinha
+                    </option>
+
+                </select>
+
+
+                <select id="turma">
+
+                    <option>
+                        Todas as turmas
+                    </option>
+
+                    <option>
+                        1º Ano A
+                    </option>
+
+                    <option>
+                        1º Ano B
+                    </option>
+
+                    <option>
+                        2º Ano A
+                    </option>
+
+                    <option>
+                        2º Ano B
+                    </option>
+
+                    <option>
+                        3º Ano A
+                    </option>
+
+                    <option>
+                        3º Ano B
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- ================================
+                 ESTATÍSTICAS GERAIS
+            ================================= -->
+
+            <div class="grid stats">
+
+
+                <div class="card stat waste-stat">
+
+                    <div class="waste-icon">
+                        ↘
+                    </div>
+
+                    <span class="label">
+                        DESPERDÍCIO TOTAL
+                    </span>
+
+                    <div class="value">
+                        34 kg
+                    </div>
+
+                    <span class="trend">
+                        ↓ 14% vs. média
+                    </span>
+
+                </div>
+
+
+
+                <div class="card stat waste-stat">
+
+                    <div class="waste-icon">
+                        ♙
+                    </div>
+
+                    <span class="label">
+                        DESPERDÍCIO DOS ALUNOS
+                    </span>
+
+                    <div class="value">
+                        25,8 kg
+                    </div>
+
+                    <span class="trend">
+                        76% do total
+                    </span>
+
+                </div>
+
+
+
+                <div class="card stat waste-stat">
+
+                    <div class="waste-icon">
+                        ♙
+                    </div>
+
+                    <span class="label">
+                        DESPERDÍCIO DOS PROFESSORES
+                    </span>
+
+                    <div class="value">
+                        5,2 kg
+                    </div>
+
+                    <span class="trend">
+                        15% do total
+                    </span>
+
+                </div>
+
+
+
+                <div class="card stat waste-stat">
+
+                    <div class="waste-icon">
+                        ♨
+                    </div>
+
+                    <span class="label">
+                        OUTRAS PERDAS
+                    </span>
+
+                    <div class="value">
+                        3 kg
+                    </div>
+
+                    <span class="trend">
+                        9% do total
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ================================
+                 META E CUSTO
+            ================================= -->
+
+            <div class="grid stats">
+
+
+                <div class="card stat">
+
+                    <span class="label">
+                        META DE DESPERDÍCIO
+                    </span>
+
+                    <div class="value">
+                        30 kg
+                    </div>
+
+                    <span class="trend">
+                        4 kg acima da meta
+                    </span>
+
+                </div>
+
+
+                <div class="card stat">
+
+                    <span class="label">
+                        CUSTO DO DESPERDÍCIO
+                    </span>
+
+                    <div class="value">
+                        R$ 740
+                    </div>
+
+                    <span class="trend">
+                        ↓ 11% no período
+                    </span>
+
+                </div>
+
+
+                <div class="card stat">
+
+                    <span class="label">
+                        CUSTO EVITADO
+                    </span>
+
+                    <div class="value">
+                        R$ 1.284
+                    </div>
+
+                    <span class="trend">
+                        Economia estimada
+                    </span>
+
+                </div>
+
+
+                <div class="card stat">
+
+                    <span class="label">
+                        OCORRÊNCIAS
+                    </span>
+
+                    <div class="value">
+                        47
+                    </div>
+
+                    <span class="trend">
+                        Registradas no mês
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ================================
+                 ALUNOS X PROFESSORES
+            ================================= -->
+
+            <div class="card">
+
+                <div class="section-head">
+
+                    <div>
+
+                        <h3>
+                            Desperdício por público
+                        </h3>
+
+                        <p>
+                            Comparação entre alunos e professores.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="comparison">
+
+
+                    <div class="comparison-box">
+
+                        <div class="comparison-header">
+
+                            <strong>
+                                Alunos
+                            </strong>
+
+                            <span class="badge badge-warning">
+                                76%
+                            </span>
+
+                        </div>
+
+                        <div class="comparison-value">
+                            25,8 kg
+                        </div>
+
+                        <div class="progress">
+                            <span style="width:76%;"></span>
+                        </div>
+
+                        <small>
+                            Maior concentração de desperdício da cantina.
+                        </small>
+
+                    </div>
+
+
+
+                    <div class="comparison-box">
+
+                        <div class="comparison-header">
+
+                            <strong>
+                                Professores
+                            </strong>
+
+                            <span class="badge badge-green">
+                                15%
+                            </span>
+
+                        </div>
+
+                        <div class="comparison-value">
+                            5,2 kg
+                        </div>
+
+                        <div class="progress">
+                            <span style="width:15%;"></span>
+                        </div>
+
+                        <small>
+                            Desperdício abaixo do registrado pelos alunos.
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ================================
+                 RANKING DAS TURMAS
+            ================================= -->
+
+            <div class="grid two">
+
+
+                <div class="card">
+
+                    <div class="section-head">
+
+                        <div>
+
+                            <h3>
+                                Ranking das turmas
+                            </h3>
+
+                            <p>
+                                Turmas com maior desperdício.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="ranking-list">
+
+
+                        <div class="ranking-item">
+
+                            <div class="ranking-position">
+                                1
+                            </div>
+
+                            <div class="ranking-info">
+
+                                <strong>
+                                    2º Ano B
+                                </strong>
+
+                                <div class="ranking-bar">
+                                    <span style="width:92%;"></span>
+                                </div>
+
+                            </div>
+
+                            <div class="ranking-value">
+                                6,8 kg
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="ranking-item">
+
+                            <div class="ranking-position">
+                                2
+                            </div>
+
+                            <div class="ranking-info">
+
+                                <strong>
+                                    1º Ano A
+                                </strong>
+
+                                <div class="ranking-bar">
+                                    <span style="width:78%;"></span>
+                                </div>
+
+                            </div>
+
+                            <div class="ranking-value">
+                                5,9 kg
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="ranking-item">
+
+                            <div class="ranking-position">
+                                3
+                            </div>
+
+                            <div class="ranking-info">
+
+                                <strong>
+                                    3º Ano A
+                                </strong>
+
+                                <div class="ranking-bar">
+                                    <span style="width:66%;"></span>
+                                </div>
+
+                            </div>
+
+                            <div class="ranking-value">
+                                4,8 kg
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="ranking-item">
+
+                            <div class="ranking-position">
+                                4
+                            </div>
+
+                            <div class="ranking-info">
+
+                                <strong>
+                                    2º Ano A
+                                </strong>
+
+                                <div class="ranking-bar">
+                                    <span style="width:52%;"></span>
+                                </div>
+
+                            </div>
+
+                            <div class="ranking-value">
+                                3,7 kg
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="ranking-item">
+
+                            <div class="ranking-position">
+                                5
+                            </div>
+
+                            <div class="ranking-info">
+
+                                <strong>
+                                    1º Ano B
+                                </strong>
+
+                                <div class="ranking-bar">
+                                    <span style="width:39%;"></span>
+                                </div>
+
+                            </div>
+
+                            <div class="ranking-value">
+                                2,8 kg
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PRINCIPAIS CAUSAS -->
+
+                <div class="card">
+
+                    <div class="section-head">
+
+                        <div>
+
+                            <h3>
+                                Principais causas
+                            </h3>
+
+                            <p>
+                                Motivos mais registrados.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="cause-list">
+
+
+                        <div class="cause">
+
+                            <div>
+
+                                <div class="cause-name">
+
+                                    <span>
+                                        Sobras nos pratos
+                                    </span>
+
+                                    <strong>
+                                        42%
+                                    </strong>
+
+                                </div>
+
+                                <div class="cause-bar">
+                                    <span style="width:42%;"></span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="cause">
+
+                            <div>
+
+                                <div class="cause-name">
+
+                                    <span>
+                                        Porção excessiva
+                                    </span>
+
+                                    <strong>
+                                        24%
+                                    </strong>
+
+                                </div>
+
+                                <div class="cause-bar">
+                                    <span style="width:24%;"></span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="cause">
+
+                            <div>
+
+                                <div class="cause-name">
+
+                                    <span>
+                                        Alimento não consumido
+                                    </span>
+
+                                    <strong>
+                                        18%
+                                    </strong>
+
+                                </div>
+
+                                <div class="cause-bar">
+                                    <span style="width:18%;"></span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="cause">
+
+                            <div>
+
+                                <div class="cause-name">
+
+                                    <span>
+                                        Preparo excessivo
+                                    </span>
+
+                                    <strong>
+                                        10%
+                                    </strong>
+
+                                </div>
+
+                                <div class="cause-bar">
+                                    <span style="width:10%;"></span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="cause">
+
+                            <div>
+
+                                <div class="cause-name">
+
+                                    <span>
+                                        Outros
+                                    </span>
+
+                                    <strong>
+                                        6%
+                                    </strong>
+
+                                </div>
+
+                                <div class="cause-bar">
+                                    <span style="width:6%;"></span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ================================
+                 RESUMO
+            ================================= -->
+
+            <div class="card">
+
+                <div class="section-head">
+
+                    <div>
+
+                        <h3>
+                            Resumo do período
+                        </h3>
+
+                        <p>
+                            Visão geral do desperdício registrado.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="summary-box">
+
+
+                    <div class="summary-item">
+
+                        <span>
+                            Alunos atendidos
+                        </span>
+
+                        <strong>
+                            1.248
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-item">
+
+                        <span>
+                            Professores atendidos
+                        </span>
+
+                        <strong>
+                            86
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-item">
+
+                        <span>
+                            Refeições servidas
+                        </span>
+
+                        <strong>
+                            2.486
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-item">
+
+                        <span>
+                            Média por aluno
+                        </span>
+
+                        <strong>
+                            20,7 g
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-item">
+
+                        <span>
+                            Média por professor
+                        </span>
+
+                        <strong>
+                            60,5 g
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-item">
+
+                        <span>
+                            Aproveitamento
+                        </span>
+
+                        <strong>
+                            91,4%
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ================================
+                 TABELA POR TURMA
+            ================================= -->
+
+            <div class="card">
+
+                <div class="section-head">
+
+                    <div>
+
+                        <h3>
+                            Desperdício por turma
+                        </h3>
+
+                        <p>
+                            Acompanhamento detalhado das turmas.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table class="waste-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Turma
+                                </th>
+
+                                <th>
+                                    Alunos
+                                </th>
+
+                                <th>
+                                    Refeições
+                                </th>
+
+                                <th>
+                                    Desperdício
+                                </th>
+
+                                <th>
+                                    Média por aluno
+                                </th>
+
+                                <th>
+                                    Situação
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+
+                            <tr>
+
+                                <td>
+                                    <strong>2º Ano B</strong>
+                                </td>
+
+                                <td>
+                                    38
+                                </td>
+
+                                <td>
+                                    96
+                                </td>
+
+                                <td>
+                                    6,8 kg
+                                </td>
+
+                                <td>
+                                    71 g
+                                </td>
+
+                                <td>
+                                    <span class="badge badge-danger">
+                                        Crítico
+                                    </span>
+                                </td>
+
+                            </tr>
+
+
+
+                            <tr>
+
+                                <td>
+                                    <strong>1º Ano A</strong>
+                                </td>
+
+                                <td>
+                                    42
+                                </td>
+
+                                <td>
+                                    103
+                                </td>
+
+                                <td>
+                                    5,9 kg
+                                </td>
+
+                                <td>
+                                    57 g
+                                </td>
+
+                                <td>
+                                    <span class="badge badge-warning">
+                                        Atenção
+                                    </span>
+                                </td>
+
+                            </tr>
+
+
+
+                            <tr>
+
+                                <td>
+                                    <strong>3º Ano A</strong>
+                                </td>
+
+                                <td>
+                                    35
+                                </td>
+
+                                <td>
+                                    91
+                                </td>
+
+                                <td>
+                                    4,8 kg
+                                </td>
+
+                                <td>
+                                    52 g
+                                </td>
+
+                                <td>
+                                    <span class="badge badge-warning">
+                                        Atenção
+                                    </span>
+                                </td>
+
+                            </tr>
+
+
+
+                            <tr>
+
+                                <td>
+                                    <strong>2º Ano A</strong>
+                                </td>
+
+                                <td>
+                                    40
+                                </td>
+
+                                <td>
+                                    98
+                                </td>
+
+                                <td>
+                                    3,7 kg
+                                </td>
+
+                                <td>
+                                    38 g
+                                </td>
+
+                                <td>
+                                    <span class="badge badge-green">
+                                        Normal
+                                    </span>
+                                </td>
+
+                            </tr>
+
+
+
+                            <tr>
+
+                                <td>
+                                    <strong>1º Ano B</strong>
+                                </td>
+
+                                <td>
+                                    41
+                                </td>
+
+                                <td>
+                                    100
+                                </td>
+
+                                <td>
+                                    2,8 kg
+                                </td>
+
+                                <td>
+                                    28 g
+                                </td>
+
+                                <td>
+                                    <span class="badge badge-green">
+                                        Normal
+                                    </span>
+                                </td>
+
+                            </tr>
+
+
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ================================
+                 ALIMENTOS MAIS DESPERDIÇADOS
+            ================================= -->
+
+            <div class="grid two">
+
+
+                <div class="card">
+
+                    <div class="section-head">
+
+                        <div>
+
+                            <h3>
+                                Alimentos mais desperdiçados
+                            </h3>
+
+                            <p>
+                                Itens que mais aparecem nas ocorrências.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="ranking-list">
+
+
+                        <div class="ranking-item">
+
+                            <div class="ranking-position">
+                                1
+                            </div>
+
+                            <div class="ranking-info">
+
+                                <strong>
+                                    Arroz
+                                </strong>
+
+                                <div class="ranking-bar">
+                                    <span style="width:82%;"></span>
+                                </div>
+
+                            </div>
+
+                            <div class="ranking-value">
+                                7,4 kg
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="ranking-item">
+
+                            <div class="ranking-position">
+                                2
+                            </div>
+
+                            <div class="ranking-info">
+
+                                <strong>
+                                    Feijão
+                                </strong>
+
+                                <div class="ranking-bar">
+                                    <span style="width:68%;"></span>
+                                </div>
+
+                            </div>
+
+                            <div class="ranking-value">
+                                5,8 kg
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="ranking-item">
+
+                            <div class="ranking-position">
+                                3
+                            </div>
+
+                            <div class="ranking-info">
+
+                                <strong>
+                                    Salada
+                                </strong>
+
+                                <div class="ranking-bar">
+                                    <span style="width:54%;"></span>
+                                </div>
+
+                            </div>
+
+                            <div class="ranking-value">
+                                4,3 kg
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="ranking-item">
+
+                            <div class="ranking-position">
+                                4
+                            </div>
+
+                            <div class="ranking-info">
+
+                                <strong>
+                                    Frango
+                                </strong>
+
+                                <div class="ranking-bar">
+                                    <span style="width:41%;"></span>
+                                </div>
+
+                            </div>
+
+                            <div class="ranking-value">
+                                3,2 kg
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- INDICADORES -->
+
+                <div class="card">
+
+                    <div class="section-head">
+
+                        <div>
+
+                            <h3>
+                                Indicadores de eficiência
+                            </h3>
+
+                            <p>
+                                Desempenho da cantina no período.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="summary-box">
+
+
+                        <div class="summary-item">
+
+                            <span>
+                                Meta atingida
+                            </span>
+
+                            <strong>
+                                86%
+                            </strong>
+
+                        </div>
+
+
+                        <div class="summary-item">
+
+                            <span>
+                                Redução mensal
+                            </span>
+
+                            <strong>
+                                14%
+                            </strong>
+
+                        </div>
+
+
+                        <div class="summary-item">
+
+                            <span>
+                                Aproveitamento
+                            </span>
+
+                            <strong>
+                                91,4%
+                            </strong>
+
+                        </div>
+
+
+                        <div class="summary-item">
+
+                            <span>
+                                Ocorrências resolvidas
+                            </span>
+
+                            <strong>
+                                39
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+
+
+    <!-- ================================
+         JAVASCRIPT
+    ================================= -->
+
+    <script>
+
+        function registrarOcorrencia() {
+
+            alert(
+                "Registro de desperdício iniciado."
+            );
+
+        }
+
+
+        const filtros = document.querySelectorAll(
+            ".filter-area select"
+        );
+
+
+        filtros.forEach(function(filtro) {
+
+            filtro.addEventListener(
+                "change",
+                function() {
+
+                    console.log(
+                        "Filtro alterado:",
+                        this.value
+                    );
+
+                }
+            );
+
+        });
+
+    </script>
+
+
+
+    <script src="../js/data.js"></script>
+    
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore-compat.js"></script>
+<script src="../../js/firebase-config.js"></script>
+<script src="../../js/firebase-live.js"></script>
+<script src="../../js/firebase-actions.js"></script>
+<script src="../../js/firebase-pdf.js"></script>
+
+<script src="../js/app.js"></script>
+    <script src="../js/charts.js"></script>
+</body>
+
+
+</html>

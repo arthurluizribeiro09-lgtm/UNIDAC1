@@ -1,0 +1,1307 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Dashboard — Unidac Industries</title>
+
+    <style>
+        :root {
+            --primary: #1769e0;
+            --primary-dark: #0f4fb0;
+            --primary-soft: #eaf2ff;
+            --green: #159447;
+            --green-soft: #e9f8ef;
+            --bg: #f5f7fb;
+            --white: #ffffff;
+            --text: #172033;
+            --muted: #748096;
+            --border: #e4e9f1;
+            --danger: #d94a4a;
+            --warning: #d99a19;
+            --shadow: 0 10px 30px rgba(26, 43, 72, .08);
+            --sidebar: #111827;
+            --sidebar-2: #17233a;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .layout {
+            min-height: 100vh;
+            display: flex;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 270px;
+            min-height: 100vh;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            background: linear-gradient(180deg, #111a2b 0%, #142036 100%);
+            color: #fff;
+            padding: 28px 15px 15px;
+            display: flex;
+            flex-direction: column;
+            z-index: 10;
+            overflow: hidden;
+            border-right: 1px solid rgba(255,255,255,.05);
+        }
+
+        .sidebar::after {
+            content: "";
+            position: absolute;
+            right: 17px;
+            top: 100px;
+            width: 5px;
+            height: 654px;
+            border-radius: 10px;
+            background: rgba(78, 228, 154, .62);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0 10px 27px;
+        }
+
+        .brand-mark {
+            width: 43px;
+            height: 43px;
+            border-radius: 12px;
+            display: grid;
+            place-items: center;
+            background: #eef3ff;
+            color: #1769e0;
+            font-size: 20px;
+            font-weight: 800;
+            box-shadow: none;
+        }
+
+        .brand strong {
+            display: block;
+            font-size: 16px;
+            color: #fff;
+            letter-spacing: -.2px;
+        }
+
+        .brand small {
+            display: block;
+            color: #aab5c7;
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        .nav {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            overflow-y: auto;
+            padding-right: 16px;
+            scrollbar-width: none;
+        }
+
+        .nav::-webkit-scrollbar {
+            display: none;
+        }
+
+        .nav a {
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            padding: 10px 14px;
+            border-radius: 10px;
+            color: #aab5c7;
+            font-size: 13px;
+            font-weight: 600;
+            transition: .2s;
+        }
+
+        .nav a:hover {
+            background: rgba(255,255,255,.045);
+            color: #fff;
+        }
+
+        .nav a.ativo {
+            background: #273449;
+            color: #fff;
+            border-left: 3px solid #4ee49a;
+            padding-left: 11px;
+        }
+
+        .nav i {
+            width: 20px;
+            text-align: center;
+            font-style: normal;
+            color: #a7b2c4;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .nav a.ativo i {
+            color: #fff;
+        }
+
+        .profile {
+            margin-top: auto;
+            padding-top: 11px;
+            border-top: 1px solid rgba(255, 255, 255, .10);
+        }
+
+        .profile-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px;
+        }
+
+        .avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            background: #f5f7fb;
+            color: #159447;
+            font-weight: 800;
+            font-size: 15px;
+        }
+
+        .profile strong {
+            display: block;
+            font-size: 14px;
+        }
+
+        .profile small {
+            color: #aab5c7;
+            font-size: 11px;
+            margin-top: 2px;
+            display: block;
+        }
+
+        .logout {
+            width: 100%;
+            height: 41px;
+            border: 0;
+            background: #273449;
+            color: #d7deea;
+            border-radius: 10px;
+            padding: 10px;
+            cursor: pointer;
+            margin-top: 4px;
+            font-size: 13px;
+        }
+
+        .logout:hover {
+            background: #314057;
+            color: #fff;
+        }
+
+        /* CONTEÚDO */
+        .main {
+            width: calc(100% - 270px);
+            margin-left: 270px;
+            padding: 30px 34px;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+
+        .topbar h1 {
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+
+        .topbar p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .date {
+            background: var(--white);
+            border: 1px solid var(--border);
+            padding: 10px 14px;
+            border-radius: 10px;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        /* CARDS */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 22px;
+        }
+
+        .stat {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 19px;
+            box-shadow: var(--shadow);
+        }
+
+        .stat-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .stat-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 9px;
+            display: grid;
+            place-items: center;
+            background: var(--primary-soft);
+            color: var(--primary);
+            font-weight: 800;
+        }
+
+        .stat strong {
+            display: block;
+            font-size: 25px;
+            margin: 12px 0 4px;
+        }
+
+        .stat small {
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .positive {
+            color: var(--green) !important;
+        }
+
+        .warning {
+            color: var(--warning) !important;
+        }
+
+        .danger {
+            color: var(--danger) !important;
+        }
+
+        /* GRID */
+        .grid {
+            display: grid;
+            grid-template-columns: 1.55fr 1fr;
+            gap: 18px;
+            margin-bottom: 18px;
+        }
+
+        .card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .card-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+
+        .card-title h2 {
+            font-size: 16px;
+        }
+
+        .card-title span {
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        /* GRÁFICO DE BARRAS */
+        .bars {
+            height: 245px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            gap: 18px;
+            padding: 15px 5px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .bar-group {
+            flex: 1;
+            max-width: 65px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .bar-value {
+            font-size: 10px;
+            color: var(--muted);
+        }
+
+        .bar {
+            width: 100%;
+            min-height: 12px;
+            border-radius: 7px 7px 0 0;
+            background: linear-gradient(180deg, #4e96ff, var(--primary));
+        }
+
+        .bar.green {
+            background: linear-gradient(180deg, #52c77d, var(--green));
+        }
+
+        .bar-label {
+            color: var(--muted);
+            font-size: 10px;
+            padding-top: 8px;
+        }
+
+        /* DONUT */
+        .donut-area {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            min-height: 245px;
+        }
+
+        .donut {
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            background: conic-gradient(
+                var(--primary) 0 76%,
+                var(--warning) 76% 91%,
+                #aeb8c7 91% 100%
+            );
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .donut::after {
+            content: "";
+            position: absolute;
+            inset: 35px;
+            background: var(--white);
+            border-radius: 50%;
+        }
+
+        .donut-center {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            z-index: 1;
+            font-size: 22px;
+            font-weight: 800;
+        }
+
+        .legend {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            font-size: 12px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--primary);
+        }
+
+        .dot.yellow {
+            background: var(--warning);
+        }
+
+        .dot.gray {
+            background: #aeb8c7;
+        }
+
+        .legend-item strong {
+            display: block;
+            font-size: 13px;
+            margin-bottom: 2px;
+        }
+
+        .legend-item small {
+            color: var(--muted);
+        }
+
+        /* RESUMOS */
+        .modules {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .module {
+            border: 1px solid var(--border);
+            border-radius: 13px;
+            padding: 16px;
+            background: #fff;
+        }
+
+        .module-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .module h3 {
+            font-size: 14px;
+        }
+
+        .module-icon {
+            color: var(--primary);
+            font-weight: 800;
+        }
+
+        .module p {
+            color: var(--muted);
+            font-size: 11px;
+            line-height: 1.5;
+            min-height: 34px;
+        }
+
+        .module-data {
+            display: flex;
+            gap: 16px;
+            margin: 12px 0;
+        }
+
+        .module-data strong {
+            display: block;
+            font-size: 17px;
+        }
+
+        .module-data small {
+            color: var(--muted);
+            font-size: 9px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 9px 12px;
+            border-radius: 8px;
+            background: var(--primary-soft);
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: 700;
+            transition: .2s;
+        }
+
+        .btn:hover {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        /* ALERTAS */
+        .alerts {
+            display: flex;
+            flex-direction: column;
+            gap: 11px;
+        }
+
+        .alert {
+            display: flex;
+            gap: 11px;
+            padding: 12px;
+            border-radius: 10px;
+            background: #fafbfc;
+            border: 1px solid var(--border);
+        }
+
+        .alert-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 8px;
+            display: grid;
+            place-items: center;
+            background: #fff5df;
+            color: var(--warning);
+            font-weight: 800;
+        }
+
+        .alert strong {
+            font-size: 12px;
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .alert p {
+            font-size: 10px;
+            color: var(--muted);
+            line-height: 1.4;
+        }
+
+        .footer-note {
+            text-align: center;
+            color: var(--muted);
+            font-size: 10px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 1200px) {
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .modules {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 850px) {
+            .sidebar {
+                width: 78px;
+                padding: 18px 9px;
+            }
+
+            .brand {
+                justify-content: center;
+                padding-left: 0;
+                padding-right: 0;
+            }
+
+            .brand > div:last-child,
+            .nav span,
+            .profile-box > div:last-child,
+            .logout span {
+                display: none;
+            }
+
+            .nav a {
+                justify-content: center;
+            }
+
+            .main {
+                width: calc(100% - 78px);
+                margin-left: 78px;
+                padding: 20px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modules {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .topbar {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .donut-area {
+                flex-direction: column;
+            }
+        }
+    </style>
+  <link rel="stylesheet" href="../css/style_adm.css">
+</head>
+
+<body>
+
+    <div class="layout">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+
+            <div class="brand">
+                <div class="brand-mark">U</div>
+
+                <div class="brand-text">
+                    <strong>Unidac Industries</strong>
+                    <small>Enterprise Management</small>
+                </div>
+            </div>
+
+            <nav class="nav">
+
+                <a href="dashboard.html" class="ativo">
+                    <i>⌂</i>
+                    <span>Dashboard</span>
+                </a>
+
+                <a href="usuarios.html">
+                    <i>♟</i>
+                    <span>Usuários</span>
+                </a>
+
+                <a href="financeiro.html">
+                    <i>R$</i>
+                    <span>Financeiro</span>
+                </a>
+
+                <a href="estoque.html">
+                    <i>▣</i>
+                    <span>Estoque</span>
+                </a>
+
+                <a href="cozinha.html">
+                    <i>♟</i>
+                    <span>Cantina</span>
+                </a>
+
+                <a href="consumo.html">
+                    <i>◔</i>
+                    <span>Consumo</span>
+                </a>
+
+                <a href="desperdicio.html">
+                    <i>↘</i>
+                    <span>Desperdício</span>
+                </a>
+
+                <a href="compras.html">
+                    <i>▤</i>
+                    <span>Compras</span>
+                </a>
+
+                <a href="validades.html">
+                    <i>◷</i>
+                    <span>Validades</span>
+                </a>
+
+                <a href="relatorios.html">
+                    <i>▥</i>
+                    <span>Relatórios</span>
+                </a>
+
+                <a href="sustentabilidade.html">
+                    <i>♟</i>
+                    <span>Sustentabilidade</span>
+                </a>
+
+                <a href="metas.html">
+                    <i>◎</i>
+                    <span>Metas</span>
+                </a>
+
+                <a href="inteligente.html">
+                    <i>✦</i>
+                    <span>Inteligência</span>
+                </a>
+
+                <a href="notificacoes.html">
+                    <i>●</i>
+                    <span>Notificações</span>
+                </a>
+
+            </nav>
+
+            <div class="profile">
+
+                <div class="profile-box">
+                    <div class="avatar">A</div>
+
+                    <div>
+                        <strong>Administrador</strong>
+                        <small>Administrador</small>
+                    </div>
+                </div>
+
+                <button onclick="event.preventDefault();if(!confirm('Sair do sistema?\nSua sessão será encerrada neste dispositivo.'))return;localStorage.removeItem('unidacUser');var p=location.pathname.split('/').filter(Boolean);if(p.length&&p[p.length-1].indexOf('.html')!==-1)p.pop();if(p.length&&p[p.length-1]==='pages')p.pop();if(p.length)p.pop();location.href=(p.length?'/'+p.join('/')+'/':'/')+'index.html';"  class="logout" type="button">
+                    ↪ <span>Sair</span>
+                </button>
+
+            </div>
+
+        </aside>
+
+
+        <!-- CONTEÚDO -->
+        <main class="main">
+
+            <header class="topbar">
+
+                <div>
+                    <h1>Dashboard</h1>
+                    <p>Visão geral da operação da cantina em um único lugar.</p>
+                </div>
+
+                <div class="date">
+                    Painel administrativo • Setembro
+                </div>
+
+            </header>
+
+
+            <!-- INDICADORES PRINCIPAIS -->
+            <section class="stats">
+
+                <article class="stat">
+                    <div class="stat-head">
+                        <span>Saldo disponível</span>
+                        <div class="stat-icon">R$</div>
+                    </div>
+
+                    <strong>R$ 16,8 mil</strong>
+                    <small class="positive">+ R$ 1.148 em economia identificada</small>
+                </article>
+
+
+                <article class="stat">
+                    <div class="stat-head">
+                        <span>Desperdício total</span>
+                        <div class="stat-icon">↘</div>
+                    </div>
+
+                    <strong>34 kg</strong>
+                    <small class="positive">14% abaixo da média</small>
+                </article>
+
+
+                <article class="stat">
+                    <div class="stat-head">
+                        <span>Refeições consumidas</span>
+                        <div class="stat-icon">◔</div>
+                    </div>
+
+                    <strong>386</strong>
+                    <small class="positive">91,9% de aproveitamento</small>
+                </article>
+
+
+                <article class="stat">
+                    <div class="stat-head">
+                        <span>Produtos em estoque</span>
+                        <div class="stat-icon">▣</div>
+                    </div>
+
+                    <strong>48</strong>
+                    <small class="warning">3 produtos precisam de reposição</small>
+                </article>
+
+            </section>
+
+
+            <!-- GRÁFICOS -->
+            <section class="grid">
+
+                <article class="card">
+
+                    <div class="card-title">
+                        <h2>Desempenho operacional</h2>
+                        <span>Comparativo mensal</span>
+                    </div>
+
+                    <div class="bars">
+
+                        <div class="bar-group">
+                            <span class="bar-value">68</span>
+                            <div class="bar" style="height: 54%;"></div>
+                            <span class="bar-label">Abr</span>
+                        </div>
+
+                        <div class="bar-group">
+                            <span class="bar-value">74</span>
+                            <div class="bar" style="height: 61%;"></div>
+                            <span class="bar-label">Mai</span>
+                        </div>
+
+                        <div class="bar-group">
+                            <span class="bar-value">81</span>
+                            <div class="bar" style="height: 67%;"></div>
+                            <span class="bar-label">Jun</span>
+                        </div>
+
+                        <div class="bar-group">
+                            <span class="bar-value">77</span>
+                            <div class="bar" style="height: 64%;"></div>
+                            <span class="bar-label">Jul</span>
+                        </div>
+
+                        <div class="bar-group">
+                            <span class="bar-value">88</span>
+                            <div class="bar green" style="height: 73%;"></div>
+                            <span class="bar-label">Ago</span>
+                        </div>
+
+                        <div class="bar-group">
+                            <span class="bar-value">92</span>
+                            <div class="bar green" style="height: 82%;"></div>
+                            <span class="bar-label">Atual</span>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <article class="card">
+
+                    <div class="card-title">
+                        <h2>Desperdício por público</h2>
+                        <span>34 kg total</span>
+                    </div>
+
+                    <div class="donut-area">
+
+                        <div class="donut">
+                            <div class="donut-center">34 kg</div>
+                        </div>
+
+                        <div class="legend">
+
+                            <div class="legend-item">
+                                <span class="dot"></span>
+                                <div>
+                                    <strong>Alunos — 76%</strong>
+                                    <small>25,8 kg</small>
+                                </div>
+                            </div>
+
+                            <div class="legend-item">
+                                <span class="dot yellow"></span>
+                                <div>
+                                    <strong>Professores — 15%</strong>
+                                    <small>5,2 kg</small>
+                                </div>
+                            </div>
+
+                            <div class="legend-item">
+                                <span class="dot gray"></span>
+                                <div>
+                                    <strong>Outras perdas — 9%</strong>
+                                    <small>3 kg</small>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <!-- ALERTAS E RESUMO FINANCEIRO -->
+            <section class="grid">
+
+                <article class="card">
+
+                    <div class="card-title">
+                        <h2>Resumo financeiro</h2>
+                        <a href="financeiro.html" class="btn" style="width:auto;">Abrir financeiro</a>
+                    </div>
+
+                    <div class="module-data">
+
+                        <div>
+                            <strong>R$ 48.620</strong>
+                            <small>Receitas</small>
+                        </div>
+
+                        <div>
+                            <strong>R$ 31.840</strong>
+                            <small>Despesas</small>
+                        </div>
+
+                        <div>
+                            <strong>34,5%</strong>
+                            <small>Margem</small>
+                        </div>
+
+                        <div>
+                            <strong class="positive">R$ 1.148</strong>
+                            <small>Economia</small>
+                        </div>
+
+                    </div>
+
+                    <p style="font-size:11px;color:var(--muted);">
+                        As despesas aumentaram 4,8% no período. Acompanhe as movimentações para manter o orçamento sob controle.
+                    </p>
+
+                </article>
+
+
+                <article class="card">
+
+                    <div class="card-title">
+                        <h2>Atenção</h2>
+                        <span>Itens que precisam de acompanhamento</span>
+                    </div>
+
+                    <div class="alerts">
+
+                        <div class="alert">
+                            <div class="alert-icon">!</div>
+                            <div>
+                                <strong>Estoque baixo</strong>
+                                <p>3 produtos estão abaixo do estoque mínimo configurado.</p>
+                            </div>
+                        </div>
+
+                        <div class="alert">
+                            <div class="alert-icon">↘</div>
+                            <div>
+                                <strong>Desperdício acima da meta</strong>
+                                <p>O período registra 34 kg, enquanto a meta é de 30 kg.</p>
+                            </div>
+                        </div>
+
+                        <div class="alert">
+                            <div class="alert-icon">✦</div>
+                            <div>
+                                <strong>Recomendação inteligente</strong>
+                                <p>Previsão de 390 refeições para amanhã, com 94% de confiança.</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <!-- MÓDULOS -->
+            <section class="card">
+
+                <div class="card-title">
+                    <h2>Resumo dos módulos</h2>
+                    <span>Acesse os detalhes de cada área</span>
+                </div>
+
+                <div class="modules">
+
+                    <article class="module">
+                        <div class="module-top">
+                            <h3>Estoque</h3>
+                            <span class="module-icon">▣</span>
+                        </div>
+
+                        <p>Produtos, movimentações, quantidades e itens abaixo do mínimo.</p>
+
+                        <div class="module-data">
+                            <div>
+                                <strong>48</strong>
+                                <small>produtos</small>
+                            </div>
+
+                            <div>
+                                <strong class="warning">3</strong>
+                                <small>estoque baixo</small>
+                            </div>
+                        </div>
+
+                        <a class="btn" href="estoque.html">Ver estoque</a>
+                    </article>
+
+
+                    <article class="module">
+                        <div class="module-top">
+                            <h3>Cozinha</h3>
+                            <span class="module-icon">♨</span>
+                        </div>
+
+                        <p>Produção planejada, produção realizada, consumo e sobras.</p>
+
+                        <div class="module-data">
+                            <div>
+                                <strong>390</strong>
+                                <small>planejadas</small>
+                            </div>
+
+                            <div>
+                                <strong>420</strong>
+                                <small>produzidas</small>
+                            </div>
+                        </div>
+
+                        <a class="btn" href="cozinha.html">Ver cozinha</a>
+                    </article>
+
+
+                    <article class="module">
+                        <div class="module-top">
+                            <h3>Consumo</h3>
+                            <span class="module-icon">◔</span>
+                        </div>
+
+                        <p>Acompanhe refeições consumidas e o aproveitamento por período.</p>
+
+                        <div class="module-data">
+                            <div>
+                                <strong>386</strong>
+                                <small>consumidas</small>
+                            </div>
+
+                            <div>
+                                <strong class="positive">91,9%</strong>
+                                <small>aproveitamento</small>
+                            </div>
+                        </div>
+
+                        <a class="btn" href="consumo.html">Ver consumo</a>
+                    </article>
+
+
+                    <article class="module">
+                        <div class="module-top">
+                            <h3>Desperdício</h3>
+                            <span class="module-icon">↘</span>
+                        </div>
+
+                        <p>Perdas por turma, alunos, professores e principais causas.</p>
+
+                        <div class="module-data">
+                            <div>
+                                <strong>34 kg</strong>
+                                <small>total</small>
+                            </div>
+
+                            <div>
+                                <strong class="danger">25,8 kg</strong>
+                                <small>alunos</small>
+                            </div>
+                        </div>
+
+                        <a class="btn" href="desperdicio.html">Ver desperdício</a>
+                    </article>
+
+
+                    <article class="module">
+                        <div class="module-top">
+                            <h3>Compras</h3>
+                            <span class="module-icon">▤</span>
+                        </div>
+
+                        <p>Pedidos, fornecedores e custos de abastecimento da cantina.</p>
+
+                        <div class="module-data">
+                            <div>
+                                <strong>18</strong>
+                                <small>pedidos</small>
+                            </div>
+
+                            <div>
+                                <strong>7</strong>
+                                <small>fornecedores</small>
+                            </div>
+                        </div>
+
+                        <a class="btn" href="compras.html">Ver compras</a>
+                    </article>
+
+
+                    <article class="module">
+                        <div class="module-top">
+                            <h3>Validades</h3>
+                            <span class="module-icon">◷</span>
+                        </div>
+
+                        <p>Controle os prazos e priorize produtos próximos do vencimento.</p>
+
+                        <div class="module-data">
+                            <div>
+                                <strong>0</strong>
+                                <small>alta prioridade</small>
+                            </div>
+
+                            <div>
+                                <strong>0</strong>
+                                <small>próximos 7 dias</small>
+                            </div>
+                        </div>
+
+                        <a class="btn" href="validades.html">Ver validades</a>
+                    </article>
+
+
+                    <article class="module">
+                        <div class="module-top">
+                            <h3>Sustentabilidade</h3>
+                            <span class="module-icon">♧</span>
+                        </div>
+
+                        <p>Veja o impacto ambiental e a economia gerada pela redução das perdas.</p>
+
+                        <div class="module-data">
+                            <div>
+                                <strong>286 kg</strong>
+                                <small>alimentos salvos</small>
+                            </div>
+
+                            <div>
+                                <strong class="positive">23%</strong>
+                                <small>redução</small>
+                            </div>
+                        </div>
+
+                        <a class="btn" href="sustentabilidade.html">Ver impacto</a>
+                    </article>
+
+
+                    <article class="module">
+                        <div class="module-top">
+                            <h3>Metas</h3>
+                            <span class="module-icon">◎</span>
+                        </div>
+
+                        <p>Acompanhe os objetivos estratégicos e desafios da cantina.</p>
+
+                        <div class="module-data">
+                            <div>
+                                <strong>82%</strong>
+                                <small>economia</small>
+                            </div>
+
+                            <div>
+                                <strong>91,9%</strong>
+                                <small>aproveitamento</small>
+                            </div>
+                        </div>
+
+                        <a class="btn" href="metas.html">Ver metas</a>
+                    </article>
+
+
+                    <article class="module">
+                        <div class="module-top">
+                            <h3>Modo Inteligente</h3>
+                            <span class="module-icon">✦</span>
+                        </div>
+
+                        <p>Previsões e recomendações automáticas baseadas nos dados do sistema.</p>
+
+                        <div class="module-data">
+                            <div>
+                                <strong>390</strong>
+                                <small>refeições previstas</small>
+                            </div>
+
+                            <div>
+                                <strong class="positive">94%</strong>
+                                <small>confiança</small>
+                            </div>
+                        </div>
+
+                        <a class="btn" href="inteligente.html">Ver recomendações</a>
+                    </article>
+
+
+                    <article class="module">
+                        <div class="module-top">
+                            <h3>Relatórios</h3>
+                            <span class="module-icon">▥</span>
+                        </div>
+
+                        <p>Centralize relatórios de desperdício, consumo, financeiro e operação.</p>
+
+                        <div class="module-data">
+                            <div>
+                                <strong>4</strong>
+                                <small>áreas</small>
+                            </div>
+
+                            <div>
+                                <strong>↗</strong>
+                                <small>análises</small>
+                            </div>
+                        </div>
+
+                        <a class="btn" href="relatorios.html">Ver relatórios</a>
+                    </article>
+
+
+                    <article class="module">
+                        <div class="module-top">
+                            <h3>Usuários</h3>
+                            <span class="module-icon">♙</span>
+                        </div>
+
+                        <p>Controle as contas cadastradas e os níveis de acesso do sistema.</p>
+
+                        <div class="module-data">
+                            <div>
+                                <strong>8</strong>
+                                <small>usuários</small>
+                            </div>
+
+                            <div>
+                                <strong class="positive">100%</strong>
+                                <small>ambiente</small>
+                            </div>
+                        </div>
+
+                        <a class="btn" href="usuarios.html">Gerenciar usuários</a>
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            <p class="footer-note">
+                Unidac Industries • Cantina inteligente • Painel administrativo
+            </p>
+
+        </main>
+
+    </div>
+
+
+    <script src="../js/data.js"></script>
+    
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore-compat.js"></script>
+<script src="../../js/firebase-config.js"></script>
+<script src="../../js/firebase-live.js"></script>
+<script src="../../js/firebase-actions.js"></script>
+<script src="../../js/firebase-pdf.js"></script>
+
+<script src="../js/app.js"></script>
+    <script src="../js/charts.js"></script>
+</body>
+
+</html>
