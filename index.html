@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+
+    <title>
+        Unidac Industries — Acesso
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/responsive.css"
+    >
+
+
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore-compat.js"></script>
+<script src="js/firebase-config.js"></script>
+
+</head>
+
+
+<body class="login-body">
+
+
+<main class="login">
+
+
+    <!-- =====================================================
+         LADO ESQUERDO
+         ===================================================== -->
+
+    <section class="login-side">
+
+
+        <!-- MARCA -->
+
+        <div class="brand login-brand">
+
+            <div class="brand-mark">
+                U
+            </div>
+
+            <div>
+
+                <strong>
+                    Unidac Industries
+                </strong>
+
+                <small>
+                    Enterprise Management
+                </small>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- CONTEÚDO -->
+
+        <div class="login-hero">
+
+
+            <span class="eyebrow">
+                PLATAFORMA CORPORATIVA
+            </span>
+
+
+            <h1>
+                Um acesso. Ambientes diferentes para cada função.
+            </h1>
+
+
+            <p>
+                Entre com seu e-mail e senha cadastrados e o sistema
+                abrirá automaticamente a versão correta do seu painel.
+            </p>
+
+
+
+            <!-- DESTAQUES -->
+
+            <div class="highlights">
+
+                <span>
+                    ◉ Acesso por perfil
+                </span>
+
+                <span>
+                    ↗ Áreas separadas
+                </span>
+
+                <span>
+                    ✦ Gestão integrada
+                </span>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 SIGNIFICADO DA SIGLA
+                 ================================================= -->
+
+            <div class="unidac-values">
+
+
+                <div class="unidac-values-title">
+                    O significado de UNIDAC
+                </div>
+
+
+                <!-- U -->
+
+                <div class="unidac-value">
+
+                    <div class="unidac-letter">
+                        U
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Uso consciente
+                        </strong>
+
+                        <span>
+                            Decisões responsáveis no dia a dia.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- N -->
+
+                <div class="unidac-value">
+
+                    <div class="unidac-letter">
+                        N
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Nutrição sustentável
+                        </strong>
+
+                        <span>
+                            Alimentação equilibrada e responsável.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- I -->
+
+                <div class="unidac-value">
+
+                    <div class="unidac-letter">
+                        I
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Inteligência no consumo
+                        </strong>
+
+                        <span>
+                            Dados para consumir melhor.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- D -->
+
+                <div class="unidac-value">
+
+                    <div class="unidac-letter">
+                        D
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Diminuição do desperdício
+                        </strong>
+
+                        <span>
+                            Menos perdas, mais eficiência.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- A -->
+
+                <div class="unidac-value">
+
+                    <div class="unidac-letter">
+                        A
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Aproveitamento dos alimentos
+                        </strong>
+
+                        <span>
+                            Valorizar cada alimento disponível.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- C -->
+
+                <div class="unidac-value">
+
+                    <div class="unidac-letter">
+                        C
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Controle nas cantinas
+                        </strong>
+
+                        <span>
+                            Gestão organizada do ambiente alimentar.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         FORMULÁRIO DE LOGIN
+         ===================================================== -->
+
+    <section class="login-form">
+
+
+        <form
+            class="login-card"
+            id="loginForm"
+        >
+
+
+            <!-- LOGO MOBILE -->
+
+            <div class="login-logo-mobile">
+
+                <div class="brand-mark">
+                    U
+                </div>
+
+                <strong>
+                    Unidac Industries
+                </strong>
+
+            </div>
+
+
+
+            <span class="eyebrow">
+                ACESSO AO SISTEMA
+            </span>
+
+
+
+            <h2>
+                Bem-vindo
+            </h2>
+
+
+
+            <p>
+                Digite seu e-mail e senha cadastrados para acessar
+                automaticamente o ambiente correspondente ao seu cargo.
+            </p>
+
+
+
+            <!-- =================================================
+                 E-MAIL
+                 ================================================= -->
+
+            <div class="field">
+
+                <label for="email">
+                    E-MAIL
+                </label>
+
+                <input
+                    id="email"
+                    type="email"
+                    placeholder="exemplo@gmail.com"
+                    required
+                    autocomplete="email"
+                >
+
+            </div>
+
+
+
+            <!-- =================================================
+                 SENHA
+                 ================================================= -->
+
+            <div class="field">
+
+                <label for="password">
+                    SENHA
+                </label>
+
+                <input
+                    id="password"
+                    type="password"
+                    placeholder="Digite sua senha"
+                    required
+                    autocomplete="current-password"
+                >
+
+            </div>
+
+
+
+            <!-- BOTÃO -->
+
+            <button
+                class="btn login-btn"
+                type="submit"
+            >
+
+                Entrar no sistema →
+
+            </button>
+
+
+
+            <!-- AVISO -->
+
+            <div class="notice">
+
+                Ambiente demonstrativo • Cada cargo possui
+                uma área independente.
+
+            </div>
+
+
+
+
+        </form>
+
+    </section>
+
+
+</main>
+
+
+
+<!-- TOAST -->
+
+<div
+    id="toast"
+    class="toast"
+></div>
+
+
+
+<script src="js/app.js"></script>
+
+
+
+<script>
+
+
+/* =========================================================
+   CONTAS DO SISTEMA
+   ========================================================= */
+
+/* Usuários agora vêm do Firestore */
+
+
+
+/* =========================================================
+   LOGIN
+   ========================================================= */
+
+
+async function login(email, password) {
+  try {
+    const user = await firebaseLogin(email, password);
+    if (typeof showToast === "function") {
+      showToast("Login realizado com sucesso!");
+    }
+    setTimeout(function () {
+      location.href = new URL(user.role + "/pages/dashboard.html", window.location.href).href;
+    }, 500);
+  } catch (err) {
+    if (typeof showToast === "function") {
+      showToast(err.message || "Erro ao fazer login.");
+    } else {
+      alert(err.message || "Erro ao fazer login.");
+    }
+  }
+}
+
+
+
+
+
+/* =========================================================
+   ENVIO DO FORMULÁRIO
+   ========================================================= */
+
+document
+    .querySelector("#loginForm")
+    .addEventListener(
+        "submit",
+        function(event) {
+
+
+            event.preventDefault();
+
+
+            const email =
+                document
+                    .querySelector("#email")
+                    .value;
+
+
+            const password =
+                document
+                    .querySelector("#password")
+                    .value;
+
+
+            login(
+                email,
+                password
+            );
+
+        }
+    );
+
+</script>
+</body>
+
+</html>
